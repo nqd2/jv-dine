@@ -1,0 +1,117 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Role {
+  id          Int     @id @default(autoincrement())
+  role_name   String  @db.VarChar
+  description String? @db.Text
+
+  users User[]
+
+  @@map("roles")
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  username     String    @db.VarChar
+  email        String    @unique @db.VarChar
+  password     String    @db.VarChar
+  role_id      Int
+  allergy_info String?   @db.Text
+  is_verified  Boolean   @default(false)
+  created_at   DateTime  @default(now()) @db.Timestamptz
+
+  role          Role           @relation(fields: [role_id], references: [id])
+  restaurants   Restaurant[]   @relation("RestaurantOwner")
+  reviews       Review[]
+  notifications Notification[]
+
+  @@map("users")
+}
+
+model Restaurant {
+  id                   Int      @id @default(autoincrement())
+  owner_id             Int
+  name                 String   @db.VarChar
+  address              String   @db.VarChar
+  area                 String?  @db.VarChar
+  working_hours        String?  @db.VarChar
+  min_budget           Decimal? @db.Decimal(10, 2)
+  max_budget           Decimal? @db.Decimal(10, 2)
+  has_air_conditioner  Boolean  @default(false)
+  is_japanese_friendly Boolean  @default(false)
+  cleanliness_level    Int?
+  languages            String?  @db.VarChar
+  lat                  Float?
+  long                 Float?
+
+  owner   User     @relation("RestaurantOwner", fields: [owner_id], references: [id])
+  menus   Menu[]
+  coupons Coupon[]
+  reviews Review[]
+
+  @@map("restaurants")
+}
+
+model Menu {
+  id            Int      @id @default(autoincrement())
+  restaurant_id Int
+  item_name     String   @db.VarChar
+  price         Decimal  @db.Decimal(10, 2)
+  warning_tags  String?  @db.VarChar
+  image_url     String?  @db.VarChar
+
+  restaurant Restaurant @relation(fields: [restaurant_id], references: [id], onDelete: Cascade)
+
+  @@map("menus")
+}
+
+model Coupon {
+  id            Int      @id @default(autoincrement())
+  restaurant_id Int
+  code          String   @unique @db.VarChar
+  discount_rate Int
+  expiry_date   DateTime @db.Date
+
+  restaurant Restaurant @relation(fields: [restaurant_id], references: [id], onDelete: Cascade)
+
+  @@map("coupons")
+}
+
+model Review {
+  id                 Int      @id @default(autoincrement())
+  user_id            Int
+  restaurant_id      Int
+  rating_taste       Int
+  rating_cleanliness Int
+  rating_service     Int
+  comment            String?  @db.Text
+  image_url          String?  @db.VarChar
+  created_at         DateTime @default(now()) @db.Timestamptz
+
+  user       User       @relation(fields: [user_id], references: [id])
+  restaurant Restaurant @relation(fields: [restaurant_id], references: [id], onDelete: Cascade)
+
+  @@map("reviews")
+}
+
+model Notification {
+  id         Int      @id @default(autoincrement())
+  user_id    Int
+  content    String   @db.Text
+  is_read    Boolean  @default(false)
+  created_at DateTime @default(now()) @db.Timestamptz
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
