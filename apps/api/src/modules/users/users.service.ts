@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserModel } from './models/user.model';
-import { UsersRepository } from './users.repository';
+import { UserAuthRecord, UsersRepository } from './users.repository';
 
 @Injectable()
 export class UsersService {
@@ -14,6 +14,14 @@ export class UsersService {
 
   findById(id: number): Promise<UserModel | null> {
     return this.usersRepository.findById(id);
+  }
+
+  findByEmailForAuth(email: string): Promise<UserAuthRecord | null> {
+    return this.usersRepository.findByEmailForAuth(email);
+  }
+
+  ensureRole(id: number, roleName: string): Promise<void> {
+    return this.usersRepository.ensureRole(id, roleName);
   }
 
   create(data: CreateUserDto): Promise<UserModel> {

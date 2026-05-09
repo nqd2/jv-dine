@@ -17,8 +17,13 @@ cp apps/web/.env.example apps/web/.env.local
 pnpm dev:web
 ```
 
-Default URL is `http://localhost:3000`.  
+Default URL is `http://localhost:3000`. Visiting `/` opens the guest home/search screen, while `/login` and `/signup` remain dedicated auth routes.
+
 If API is also running on `:3000`, Next.js will move to `:3001`.
+
+## Language toggle
+
+The home and auth screens use a client-side JP/VN language toggle stored in `localStorage`. There are no locale-prefixed routes yet.
 
 ## Environment variables
 

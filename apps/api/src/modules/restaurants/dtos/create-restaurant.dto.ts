@@ -12,4 +12,5 @@ export type CreateRestaurantDto = {
   languages?: string | null;
   lat?: number | null;
   long?: number | null;
+  imageUrl?: string | null;
 };

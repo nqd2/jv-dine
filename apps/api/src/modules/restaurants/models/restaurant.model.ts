@@ -13,4 +13,5 @@ export type RestaurantModel = {
   languages: string | null;
   lat: number | null;
   long: number | null;
+  imageUrl: string | null;
 };

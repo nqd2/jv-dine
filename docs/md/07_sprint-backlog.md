@@ -39,24 +39,24 @@
 
 | ID | P_ID | Task | PIC | Est. (h) | Gắn goal? | Done? |
 |---:|:---:|---|---|:---:|:---:|:---:|
-| 1 | 1 | [DB] ER図作成とスキーマ定義 — Tạo sơ đồ ER & định nghĩa Schema | Tiến Đạt | 5 | あり |
-| 2 | 1 | [DB] マイグレーション実行・初期化 — Thực thi migration & khởi tạo dữ liệu | Tiến Đạt | 2 | あり |
-| 3 | 2 | [Dev] 共通開発環境の構築 — Thiết lập môi trường phát triển chung | Huy | 3 | あり |
-| 4 | 2 | [Doc] 開発環境設定のマニュアル作成 — Soạn tài liệu hướng dẫn thiết lập env | Tuấn | 2 | あり |
-| 5 | 1 | [BE] Entity/Model実装 — Triển khai Entity / Model | Huy | 2 | あり |
+| 1 | 1 | [DB] ER図作成とスキーマ定義 — Tạo sơ đồ ER & định nghĩa Schema | Tiến Đạt | 5 | あり | ✅ |
+| 2 | 1 | [DB] マイグレーション実行・初期化 — Thực thi migration & khởi tạo dữ liệu | Tiến Đạt | 2 | あり | ✅ |
+| 3 | 2 | [Dev] 共通開発環境の構築 — Thiết lập môi trường phát triển chung | Huy | 3 | あり | ✅ |
+| 4 | 2 | [Doc] 開発環境設定のマニュアル作成 — Soạn tài liệu hướng dẫn thiết lập env | Tuấn | 2 | あり | ✅ |
+| 5 | 1 | [BE] Entity/Model実装 — Triển khai Entity / Model | Huy | 2 | あり | ✅ |
 | 6 | 1 | [BE] CRUD開発 — Code các chức năng CRUD | Tuấn | 2 | あり | ✅ |
-| 7 | 1 | [QA] DB・CRUD操作の検証 — Test thao tác DB & CRUD | Tuấn | 2 | あり |
-| 8 | 2 | [QA] 開発環境の導入検証 — Test việc thiết lập môi trường phát triển | Quý | 2 | あり |
-| 9 | 3 | [FE] ログイン画面のレイアウト実装 — Code layout màn hình đăng nhập | Hải | 2 | あり |
-| 10 | 3 | [FE] サインアップ画面のレイアウト実装 — Code layout màn hình đăng ký | Hải | 2 | あり |
-| 11 | 3 | [BE] ログイン・サインアップAPIの実装 — API đăng nhập & đăng ký | Thế Đạt | 3 | あり |
-| 12 | 3 | [FE/BE] ログイン・サインアップUIとAPIの連携 — Kết nối UI ↔ API đăng nhập / đăng ký | Thế Đạt | 2 | あり |
-| 13 | 3 | [QA] ログイン・サインアップ機能の受け入れテスト — UAT đăng nhập / đăng ký | Quý | 2 | あり |
-| 14 | 4 | [FE] ゲスト用ホーム画面のレイアウト実装 — Code layout home dành cho khách | Hải | 2 | あり |
-| 15 | 4 | [FE] 一般ユーザー用ホーム画面のレイアウト実装 — Code layout home cho user thường | Đức | 2 | あり |
-| 16 | 4 | [BE] ホーム画面のレストラン検索APIの実装 — API search nhà hàng ở home | Đức | 3 | あり |
-| 17 | 4 | [FE/BE] ホーム画面の検索UIとレストラン検索APIの連携 — Kết nối UI ↔ API search | Đức | 2 | あり |
-| 18 | 4 | [QA] 詳細検索・予算検索機能の受け入れテスト — UAT search chi tiết & ngân sách | Quý | 2 | あり |
+| 7 | 1 | [QA] DB・CRUD操作の検証 — Test thao tác DB & CRUD | Tuấn | 2 | あり | ✅ |
+| 8 | 2 | [QA] 開発環境の導入検証 — Test việc thiết lập môi trường phát triển | Quý | 2 | あり | ✅ |
+| 9 | 3 | [FE] ログイン画面のレイアウト実装 — Code layout màn hình đăng nhập | Hải | 2 | あり | ✅ |
+| 10 | 3 | [FE] サインアップ画面のレイアウト実装 — Code layout màn hình đăng ký | Hải | 2 | あり | ✅ |
+| 11 | 3 | [BE] ログイン・サインアップAPIの実装 — API đăng nhập & đăng ký | Thế Đạt | 3 | あり | ✅ |
+| 12 | 3 | [FE/BE] ログイン・サインアップUIとAPIの連携 — Kết nối UI ↔ API đăng nhập / đăng ký | Thế Đạt | 2 | あり | ✅ |
+| 13 | 3 | [QA] ログイン・サインアップ機能の受け入れテスト — UAT đăng nhập / đăng ký | Quý | 2 | あり | ✅ |
+| 14 | 4 | [FE] ゲスト用ホーム画面のレイアウト実装 — Code layout home dành cho khách | Hải | 2 | あり | ✅ |
+| 15 | 4 | [FE] 一般ユーザー用ホーム画面のレイアウト実装 — Code layout home cho user thường | Đức | 2 | あり | ✅ |
+| 16 | 4 | [BE] ホーム画面のレストラン検索APIの実装 — API search nhà hàng ở home | Đức | 3 | あり | ✅ |
+| 17 | 4 | [FE/BE] ホーム画面の検索UIとレストラン検索APIの連携 — Kết nối UI ↔ API search | Đức | 2 | あり | ✅ |
+| 18 | 4 | [QA] 詳細検索・予算検索機能の受け入れテスト — UAT search chi tiết & ngân sách | Quý | 2 | あり | ✅ |
 
 ### Phân bổ thời gian Sprint 1
 
@@ -71,10 +71,19 @@
 | Đức (FE/BE) | 7 |
 | **Tổng cộng** | **42 h** |
 
-### Trạng thái Sprint 1 (lúc tách CSV)
+### Trạng thái Sprint 1 (cập nhật theo repo hiện tại)
 
-- Task 1 (ER図 / Schema) — *Tiến độ: bắt đầu (1.0/5.0h thực tế ~ 3h)*. Có ô được điền nhưng chưa hoàn thành.
-- Các task còn lại — chưa cập nhật progress / actual.
+- Task 1 — ✅ Đã có `apps/api/prisma/schema.prisma` với schema đầy đủ cho các bảng chính.
+- Task 2 — ✅ Đã chạy migration local thành công (`prisma migrate dev`) và DB health endpoint trả `connected`.
+- Task 3 — ✅ Đã có môi trường dev chung (monorepo scripts, `docker-compose.local.yml`, `.env.example`).
+- Task 4 — ✅ Đã có tài liệu setup (`README.md` ở root và `apps/api/README.md`).
+- Task 9–10 — ✅ Đã có layout login / signup hoàn chỉnh ở `apps/web/app/login`, `apps/web/app/signup` và component dùng chung `auth-page.tsx`.
+- Task 11 — ✅ Đã có API auth cho `signup`, `login`, `refresh` trong `apps/api/src/modules/auth`.
+- Task 12–13 — ⚠️ UI đã nối API auth, nhưng UAT end-to-end hiện còn bị chặn bởi `apps/api/.env` đang trỏ Supabase và phát sinh lỗi kết nối DB khi thử signup local.
+- Task 14–15 — ✅ Đã có home cho guest (`/`) và user (`/home`) dùng chung UI search.
+- Task 16 — ✅ Đã có endpoint `GET /restaurants/search` với filter keyword, area, budget, language, air-conditioner, Japanese-friendly, cleanliness.
+- Task 17 — ✅ Đã nối UI home/search với API và verify được flow filter bằng browser (`Ba Đình` + `日本人向け` trả đúng 2 quán).
+- Task 18 — ✅ Đã verify thủ công search acceptance cho case có kết quả và filter khớp điều kiện; empty-state cũng đã có trên UI.
 
 ---
 

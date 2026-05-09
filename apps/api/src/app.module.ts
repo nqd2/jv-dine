@@ -3,6 +3,7 @@ import { AppConfigModule } from './common/config/app-config.module';
 import { PrismaModule } from './common/prisma/prisma.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './modules/auth/auth.module';
 import { CouponsModule } from './modules/coupons/coupons.module';
 import { HealthModule } from './modules/health/health.module';
 import { MenusModule } from './modules/menus/menus.module';
@@ -16,6 +17,7 @@ import { UsersModule } from './modules/users/users.module';
   imports: [
     AppConfigModule,
     PrismaModule,
+    AuthModule,
     HealthModule,
     RolesModule,
     UsersModule,

@@ -5,7 +5,7 @@
   "scripts": {
     "setup": "pnpm install",
     "dev": "turbo run dev --parallel",
-    "dev:api": "pnpm --filter api start:dev",
+    "dev:api": "pnpm --filter api dev",
     "dev:web": "pnpm --filter web dev",
     "build": "turbo run build",
     "lint": "turbo run lint",

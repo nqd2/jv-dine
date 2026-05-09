@@ -53,6 +53,7 @@ model Restaurant {
   languages            String?  @db.VarChar
   lat                  Float?
   long                 Float?
+  image_url            String?  @db.VarChar(2048)
 
   owner   User     @relation("RestaurantOwner", fields: [owner_id], references: [id])
   menus   Menu[]

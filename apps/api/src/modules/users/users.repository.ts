@@ -4,6 +4,10 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { UpdateUserDto } from './dtos/update-user.dto';
 import { UserModel } from './models/user.model';
 
+export type UserAuthRecord = UserModel & {
+  password: string;
+};
+
 @Injectable()
 export class UsersRepository {
   constructor(private readonly prisma: PrismaService) {}
@@ -28,6 +32,37 @@ export class UsersRepository {
     }
 
     return this.toModel(user);
+  }
+
+  async findByEmailForAuth(email: string): Promise<UserAuthRecord | null> {
+    const user = await this.prisma.user.findUnique({
+      where: { email },
+      include: { role: true },
+    });
+
+    if (!user) {
+      return null;
+    }
+
+    return {
+      ...this.toModel(user),
+      password: user.password,
+    };
+  }
+
+  async ensureRole(id: number, roleName: string): Promise<void> {
+    await this.prisma.role.upsert({
+      where: { id },
+      update: {},
+      create: {
+        id,
+        role_name: roleName,
+        description:
+          roleName === 'OWNER'
+            ? 'Restaurant owner role'
+            : 'General customer role',
+      },
+    });
   }
 
   async create(data: CreateUserDto): Promise<UserModel> {

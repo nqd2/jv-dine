@@ -3,11 +3,13 @@ import {
   Controller,
   Delete,
   Get,
+  Header,
   NotFoundException,
   Param,
   Patch,
   ParseIntPipe,
   Post,
+  Query,
 } from '@nestjs/common';
 import type { CreateRestaurantDto } from './dtos/create-restaurant.dto';
 import type { UpdateRestaurantDto } from './dtos/update-restaurant.dto';
@@ -20,6 +22,31 @@ export class RestaurantsController {
   @Get()
   async findAll() {
     return await this.restaurantsService.findAll();
+  }
+
+  @Get('search')
+  /** Lets browsers/CDN reuse JSON for identical queries; pairs with Redis on the server. */
+  @Header('Cache-Control', 'public, max-age=30, stale-while-revalidate=120')
+  async search(
+    @Query('keyword') keyword?: string,
+    @Query('area') area?: string,
+    @Query('budgetMin') budgetMin?: string,
+    @Query('budgetMax') budgetMax?: string,
+    @Query('language') language?: string,
+    @Query('cleanlinessLevel') cleanlinessLevel?: string,
+    @Query('hasAirConditioner') hasAirConditioner?: string,
+    @Query('isJapaneseFriendly') isJapaneseFriendly?: string,
+  ) {
+    return await this.restaurantsService.search({
+      keyword,
+      area,
+      budgetMin,
+      budgetMax,
+      language,
+      cleanlinessLevel,
+      hasAirConditioner,
+      isJapaneseFriendly,
+    });
   }
 
   @Get(':id')
