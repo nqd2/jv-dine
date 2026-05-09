@@ -1,0 +1,2351 @@
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,1.0,,画面タイトル,,"ホーム・検索画面
+(Màn hình Trang chủ & Tìm kiếm)",,,,,,ロールID,,"1, 3",,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"ヘッダーロゴ
+Logo Header","サイト左上の「JVDine」ロゴ
+Logo ""JVDine"" ở góc trên bên trái trang web",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ログインリンク
+Link Đăng nhập","ヘッダー右側の「ログイン」リンク
+Dòng chữ ""ログイン"" ở bên phải header",リンク,-,"クリック時、「ログイン画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng nhập"".","ログインしていない場合、「ログイン」ボタンを表示する。ログイン後は「プロフィール」に変更され、ユーザーの個人情報画面へ遷移する。
+Hiển thị nút ""Đăng nhập"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Hồ sơ cá nhân"" và dẫn đến màn hình thông tin cá nhân.",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"登録ボタン
+Nút Đăng ký","ヘッダー右端の赤い「登録」ボタン
+Nút màu đỏ ""登録"" ở góc phải ngoài cùng header",ボタン,-,"クリック時、「サインアップ画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng ký"".","ログインしていない場合、「登録」ボタンを表示する。ログイン後は「ログアウト」に変更される。
+Hiển thị nút ""Đăng ký"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Đăng xuất"".",,,,,,
+,,,,,,,,,,,,,,,,,4.0,"メインタイトル
+Tiêu đề chính","赤いバナー上の大きなテキスト
+Dòng chữ lớn trên banner đỏ",ラベル,-,-,-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"検索バー（キーワード）
+Thanh tìm kiếm (Từ khóa)","レストランや料理名を検索する入力エリア
+Ô nhập liệu để tìm kiếm nhà hàng, món ăn",テキストボックス,"入力値：レストラン名、料理名
+Giá trị nhập: Tên nhà hàng, tên món ăn","入力内容に基づき、候補をオートコンプリート（サジェスト）表示する。
+Tự động hiển thị các gợi ý (suggest) dựa trên nội dung nhập.","プレースホルダ：「レストラン、料理を検索 / Tìm nhà hàng, món ăn...」
+Placeholder: ""レストラン, món ăn...""",,,,,,
+,,,,,,,,,,,,,,,,,6.0,"地図で検索ボタン
+Nút Tìm trên bản đồ","検索バーの右にある赤いボタン
+Nút màu đỏ cạnh thanh tìm kiếm",ボタン,-,"クリック時、「地図検索画面」へ遷移する（または地図UIをポップアップ表示する）。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình tìm kiếm bản đồ"" (hoặc hiển thị popup bản đồ).",-,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"検索条件：エリア
+Điều kiện: Khu vực","検索するエリアを指定する入力・選択欄
+Ô nhập/chọn khu vực tìm kiếm",ドロップダウン,"選択肢：ハノイの各区・地域
+Lựa chọn: Các quận/khu vực (VD: Hoàn Kiếm, Ba Đình...)","クリック時、エリアのドロップダウンリストを表示する。
+Khi nhấp vào, hiển thị danh sách thả xuống các khu vực.","ラベル：「エリア / Khu vực」
+Nhãn: ""エリア / Khu vực""
+入力例：「Hoàn Kiếm / ホアンキエム」",,,,,,
+,,,,,,,,,,,,,,,,,8.0,"下限価格
+Giá dưới","希望する最低予算を入力するためのテキストボックス。
+Ô nhập dùng để nhập mức ngân sách tối thiểu mong muốn.",テキストボックス,"数値のみ入力可能
+Chỉ cho phép nhập số
+
+例：200000","ユーザーがクリックすると入力可能になる。
+Khi người dùng nhấp vào, cho phép nhập dữ liệu.
+
+入力された値は検索条件の下限として使用される。
+Giá trị nhập vào sẽ được dùng làm mức giá thấp nhất khi tìm kiếm.
+
+数値以外はエラー表示。
+Nếu nhập ký tự không phải số → báo lỗi.","ラベル：「下限価格」
+Nhãn: “Giá dưới”
+
+プレースホルダー：「例：200000」
+Có thể hiển thị đơn vị “VND”",,,,,,
+,,,,,,,,,,,,,,,,,9.0,"上限価格
+Giá trên","希望する最高予算を入力するためのテキストボックス。
+Ô nhập dùng để nhập mức ngân sách tối đa mong muốn.",テキストボックス,"""数値のみ入力可能
+Chỉ cho phép nhập số
+
+例：200000""","ユーザーがクリックすると入力可能になる。
+Khi người dùng nhấp vào, cho phép nhập dữ liệu.
+
+入力された値は検索条件の上限として使用される。
+Giá trị nhập vào sẽ được dùng làm mức giá cao nhất khi tìm kiếm.
+
+数値以外はエラー表示。","ラベル：「上限価格」
+Nhãn: “Giá trên”
+
+プレースホルダー：「例：500000」
+Có thể hiển thị đơn vị “VND”",,,,,,
+,,,,,,,,,,,,,,,,,10.0,"検索条件：料理
+
+
+Điều kiện: Món ăn","料理のジャンル・種類を指定する選択欄
+Ô chọn loại món ăn/thể loại ẩm thực",ドロップダウン,"選択肢：料理名・ジャンル
+Lựa chọn: Tên món/loại món (VD: Phở, Bún chả...)","クリック時、料理カテゴリーのドロップダウンリストを表示する。
+Khi nhấp vào, hiển thị danh sách thả xuống các danh mục món ăn","ラベル：「料理 / Món ăn」
+Nhãn: ""料理 / Món ăn""",,,,,,
+,,,,,,,,,,,,,,,,,11.0,"セクションタイトル
+Tiêu đề phần","「おすすめのレストラン」というテキスト
+Dòng chữ ""おすすめのレストラン / Nhà hàng được đề xuất""",ラベル,-,-,-,,,,,,
+,,,,,,,,,,,,,,,,,12.0,"フィルターボタン
+Nút Lọc","おすすめセクションの右側にあるボタン
+Nút ""フィルター / Lọc"" ở bên phải danh sách đề xuất",ボタン,-,"クリック時、フィルター条件のモーダル/ドロップダウンを表示する。
+Khi nhấp vào, hiển thị modal/dropdown các điều kiện lọc nâng cao.",-,,,,,,
+,,,,,,,,,,,,,,,,,13.0,"レストランカード
+Thẻ nhà hàng","各レストランの情報（画像、名前、評価など）を含むブロック
+Khối chứa thông tin nhà hàng (ảnh, tên, đánh giá...)",カード,-,"クリック時、該当レストランの「詳細画面」へ遷移する。条件に合致する店舗がない場合は、「該当する店舗が見つかりませんでした」というメッセージを画面に表示する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình chi tiết"" của nhà hàng tương ứng. Trường hợp không có nhà hàng nào phù hợp với điều kiện tìm kiếm, hiển thị thông báo ""Không tìm thấy nhà hàng phù hợp"" trên màn hình.",-,,,,,,
+,,,,,,,,,,,,,,,,,14.0,"お気に入りボタン
+Nút Yêu thích","レストラン画像の右上にあるハートアイコン
+Biểu tượng trái tim ở góc trên bên phải ảnh nhà hàng",ボタン,-,"クリック時、お気に入りリストに追加・削除する（アイコンの見た目が変化する）。
+Khi nhấp vào, thêm/xóa khỏi danh sách yêu thích (giao diện icon sẽ thay đổi).","要ログイン（未ログイン時はログイン画面へ誘導）
+Yêu cầu đăng nhập (Chưa đăng nhập sẽ chuyển đến màn hình Login)",,,,,,
+,,,,,,,,,,,,,,,,,15.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,2.0,,画面タイトル,,"店舗詳細・メニュー画面
+(Màn hình Chi tiết quán & Thực đơn)",,,,,,ロールID,,"1, 3",,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"ヘッダーロゴ
+Logo Header","サイト左上の「JVDine」ロゴ
+Logo ""JVDine"" ở góc trên bên trái trang web",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ログインリンク
+Link Đăng nhập","ヘッダー右側の「ログイン / Đăng nhập」リンク
+Dòng chữ ""ログイン / Đăng nhập"" ở bên phải header",ボタン,-,"クリック時、「ログイン画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng nhập"".","ログインしていない場合、「ログイン」ボタンを表示する。ログイン後は「プロフィール」に変更され、ユーザーの個人情報画面へ遷移する。
+Hiển thị nút ""Đăng nhập"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Hồ sơ cá nhân"" và dẫn đến màn hình thông tin cá nhân.",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"登録ボタン
+Nút Đăng ký","ヘッダー右端の赤い「登録 / Đăng ký」ボタン
+Nút màu đỏ ""登録 / Đăng ký"" ở góc phải ngoài cùng header",ボタン,-,"クリック時、「サインアップ画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng ký"".","ログインしていない場合、「登録」ボタンを表示する。ログイン後は「ログアウト」に変更される。
+Hiển thị nút ""Đăng ký"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Đăng xuất"".",,,,,,
+,,,,,,,,,,,,,,,,,4.0,"カバー画像
+Ảnh bìa","レストランの大きな写真
+Ảnh lớn đại diện cho nhà hàng (bát phở)",画像,-,-,-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"お気に入りボタン
+Nút Yêu thích","画像右上のハートアイコン
+Biểu tượng trái tim ở góc trên bên phải ảnh",ボタン,-,"クリック時、お気に入りリストに追加・削除する。
+Khi nhấp vào, thêm/xóa khỏi danh sách yêu thích.","要ログイン
+Yêu cầu đăng nhập",,,,,,
+,,,,,,,,,,,,,,,,,6.0,"レストラン名と説明
+Tên & Mô tả","「ハノイフォー」などのタイトルと説明文
+Tên nhà hàng ""Phở Hà Nội"" và đoạn mô tả",ラベル,-,-,-,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"評価バッジ
+Huy hiệu đánh giá","星マークと点数「4.5 (128件)」
+Biểu tượng sao và điểm số ""4.5 (128件)""",ラベル,-,"クリック時、「レビュー」タブへスクロールし切り替える。
+Khi nhấp vào, cuộn xuống và chuyển sang tab ""Đánh giá"".",-,,,,,,
+,,,,,,,,,,,,,,,,,8.0,"店舗基本情報
+Thông tin cơ bản","住所、電話番号、営業時間、価格帯
+Địa chỉ, số điện thoại, giờ mở cửa, khoảng giá",ラベル,-,-,"アイコン付き
+Có kèm icon minh họa",,,,,,
+,,,,,,,,,,,,,,,,,9.0,"レビュー記入ボタン
+Nút Viết đánh giá","赤い「Write a Review」ボタン
+Nút màu đỏ ""Write a Review""",ボタン,-,"クリック時、「レビュー投稿」モーダルを表示する。未ログインの場合は、ログイン画面へ遷移する。
+Khi nhấp vào, popup/modal ""Viết đánh giá"" sẽ hiển thị. Trường hợp người dùng chưa đăng nhập, hệ thống sẽ chuyển hướng sang trang đăng nhập.","要ログイン
+Yêu cầu đăng nhập",,,,,,
+,,,,,,,,,,,,,,,,,10.0,"タブナビゲーション
+Thanh điều hướng Tab","メニュー、レビュー、詳細情報の切り替えタブ
+Các tab Menu, Đánh giá, Thông tin chi tiết",タブ,"選択肢：メニュー、レビュー、詳細情報
+Lựa chọn: Menu, Đánh giá, Chi tiết","クリック時、対応する下部のコンテンツエリアを表示する。
+Khi nhấp vào, hiển thị nội dung tương ứng ở bên dưới.","アクティブなタブは赤線で強調
+Tab đang chọn được gạch chân đỏ",,,,,,
+,,,,,,,,,,,,,,,,,11.0,"メニューアイテム
+Thẻ món ăn (Menu)","各料理名、説明、価格を含むカード
+Thẻ chứa tên món, mô tả, và giá tiền",カード,-,"各メニューごとにカード形式で表示する。原材料に関する注意事項がある場合は、カード内の見やすい位置に警告文を表示する。
+Hiển thị dưới dạng thẻ cho từng món ăn. Nếu có lưu ý về nguyên liệu, hệ thống sẽ hiển thị nội dung cảnh báo ở vị trí dễ nhìn trong thẻ món ăn.","各メニューごとにカード形式で表示する。原材料に関する注意事項がある場合は、カード内の見やすい位置に警告文を表示する。辛い料理の場合は、唐辛子アイコンで辛さを表示する。
+Hiển thị dưới dạng thẻ cho từng món ăn. Nếu có lưu ý về nguyên liệu, hệ thống sẽ hiển thị nội dung cảnh báo ở vị trí dễ nhìn trong thẻ món ăn. Với các món cay, hệ thống hiển thị biểu tượng quả ớt để thể hiện mức độ cay.",,,,,,
+,,,,,,,,,,,,,,,,,12.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,3.0,,画面タイトル,,"レビュー投稿画面
+(Màn hình Viết đánh giá)",,,,,,ロールID,,1.0,,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"ヘッダーロゴ
+Logo Header","サイト左上の「JVDine」ロゴ
+Logo ""JVDine"" ở góc trên bên trái trang web",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ログインリンク
+Link Đăng nhập","ヘッダー右側の「ログイン / Đăng nhập」リンク
+Dòng chữ ""ログイン / Đăng nhập"" ở bên phải header",ボタン,-,"クリック時、「ログイン画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng nhập"".",-,,,,,,
+,,,,,,,,,,,,,,,,,3.0,"登録ボタン
+Nút Đăng ký","ヘッダー右端の赤い「登録 / Đăng ký」ボタン
+Nút màu đỏ ""登録 / Đăng ký"" ở góc phải ngoài cùng header",ボタン,-,"クリック時、「サインアップ画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng ký"".",-,,,,,,
+,,,,,,,,,,,,,,,,,4.0,"モーダルタイトル
+Tiêu đề modal","レビュー投稿モーダルのタイトル
+Tiêu đề của modal đăng đánh giá",ラベル,-,"「レビューを書く / Viết đánh giá」を静的表示。
+Hiển thị tĩnh ""レビューを書く / Viết đánh giá"".",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"サブタイトル
+Phụ đề","タイトル下の説明文
+Văn bản mô tả dưới tiêu đề",ラベル,,"「あなたの体験を他のお客様と共有しましょう / Chia sẻ trải nghiệm của bạn với khách hàng khác」を静的表示。
+Hiển thị tĩnh ""あなたの体験を他のお客様と共有しましょう / Chia sẻ trải nghiệm của bạn với khách hàng khác"".",-,,,,,,
+,,,,,,,,,,,,,,,,,6.0,"評価入力（星）
+Nhập đánh giá (sao)","5段階評価を選択するエリア
+Khu vực chọn đánh giá 5 mức",レーティング,"選択肢：1〜5の整数（星の数）
+Lựa chọn: Từ 1 đến 5 (số sao)","クリック/ホバー時、星の色を切り替え、評価値をセットする。
+Khi nhấp/hover, đổi màu sao và ghi nhận giá trị đánh giá.","デフォルトは未選択（0.0）。フッターガイド：Vui lòng chọn đánh giá
+Mặc định chưa chọn (0.0). Hướng dẫn footer: Vui lòng chọn đánh giá",,,,,,
+,,,,,,,,,,,,,,,,,7.0,"レビュー本文入力
+Nhập nội dung đánh giá","レビューの内容を入力するテキストエリア
+Khu vực văn bản nhập nội dung đánh giá",テキストボックス,"入力値：任意のテキスト（最大500文字）
+Giá trị nhập: Văn bản (Tối đa 500 ký tự)","入力中、左下の文字数カウンター（0 / 500）をリアルタイムで更新する。
+Khi đang nhập, cập nhật bộ đếm ký tự (0 / 500) theo thời gian thực.","プレースホルダ：「料理の味、サービス、雰囲気などについて教えてください... / Hãy cho biết về món ăn, dịch vụ, không khí...」。最大500文字。
+Placeholder: ""料理の味, món ăn..."". Tối đa 500 ký tự.",,,,,,
+,,,,,,,,,,,,,,,,,8.0,"写真追加エリア
+Khu vực thêm ảnh","写真をアップロードするエリア（任意）
+Khu vực tải ảnh lên (tùy chọn)",ファイルアップロード,"選択肢：ファイル選択ダイアログを表示
+Lựa chọn: Hiển thị hộp thoại chọn tập tin","クリック時、ファイル選択ダイアログを表示する。選択されたファイルのプレビューとファイル情報を表示する。
+Khi nhấp vào, hiển thị hộp thoại chọn tập tin. Hiển thị xem trước và thông tin tập tin đã chọn.","任意。許可形式：PNG, JPG, GIF。最大5MB。
+Tùy chọn. Định dạng được phép: PNG, JPG, GIF. Tối đa 5MB.",,,,,,
+,,,,,,,,,,,,,,,,,9.0,"キャンセルボタン
+Nút Hủy","投稿をキャンセルしモーダルを閉じるボタン
+Nút hủy đăng và đóng modal",ボタン,-,"クリック時、モーダルを閉じ、入力内容を破棄する。
+Khi nhấp vào, đóng modal và hủy bỏ nội dung nhập.","灰色の縁取りのある白いボタン
+
+Nút nền trắng, viền xám",,,,,,
+,,,,,,,,,,,,,,,,,10.0,"投稿するボタン
+Nút Đăng đánh giá","レビューを投稿するボタン
+Nút để đăng đánh giá",ボタン,-,"クリック時、必須項目（評価、本文）のバリデーションを行い、サーバーへ送信する。投稿完了後、モーダルを閉じ、詳細画面（または一覧）へ戻る。
+Khi nhấp vào, thực hiện kiểm tra các mục bắt buộc (đánh giá, nội dung) và gửi đến máy chủ. Sau khi đăng hoàn tất, đóng modal và quay lại màn hình chi tiết (hoặc danh sách).","デフォルトは無効（Disabled）状態。必須項目が入力された場合、有効化する。 ảnh mẫu cho thấy trạng thái mờ
+
+Mặc định ở trạng thái vô hiệu hóa. Được kích hoạt khi các mục bắt buộc được nhập. Ảnh mẫu cho thấy trạng thái mờ.",,,,,,
+,,,,,,,,,,,,,,,,,11.0,"ガイドラインタイトル
+Tiêu đề hướng dẫn","ガイドラインエリアのタイトル
+Tiêu đề của khu vực hướng dẫn",ラベル,,"「レビューガイドライン / Hướng dẫn đánh giá」を静的表示。
+Hiển thị tĩnh ""レビューガイドライン / Hướng dẫn đánh giá"".",-,,,,,,
+,,,,,,,,,,,,,,,,,12.0,"ガイドラインリスト
+Danh sách hướng dẫn","ガイドラインの各項目
+Các mục của hướng dẫn",ラベル,-,"4つの各項目（具体的な体験を共有してください... / Chia sẻ trải nghiệm cụ thể...）を静的表示。
+Hiển thị tĩnh 4 mục (具体的な体験を共有してください... / Chia sẻ trải nghiệm cụ thể...).",-,,,,,,
+,,,,,,,,,,,,,,,,,13.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,4.0,,画面タイトル,,"管理者ダッシュボード画面 (Web)
+(Màn hình Dashboard Admin - Web)",,,,,,ロールID,,2.0,,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"ヘッダーロゴ
+Logo Header","サイト左上の「JVDine」ロゴ
+Logo ""JVDine"" ở góc trên bên trái trang web",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ヘッダーナビゲーション
+Điều hướng Header","「ダッシュボード」等の各機能へのリンク
+Các link đến Dashboard, Sửa quán, Khuyến mãi",リンク,"選択肢：
+・ダッシュボード
+・店舗編集
+・キャンペーン
+Tùy chọn:
+• Dashboard
+• Sửa quán
+• Khuyến mãi","クリック時、対応する管理画面へ遷移する。
+Khi nhấp vào, chuyển hướng đến màn hình quản lý tương ứng.","現在のページ（ダッシュボード）は太字（アクティブ状態）で表示。
+
+Trang hiện tại (Dashboard) in đậm.",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"ログアウトボタン
+Nút Đăng xuất","右端の「ログアウト / Đăng xuất」ボタン
+Nút ""Đăng xuất"" ở góc phải",ボタン,-,"クリック時、セッションを破棄し、一般ユーザー向けのホームページまたはログイン画面へ遷移する。
+Khi nhấp vào, hủy session và chuyển hướng ra trang chủ hoặc trang Login.","ログアウト確認モーダルを出しても良い。
+
+Có thể thêm popup xác nhận.",,,,,,
+,,,,,,,,,,,,,,,,,4.0,"ページタイトル
+Tiêu đề trang","「ダッシュボード / Dashboard」と説明文
+Tiêu đề ""Dashboard"" và văn bản mô tả",ラベル,-,"静的表示。
+Hiển thị tĩnh.",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"KPIカード（4種）
+Thẻ KPI (4 loại)","総閲覧数、レビュー数、平均評価、お気に入り数の統計パネル
+Panel thống kê Lượt xem, Đánh giá, Điểm TB, Yêu thích",カード,-,"ページ読み込み時、DBから最新の統計データを取得し表示する。前月比の増減を計算して色分け表示する。
+Lấy dữ liệu thống kê từ DB. Tính và hiển thị mức tăng/giảm so với tháng trước.","上昇（＋）は緑色、下降（ー）は赤色で表示。
+
+Tăng (+) màu xanh, giảm (-) màu đỏ.",,,,,,
+,,,,,,,,,,,,,,,,,6.0,"セクションヘッダー
+Tiêu đề phần","「最新のレビュー」
+Tiêu đề ""Đánh giá gần đây""",ラベル,-,"静的表示。
+Hiển thị tĩnh.",-,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"「すべて見る」リンク
+Link ""Xem tất cả""","タイトル右側の「すべて見る / Xem tất cả」リンク
+Link ""Xem tất cả"" nằm bên phải tiêu đề",リンク,-,"クリック時、レビュー管理一覧画面へ遷移する。
+Khi nhấp vào, chuyển hướng đến màn hình Quản lý danh sách đánh giá.",-,,,,,,
+,,,,,,,,,,,,,,,,,8.0,"レビューリスト
+Danh sách Đánh giá","ユーザー名、日付、星評価、コメントのリスト
+Danh sách gồm Tên, Ngày, Số sao, Bình luận",入力,-,"DBから最新のレビューを最大3件取得して表示する。
+Lấy tối đa 3 đánh giá mới nhất từ DB để hiển thị.",-,,,,,,
+,,,,,,,,,,,,,,,,,9.0,"セクションタイトル
+Tiêu đề phần","「クイックアクション / Thao tác nhanh」テキスト
+Dòng chữ ""Thao tác nhanh""",ラベル,-,"静的表示。
+Hiển thị tĩnh.",-,,,,,,
+,,,,,,,,,,,,,,,,,10.0,"アクションボタン群
+Cụm nút Thao tác","頻繁に使う機能へのショートカットボタン（4つ）
+Các nút phím tắt đến các chức năng thường dùng",ボタン,"選択肢：
+1. 店舗情報を編集
+2. キャンペーンを作成
+3. レポートをダウンロード
+4. メニューを更新
+Các tùy chọn:
+1. Sửa thông tin quán
+2. Tạo khuyến mãi
+3. Tải báo cáo
+4. Cập nhật thực đơn","1, 2, 4をクリック時、それぞれの編集画面へ遷移する。3をクリック時、ダウンロード処理を実行する。
+Nhấp 1, 2, 4 -> chuyển trang. Nhấp 3 -> Tải xuống báo cáo.","各ボタンは異なる背景色で視覚的に区別する。
+Mỗi nút có màu nền khác nhau.",,,,,,
+,,,,,,,,,,,,,,,,,11.0,"セクションタイトル
+Tiêu đề phần","「パフォーマンス / Hiệu suất」テキスト
+Dòng chữ ""Hiệu suất""",ラベル,-,"静的表示。
+Hiển thị tĩnh.",-,,,,,,
+,,,,,,,,,,,,,,,,,12.0,期間選択ボタン / Nút chọn thời gian,"表示期間を切り替えるためのボタン（例：週・月・年）
+Nút dùng để chuyển đổi khoảng thời gian hiển thị dữ liệu thống kê (ví dụ:tuần / tháng / năm)",ボタン,"週、月、年
+Tuần, tháng, năm","クリック時、選択した期間に応じて統計データ・グラフを再取得して表示を更新する。
+Khi click, hệ thống lấy lại dữ liệu thống kê và cập nhật biểu đồ theo khoảng thời gian được chọn.","選択中のボタンは強調表示する。初期値は「週」または要件に応じて設定。
+Nút đang được chọn cần được highlight. Giá trị mặc định là “tuần” hoặc theo yêu cầu hệ thống.",,,,,,
+,,,,,,,,,,,,,,,,,13.0,"グラフエリア
+Khu vực Biểu đồ","統計グラフを表示するエリア
+Khu vực hiển thị biểu đồ thống kê",コンテナ,-,"「店舗の統計情報を視覚的に表示するエリア。
+選択された期間に応じて、閲覧数・レビュー数・お気に入り数などの推移をグラフ形式で確認できる。
+上部には期間切替ボタン（週 / 月 / 年）を配置し、下部に各グラフを縦並びで表示する。
+各グラフにはタイトル、凡例、軸ラベル、数値目盛りを含み、データの変化を直感的に把握できる構成とする。
+データが存在しない場合は、空状態メッセージまたはプレースホルダを表示する。
+将来的にはホバー時のツールチップ表示、期間別データ切替、グラフの動的更新などに対応予定。
+
+Khu vực dùng để hiển thị trực quan các thông tin thống kê của cửa hàng.
+Tùy theo khoảng thời gian được chọn, người dùng có thể theo dõi xu hướng của số lượt xem, số lượng đánh giá, số lượt yêu thích... dưới dạng biểu đồ.
+Phía trên khu vực này bố trí nút chuyển đổi thời gian (tuần / tháng / năm), phía dưới hiển thị các biểu đồ theo chiều dọc.
+Mỗi biểu đồ gồm tiêu đề, chú thích, nhãn trục và các mốc số liệu để người dùng dễ nhận biết sự biến động dữ liệu.
+Nếu chưa có dữ liệu thì hiển thị thông báo trạng thái trống hoặc placeholder.
+Trong tương lai khu vực này có thể mở rộng để hỗ trợ tooltip khi rê chuột, chuyển đổi dữ liệu theo từng khoảng thời gian và cập nhật biểu đồ động.」","「現時点では分析機能そのものは未実装であり、画面上はダッシュボードの完成イメージとして静的表示する。
+将来的にはAPI連携により、実際の統計データを取得して描画する想定。
+グラフ領域は管理画面の中でも視認性が高いため、余白・見出し・凡例を整理し、情報を見やすく配置すること。
+
+Hiện tại chức năng phân tích chưa được triển khai hoàn chỉnh, nên khu vực này trước mắt chỉ hiển thị tĩnh như một phần giao diện mẫu của dashboard.
+Về sau có thể kết nối API để lấy dữ liệu thống kê thực tế và hiển thị dưới dạng biểu đồ.
+Vì đây là khu vực có mức độ trực quan cao trong màn hình quản trị, cần bố trí khoảng cách, tiêu đề và chú thích rõ ràng để người dùng dễ theo dõi.」",,,,,,
+,,,,,,,,,,,,,,,,,14.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,5.0,,画面タイトル,,"店舗情報編集画面 (Web)
+(Màn hình Chỉnh sửa thông tin quán - Web)",,,,,,ロールID,,2.0,,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"ヘッダーロゴ
+Logo Header","サイト左上の「JVDine」ロゴ
+Logo ""JVDine"" ở góc trên bên trái trang web",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ヘッダーナビゲーション
+Điều hướng Header","「ダッシュボード」等の各機能へのリンク
+Các link đến Dashboard, Sửa quán, Khuyến mãi",リンク,"選択肢：
+・ダッシュボード
+・店舗編集
+・キャンペーン
+Tùy chọn:
+• Dashboard
+• Sửa quán
+• Khuyến mãi","クリック時、対応する管理画面へ遷移する。
+Khi nhấp vào, chuyển hướng đến màn hình quản lý tương ứng.","現在のページ（ダッシュボード）は太字（アクティブ状態）で表示。
+Trang hiện tại (Dashboard) in đậm.",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"ログアウトボタン
+Nút Đăng xuất","右端の「ログアウト / Đăng xuất」ボタン
+Nút ""Đăng xuất"" ở góc phải",ボタン,-,"クリック時、セッションを破棄し、一般ユーザー向けのホームページまたはログイン画面へ遷移する。
+Khi nhấp vào, hủy session và chuyển hướng ra trang chủ hoặc trang Login.","ログアウト確認モーダルを出しても良い。
+Có thể thêm popup xác nhận.",,,,,,
+,,,,,,,,,,,,,,,,,4.0,"ページタイトル
+Tiêu đề trang","「店舗情報を編集 / Sửa thông tin quán」と説明文
+Tiêu đề và văn bản mô tả form",ラベル,-,"静的表示。
+Hiển thị tĩnh.",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"タブ切り替え
+Chuyển Tab","「基本情報」と「メニュー」タブ
+Tab ""Thông tin cơ bản"" và ""Menu""",タブ,"選択肢：
+・基本情報
+・メニュー
+Tùy chọn:
+• Thông tin cơ bản
+• Thực đơn","クリック時、該当する画面コンテンツに切り替える。
+Khi click, chuyển đổi nội dung màn hình tương ứng.",-,,,,,,
+,,,,,,,,,,,,,,,,,6.0,"店舗名（日・越）
+Tên quán (Nhật/Việt)","日本語とベトナム語の店舗名入力欄
+Ô nhập tên quán bằng tiếng Nhật và Việt",テキストボックス,"入力値：文字列
+Giá trị nhập: Chuỗi văn bản","ページ読み込み時、DBから既存データを取得し初期値としてセットする。
+Khi load trang, lấy dữ liệu cũ từ DB hiển thị mặc định.","必須項目。
+Mục bắt buộc.",,,,,,
+,,,,,,,,,,,,,,,,,7.0,"説明（日・越）
+Mô tả (Nhật/Việt)","店舗の詳細な説明を入力するエリア
+Ô nhập mô tả chi tiết của quán",テキストボックス,"入力値：複数行の文字列
+Giá trị nhập: Văn bản nhiều dòng","既存データを表示。ユーザーが内容を編集可能。
+Hiển thị dữ liệu cũ. Cho phép người dùng chỉnh sửa.",-,,,,,,
+,,,,,,,,,,,,,,,,,8.0,"住所
+Địa chỉ","店舗の住所を入力する欄
+Ô nhập địa chỉ của quán",テキストボックス,"入力値：文字列
+Giá trị nhập: Chuỗi văn bản","既存データを表示。編集可能。
+Hiển thị dữ liệu cũ. Cho phép chỉnh sửa.","マップAPIと連携させても良い。
+Có thể liên kết Map API.",,,,,,
+,,,,,,,,,,,,,,,,,9.0,"連絡先・営業時間
+Liên hệ & Giờ mở cửa","電話番号と営業時間の入力欄
+Ô nhập SĐT và Giờ hoạt động",テキストボックス,"入力値：電話番号の形式、時間の形式
+Giá trị nhập: Định dạng SĐT, Thời gian","入力フォーマットのバリデーション（数字、記号）を行う。
+Validate định dạng nhập liệu (số, ký tự đặc biệt).",-,,,,,,
+,,,,,,,,,,,,,,,,,10.0,"価格帯・料理
+Mức giá & Món ăn","予算と料理カテゴリーの入力/選択欄
+Ô nhập/chọn khoảng giá và loại món",ドロップダウン,"選択肢：価格帯リスト、料理ジャンル
+Lựa chọn: Danh sách mức giá, loại món","クリック時、選択肢リストを表示する。
+Khi click, hiển thị danh sách lựa chọn.",-,,,,,,
+,,,,,,,,,,,,,,,,,11.0,"写真アップロード
+Tải ảnh quán lên","店舗の外観や内観の写真をアップロードするエリア
+Khu vực tải ảnh không gian quán",ファイルアップロード,"選択肢：ローカル画像ファイル
+Lựa chọn: File ảnh từ thiết bị","クリックまたはドラッグ＆ドロップでファイルを選択。プレビューを表示する。
+Click hoặc kéo thả file. Hiển thị ảnh xem trước.","PNG, JPG形式。最大10MB。
+Định dạng PNG/JPG. Max 10MB.",,,,,,
+,,,,,,,,,,,,,,,,,12.0,"設備・アメニティ
+Tiện ích","Wi-Fiや駐車場などの設備を選択
+Chọn các tiện ích như Wi-Fi, đỗ xe...",チェックボックス,"選択肢：エアコン, Wi-Fi, 駐車場, 英語対応, 日本語対応, カード可, 配達, 予約可
+Lựa chọn: 8 tiện ích như trên màn hình","クリック時、オン/オフ（チェック状態）を切り替える。
+Khi click, bật/tắt trạng thái chọn (check/uncheck).","複数選択可。
+
+Cho phép chọn nhiều.",,,,,,
+,,,,,,,,,,,,,,,,,13.0,"キャンセルボタン
+Nút Hủy","「キャンセル / Hủy」ボタン
+Nút màu trắng ""Hủy""",ボタン,-,"クリック時、変更内容を破棄し、ダッシュボードへ戻る。
+Khi nhấp vào, hủy các thay đổi và quay về Dashboard.","変更がある場合は確認モーダルを出す。
+Hiển thị popup xác nhận nếu có thay đổi.",,,,,,
+,,,,,,,,,,,,,,,,,14.0,"保存ボタン
+Nút Lưu","青い「保存 / Lưu」ボタン
+Nút màu xanh ""Lưu""",ボタン,-,"クリック時、入力内容のバリデーションを行い、DBを更新（UPDATE）する。完了後、成功メッセージを表示する。
+Khi nhấp, validate dữ liệu, cập nhật DB (UPDATE). Hiển thị thông báo thành công.","処理中はボタンをローディング状態にする。
+Hiển thị loading khi đang xử lý.",,,,,,
+,,,,,,,,,,,,,,,,,15.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,6.0,,画面タイトル,,"ログイン画面 
+(Màn hình Đăng nhập)",,,,,,ロールID,,"1, 2, 3",,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"ヘッダーロゴ
+Logo Header","サイト左上の「JVDine」ロゴ
+Logo ""JVDine"" ở góc trên bên trái trang web",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ログインリンク
+Link Đăng nhập","ヘッダー右側の「ログイン / Đăng nhập」リンク
+Dòng chữ ""ログイン / Đăng nhập"" ở bên phải header",ボタン,-,"クリック時、「ログイン画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng nhập"".","ログインしていない場合、「ログイン」ボタンを表示する。ログイン後は「プロフィール」に変更され、ユーザーの個人情報画面へ遷移する。
+Hiển thị nút ""Đăng nhập"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Hồ sơ cá nhân"" và dẫn đến màn hình thông tin cá nhân.",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"登録ボタン
+Nút Đăng ký","ヘッダー右端の赤い「登録 / Đăng ký」ボタン
+Nút màu đỏ ""登録 / Đăng ký"" ở góc phải ngoài cùng header",ボタン,-,"クリック時、「サインアップ画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng ký"".","ログインしていない場合、「登録」ボタンを表示する。ログイン後は「ログアウト」に変更される。
+Hiển thị nút ""Đăng ký"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Đăng xuất"".",,,,,,
+,,,,,,,,,,,,,,,,,4.0,"ページタイトル
+Tiêu đề trang","「ログイン / Đăng nhập」と説明文
+Tiêu đề và văn bản mô tả",ラベル,-,"静的表示。
+Hiển thị tĩnh.",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"メールアドレス入力
+Nhập Email","登録済みのメールアドレスを入力
+Nhập địa chỉ email đã đăng ký",テキストボックス,"入力値：メールアドレス形式の文字列
+Giá trị nhập: Chuỗi định dạng email","入力フォーマット（@を含むか等）のフロントエンドバリデーションを行う。
+Validate định dạng email ở phía frontend.","プレースホルダ：「your@email.com」。アイコン付き。
+Placeholder: ""your@email.com"". Có kèm icon.",,,,,,
+,,,,,,,,,,,,,,,,,6.0,"パスワード入力
+Nhập Mật khẩu","アカウントのパスワードを入力
+Nhập mật khẩu tài khoản",パスワード,"入力値：英数字・記号（マスク表示）
+Giá trị nhập: Ký tự (hiển thị dạng dấu chấm)","入力された文字を「●●●」のようにマスク表示する。
+Che giấu ký tự nhập vào dưới dạng ""●●●"".","プレースホルダ：「........」。アイコン付き。
+Placeholder: ""........"". Có kèm icon.",,,,,,
+,,,,,,,,,,,,,,,,,7.0,"ログイン状態を保持
+Ghi nhớ đăng nhập","次回以降の自動ログインを設定
+Thiết lập tự động đăng nhập cho lần sau",チェックボックス,"選択肢：オン / オフ
+Lựa chọn: Bật / Tắt","クリック時、チェック状態を切り替える。オンの場合、認証トークン（Cookie等）の有効期限を長く設定する。
+Bật/tắt. Nếu bật, set thời gian sống của token (Cookie...) dài hơn.",-,,,,,,
+,,,,,,,,,,,,,,,,,8.0,"パスワード忘れリンク
+Link Quên mật khẩu","「パスワード忘れ / Quên mật khẩu?」リンク
+Link ""Quên mật khẩu?"" màu đỏ",リンク,-,"クリック時、「パスワード再設定画面」へ遷移する。
+Khi nhấp vào, chuyển hướng đến ""Màn hình đặt lại mật khẩu"".",-,,,,,,
+,,,,,,,,,,,,,,,,,9.0,"ログインボタン
+Nút Đăng nhập","赤い「ログイン / Đăng nhập」ボタン
+Nút màu đỏ ""Đăng nhập""",ボタン,-,"クリック時、APIを呼び出し認証処理を行う。
+・成功時：No.5の選択に応じて、ホームページまたは管理者ダッシュボードへ遷移。
+・失敗時：エラーメッセージを表示する。
+Gọi API xác thực. Thành công: Chuyển hướng tới Trang chủ hoặc Dashboard dựa theo role. Thất bại: Báo lỗi.","未入力項目がある場合はバリデーションエラーを表示。
+Báo lỗi validation nếu để trống.",,,,,,
+,,,,,,,,,,,,,,,,,10.0,"新規登録リンク
+Link Đăng ký mới","「登録 / Đăng ký」テキストリンク
+Link đăng ký ở cuối form",リンク,-,"クリック時、「会員登録画面」へ遷移する。
+Khi nhấp vào, chuyển hướng đến ""Màn hình đăng ký"".",-,,,,,,
+,,,,,,,,,,,,,,,,,11.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,7.0,,画面タイトル,,"お気に入り一覧画面
+(Màn hình Danh sách yêu thích)",,,,,,ロールID,,1.0,,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"ヘッダーロゴ
+Logo Header","サイト左上の「JVDine」ロゴ
+Logo ""JVDine"" ở góc trên bên trái trang web",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"プロフィール
+Hồ sơ cá nhân","ユーザープロフィールへ遷移するボタン  
+Nút vào profile",ボタン,-,"
+押下時プロフィール画面へ遷移。ログイン状態保持。必要に応じAPI取得。                                                                                               Click → chuyển profile, giữ login, có thể gọi API
+",-,,,,,,
+,,,,,,,,,,,,,,,,,3.0,"ログアウト
+Đăng xuất","ログアウトボタン 
+Nút đăng xuất",ボタン,-,"押下時ログアウト処理実行。セッション削除後ログイン画面へ遷移。未保存時確認ダイアログ表示。                                                            Click → logout, xóa session, về login, có thể confirm",-,,,,,,
+,,,,,,,,,,,,,,,,,4.0,"タイトル
+Tiêu đề","画面タイトル表示 
+Tiêu đề màn hình",テキスト,-,"画面表示時タイトル表示。長文は改行または省略。 / Hiển thị tiêu đề, dài thì xuống dòng hoặc rút gọn",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"キャッチコピー
+Câu khẩu hiệu","
+サービス紹介文
+ Slogan
+",テキスト,-,"画面表示時表示。未設定時は非表示。複数行対応。                                                                                                                                             Hiển thị slogan, không có thì ẩn, hỗ trợ nhiều dòng",-,,,,,,
+,,,,,,,,,,,,,,,,,6.0,"料理タグ
+Thẻ món ăn","料理一覧表示 
+ Danh sách món ăn",テーブル,-,"API/DBからデータ取得し一覧表示。0件時メッセージ表示。多件数時ページング対応。エラー時エラー表示。 /                                           Gọi API hiển thị list, không có data → thông báo, nhiều data → phân trang",-,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"料理のサムネイル画像
+Ảnh thu nhỏ món ăn","料理画像表示 
+ Ảnh món ăn",画像,-,"画像取得し表示。サイズ調整。取得失敗時デフォルト画像表示。比率維持。 /                                                                                                     Hiển thị ảnh, resize, lỗi → ảnh default, giữ tỷ lệ",-,,,,,,
+,,,,,,,,,,,,,,,,,8.0,"料理名
+Tên món ăn","料理名表示 /
+ Tên món",〇〇表示領域,-,"料理名表示。長文は省略（…）。未設定時「未設定」表示。文字化け防止。                                                                                                Hiển thị tên, dài → ..., không có → “chưa thiết lập”",-,,,,,,
+,,,,,,,,,,,,,,,,,9.0,"店舗情報
+Thông tin cửa hàng","店舗情報表示 
+Info cửa hàng",〇〇表示領域,-,"店舗情報取得し表示。未設定時空欄または「未設定」。長文は改行または省略。                                                                                                         Hiển thị info shop, không có → trống hoặc “chưa thiết lập”",-,,,,,,
+,,,,,,,,,,,,,,,,,10.0,"価格
+Giá","価格表示 
+ Giá tiền",〇〇表示領域,-,"価格を通貨形式で表示。未設定時「要確認」。不正値はログ出力またはデフォルト表示。                                                                                          Hiển thị giá format tiền, thiếu → “cần kiểm tra”",-,,,,,,
+,,,,,,,,,,,,,,,,,11.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,8.0,,画面タイトル,,"地図検索画面
+(Màn hình Tìm kiếm bằng bản đồ)",,,,,,ロールID,,"1, 3",,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"ヘッダーロゴ
+Logo Header","サイト左上の「JVDine」ロゴ
+Logo ""JVDine"" ở góc trên bên trái trang web",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"プロフィール
+Hồ sơ cá nhân","ユーザープロフィールへ遷移するボタン  
+Nút vào profile",ボタン,-,"
+押下時プロフィール画面へ遷移。ログイン状態保持。必要に応じAPI取得。                                                                                               Click → chuyển profile, giữ login, có thể gọi API
+","ログインしている場合、「プロフィール」ボタンを表示し、押下すると個人情報画面へ遷移する。ログインしていない場合は「ログイン」ボタンを表示し、ログイン画面へ遷移する。
+Khi người dùng đã đăng nhập, hiển thị nút ""Hồ sơ cá nhân"", khi nhấn sẽ chuyển đến màn hình thông tin cá nhân. Khi chưa đăng nhập, hiển thị nút ""Đăng nhập"" và chuyển đến màn hình đăng nhập.",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"ログアウト
+Đăng xuất","ログアウトボタン 
+Nút đăng xuất",ボタン,-,"押下時ログアウト処理実行。セッション削除後ログイン画面へ遷移。未保存時確認ダイアログ表示。                                                            Click → logout, xóa session, về login, có thể confirm","ログインしている場合、「ログアウト」ボタンを表示する。ログインしていない場合は「登録」ボタンを表示し、 đăng ký画面へ遷移する。
+Khi người dùng đã đăng nhập, hiển thị nút ""Đăng xuất"". Khi chưa đăng nhập, hiển thị nút ""Đăng ký"" và chuyển đến màn hình đăng ký.",,,,,,
+,,,,,,,,,,,,,,,,,4.0,"タイトル
+Tiêu đề",画面タイトル表示 / Tiêu đề màn hình,テキスト,-,"画面表示時タイトル表示。長文は改行または省略。 
+
+ Hiển thị tiêu đề, dài thì xuống dòng hoặc rút gọn",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"検索バー（キーワード）
+Thanh tìm kiếm (Từ khóa)","レストランや料理名を検索する入力エリア
+Ô nhập liệu để tìm kiếm nhà hàng, món ăn",テキストボックス,"入力値：レストラン名、料理名
+Giá trị nhập: Tên nhà hàng, tên món ăn","入力内容に基づき、候補をオートコンプリート（サジェスト）表示する。
+Tự động hiển thị các gợi ý (suggest) dựa trên nội dung nhập.","プレースホルダ：「レストラン、料理を検索 / Tìm nhà hàng, món ăn...」
+Placeholder: ""レストラン, món ăn...""",,,,,,
+,,,,,,,,,,,,,,,,,6.0,"店舗名
+Tên nhà hàng","レストランの名称表示
+Hiển thị tên nhà hàng",テキスト,-,"APIから取得した店舗名を表示。長文は省略（...）
+Hiển thị tên từ API, dài thì rút gọn (...)",最大表示文字数制限あり（例：20文字）,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"フィルター
+Bộ lọc","検索条件を絞り込む機能
+Chức năng lọc theo điều kiện tìm kiếm",コントロール,"カテゴリ（和食、洋食、中華）
+Danh mục (Nhật, Âu, Trung)
+価格帯（〜1000円、1000〜3000円、3000円〜）
+Khoảng giá (~100k, 100k–300k, 300k+)
+評価（★1〜★5）
+Đánh giá (1–5 sao)","ボタン押下時、画面上に小型のポップアップを表示し、ユーザーが希望条件を選択できる。
+ポップアップ内では、カテゴリ、価格帯、評価などの条件を項目ごとに設定できる。
+条件を設定後、適用ボタンを押すことで一覧内容を絞り込んで表示する。
+また、リセット操作により選択済み条件を初期状態に戻すことができる。
+ポップアップ外の領域をクリックした場合、または閉じる操作を行った場合はポップアップを閉じる。
+
+Chức năng dùng để thu hẹp điều kiện tìm kiếm.
+Khi nhấn nút, hệ thống hiển thị một popup nhỏ trên màn hình để người dùng chọn các điều kiện mong muốn.
+Trong popup, người dùng có thể thiết lập từng nhóm điều kiện như danh mục, khoảng giá, đánh giá...
+Sau khi chọn xong, nhấn nút áp dụng để lọc và hiển thị lại danh sách theo điều kiện đã chọn.
+Ngoài ra, người dùng có thể dùng chức năng đặt lại để đưa các điều kiện đã chọn về trạng thái ban đầu.
+Khi nhấn ra ngoài vùng popup hoặc chọn thao tác đóng, popup sẽ được ẩn đi.」",-,,,,,,
+,,,,,,,,,,,,,,,,,8.0,"検索結果カード
+Thẻ kết quả tìm kiếm","検索条件に一致するレストラン一覧
+Danh sách nhà hàng phù hợp tìm kiếm",カード,-,"検索条件に基づいてデータ表示。0件時メッセージ表示
+Hiển thị theo điều kiện, không có thì báo ""không có kết quả""",-,,,,,,
+,,,,,,,,,,,,,,,,,9.0,Thông tin cửa hàng,"店舗情報表示 
+Info cửa hàng",〇〇表示領域,-,"
+店舗情報取得し表示。未設定時空欄または「未設定」。長文は改行または省略。
+                Hiển thị info shop, không có → trống hoặc “chưa thiết lập”",-,,,,,,
+,,,,,,,,,,,,,,,,,10.0,"地図エリア
+Khu vực bản đồ","右側の地図表示領域
+Khu vực hiển thị bản đồ bên phả",マップ,-,"
+Google MapsのAPIを使用。
+・検索条件(No.2)を中心点として表示。
+・ドラッグ操作、ズームイン/アウトが可能。
+・固定される（下にスクロールしても、そのままみられる）
+・Sử dụng Google Maps API.
+・Hiển thị địa điểm tìm kiếm (No.2) làm điểm trung tâm.
+・Cho phép thao tác kéo, phóng to và thu nhỏ.
+・Được cố định (vẫn có thể nhìn thấy ngay cả khi cuộn trang xuống dưới)
+",-,,,,,,
+,,,,,,,,,,,,,,,,,11.0,"レストランピン
+Ghim địa điểm nhà hàng","地図上の各レストランの位置と名称を示すマーカー
+Dấu mốc (Marker) hiển thị vị trí và tên của từng nhà hàng trên bản đồ",アイコン,-,"
+マウスオーバーの時、該当するリスト側のレストランカード(No.7)がハイライトされる（背景の色が#BEE3BAになる。）
+Khi di chuột vào, thẻ nhà hàng tương ứng trong danh sách (No.7) sẽ được làm nổi bật (màu nền chuyển sang #BEE3BA)",-,,,,,,
+,,,,,,,,,,,,,,,,,12.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,9.0,,画面タイトル,,"通知一覧画面
+(Màn hình Thông báo)",,,,,,ロールID,,1.0,,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"Logo header
+ロゴ","ヘッダー部分に表示するシステムロゴ
+ Logo hiển thị ở header",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ログアウト
+Đăng xuất","ユーザープロフィールへ遷移するボタン  
+Nút vào profile",ボタン,-,"
+押下時プロフィール画面へ遷移。ログイン状態保持。必要に応じAPI取得。                                                                                               Click → chuyển profile, giữ login, có thể gọi API
+",-,,,,,,
+,,,,,,,,,,,,,,,,,3.0,"タイトル
+Tiêu đề","ログアウトボタン 
+Nút đăng xuất",ボタン,-,"押下時ログアウト処理実行。セッション削除後ログイン画面へ遷移。未保存時確認ダイアログ表示。                                                            Click → logout, xóa session, về login, có thể confirm",-,,,,,,
+,,,,,,,,,,,,,,,,,4.0,"画面のタイトル表示
+Tiêu đề màn hình","キャンペーン通知
+Thông báo khuyến mãi",ボタン,-,"画面表示時にタイトルを表示する
+Khi load màn hình thì hiển thị tiêu đề",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"全て既読ボタン
+Nút đánh dấu tất cả đã đọc","全ての通知を既読にするボタン
+Nút đánh dấu tất cả thông báo là đã đọc",ボタン,-,"押下時、全通知を既読状態に更新する
+Click → update tất cả thông báo sang trạng thái đã đọc",-,,,,,,
+,,,,,,,,,,,,,,,,,6.0,"キャンペーンカード
+Thẻ khuyến mãi","各キャンペーン情報を表示するカード
+Thẻ hiển thị thông tin từng khuyến mãi",コンテナ,-,"APIからデータを取得して一覧表示する
+Gọi API và hiển thị danh sách khuyến mãi",-,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"キャンペーン画像
+Ảnh khuyến mãi","キャンペーンのイメージ画像
+Ảnh minh họa khuyến mãi",画像,-,"画像を取得して表示。失敗時はデフォルト画像を表示
+Load ảnh, lỗi thì hiển thị ảnh mặc định",-,,,,,,
+,,,,,,,,,,,,,,,,,8.0,"新着ラベル
+Nhãn mới","新しいキャンペーンを示すラベル
+Label hiển thị khuyến mãi mới",ラベル,-,"新規データの場合「新着」を表示
+Nếu là data mới thì hiển thị ""Mới""",-,,,,,,
+,,,,,,,,,,,,,,,,,9.0,"キャンペーン説明
+Mô tả khuyến mãi","キャンペーンの詳細説明
+Mô tả chi tiết khuyến mãi",テキスト,-,"複数行表示対応
+Hỗ trợ hiển thị nhiều dòng",-,,,,,,
+,,,,,,,,,,,,,,,,,10.0,"クーポンコード
+Mã giảm giá","使用可能なクーポンコード
+Mã code khuyến mãi",ラベル, -,"未設定の場合は非表示
+Nếu không có thì không hiển thị",-,,,,,,
+,,,,,,,,,,,,,,,,,11.0,"コピー
+Sao chép","コピー
+Sao chép",アイコン,-,"押下時、コードをクリップボードにコピー
+Click → copy vào clipboard",-,,,,,,
+,,,,,,,,,,,,,,,,,12.0,"有効期限
+Hạn sử dụng","キャンペーンの有効期限
+Thời hạn sử dụng",ラベル,-,"日付形式で表示
+Hiển thị dạng ngày tháng",-,,,,,,
+,,,,,,,,,,,,,,,,,13.0,"詳細を見る
+Xem chi tiết","詳細画面へ遷移するボタン
+Nút chuyển sang màn chi tiết",ボタン,-,"「店舗の詳細情報画面へ遷移するためのボタン。
+ユーザーが対象の店舗に関する詳しい情報を確認したい場合に使用する。
+押下すると、該当店舗の詳細情報およびメニュー情報を表示する詳細画面へ遷移する。
+遷移先は店舗詳細・メニュー画面（画面ID：2）とする。
+
+Nút dùng để chuyển sang màn hình thông tin chi tiết của quán.
+Người dùng sử dụng nút này khi muốn xem thông tin cụ thể hơn về quán đang chọn.
+Khi nhấn nút, hệ thống sẽ chuyển sang màn hình chi tiết hiển thị thông tin của quán và thực đơn tương ứng.
+Màn hình đích là màn hình chi tiết quán và thực đơn (ID màn hình: 2).」",-,,,,,,
+,,,,,,,,,,,,,,,,,14.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,10.0,,画面タイトル,,"キャンペーン・クーポン作成画面 
+(Màn hình Tạo khuyến mãi / mã giảm giá)",,,,,,ロールID,,2.0,,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"Logo header
+ロゴ","ヘッダー部分に表示するシステムロゴ
+ Logo hiển thị ở header",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+",-,,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ダッシュボード
+Dashboard","ダッシュボード画面へ遷移するためのボタン
+Nút chuyển tới màn hình dashboard",ボタン,-,"押下時ダッシュボード画面へ遷移する 未保存データがある場合確認を行う
+Khi nhấn chuyển tới màn hình dashboard Nếu có dữ liệu chưa lưu thì hiển thị xác nhận","備考
+ヘッダーに常時表示 ログインユーザーのみ利用可能
+Luôn hiển thị trên header Chỉ dùng khi đã đăng nhập",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"店舗編集ボタン
+Nút sửa quán","舗情報編集画面へ遷移するボタン
+Nút chuyển tới màn chỉnh sửa thông tin nhà hàng",ボタン,-,"押下時店舗編集画面へ遷移する
+ログインユーザーが対象店舗の管理者である場合のみ遷移可能とする
+権限がない場合はエラーメッセージを表示する
+Nhấn để chuyển tới màn chỉnh sửa nhà hàng
+Chỉ cho phép nếu user là quản lý của quán
+Nếu không có quyền thì hiển thị lỗi",-,,,,,,
+,,,,,,,,,,,,,,,,,4.0,"キャンペーン
+Khuyến mãi","キャンペーン一覧画面へ遷移するボタン
+Nút chuyển tới màn danh sách khuyến mãi",ボタン,-,"押下時キャンペーン一覧画面へ遷移する 未保存データがある場合確認を行う
+Khi nhấn chuyển tới màn danh sách khuyến mãi Nếu có dữ liệu chưa lưu thì hiển thị xác nhận",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"ログアウト
+Đăng xuất","ログアウト処理を行うボタン
+Nút thực hiện đăng xuất",ボタン,-,"処理内容
+押下時セッションを削除しログイン画面へ遷移する
+Khi nhấn xóa session và chuyển về màn hình đăng nhập",-,,,,,,
+,,,,,,,,,,,,,,,,,6.0,"キャンペーン作成
+Tạo khuyến mãi","画面タイトルを表示する
+Hiển thị tiêu đề màn hình",テキスト,-,"画面表示時にタイトルを表示する
+Khi load màn hình thì hiển thị tiêu đề",-,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"キャンペーンタイプ
+Loại khuyến mãi","キャンペーンの種類を選択する
+Chọn loại khuyến mãi",ボタン,"割引 クーポン
+ Mã giảm giá","選択時に入力項目を切り替える
+Khi chọn sẽ thay đổi các trường nhập bên dưới
+備考",-,,,,,,
+,,,,,,,,,,,,,,,,,8.0,"キャンペーン名 日本語
+Tên khuyến mãi tiếng Nhật","キャンペーン名を日本語で入力する
+Nhập tên khuyến mãi bằng tiếng Nhật",入力,"文字列
+Chuỗi ký tự","入力値を保存し未入力時エラー表示
+Lưu giá trị nhập nếu để trống thì báo lỗi","必須項目
+Trường bắt buộc",,,,,,
+,,,,,,,,,,,,,,,,,9.0,"キャンペーン名 ベトナム語
+Tên khuyến mãi tiếng Việt","キャンペーン名をベトナム語で入力する
+Nhập tên khuyến mãi bằng tiếng Việt",入力,"文字列
+Chuỗi ký tự","入力値を保存し未入力時エラー表示
+Lưu giá trị nhập nếu để trống thì báo lỗi","必須項目
+Trường bắt buộc",,,,,,
+,,,,,,,,,,,,,,,,,10.0,"説明 日本語
+Mô tả tiếng Nhật","説明 日本語
+Mô tả tiếng Nhật",入力,"文字列
+Chuỗi nhiều dòng","複数行入力を保存する
+Lưu nội dung nhiều dòng","文字数制限あり
+Có giới hạn ký tự",,,,,,
+,,,,,,,,,,,,,,,,,11.0,"説明 ベトナム語
+Mô tả tiếng Việt","説明文をベトナム語で入力する
+Nhập mô tả bằng tiếng Việt",入力,"文字列
+Chuỗi nhiều dòng","複数行入力を保存する
+Lưu nội dung nhiều dòng","文字数制限あり
+Có giới hạn ký tự",,,,,,
+,,,,,,,,,,,,,,,,,12.0,"割引タイプ
+Loại giảm giá","割引方法を選択する
+Chọn cách giảm giá",ドロップダウン,"パーセント 金額
+Phần trăm Số tiền","選択値により計算方法を変更する
+Thay đổi cách tính theo lựa chọn","初期値パーセント
+Mặc định là phần trăm",,,,,,
+,,,,,,,,,,,,,,,,,13.0,"割引値
+Giá trị giảm","割引値を入力する
+Nhập giá trị giảm",入力,"数値入力
+Input số","入力値チェックを行い不正時エラー表示
+Kiểm tra giá trị nhập nếu sai thì báo lỗi","必須項目
+Trường bắt buộc",,,,,,
+,,,,,,,,,,,,,,,,,14.0,"開始日
+Ngày bắt đầu","開始日を選択する
+Chọn ngày bắt đầu",DatePicker,"・デフォルト：指定された期間
+・入力値：入居希望日付け（yyyy/M/d）~退去予定日付（yyyy/M/d）
+・Mặc định: Khoảng thời gian đã chỉ định
+・Giá trị nhập: Ngày check-in mong muốn (yyyy/M/d) ~ Ngày check-out dự kiến (yyyy/M/d)","クリック時、カレンダーを表示し、期間の再設定を可能にする。
+Khi nhấp vào, sẽ hiển thị lịch và cho phép thiết lập lại khoảng thời gian.","終了日より前であること
+Phải trước ngày kết thúc",,,,,,
+,,,,,,,,,,,,,,,,,15.0,"終了日
+Ngày kết thúc","終了日を選択する
+Chọn ngày kết thúc",DatePicker,"・デフォルト：指定された期間
+・入力値：入居希望日付け（yyyy/M/d）~退去予定日付（yyyy/M/d）
+・Mặc định: Khoảng thời gian đã chỉ định
+・Giá trị nhập: Ngày check-in mong muốn (yyyy/M/d) ~ Ngày check-out dự kiến (yyyy/M/d)","クリック時、カレンダーを表示し、期間の再設定を可能にする。
+Khi nhấp vào, sẽ hiển thị lịch và cho phép thiết lập lại khoảng thời gian.","必須項目
+Trường bắt buộc",,,,,,
+,,,,,,,,,,,,,,,,,16.0,"利用回数制限
+Số lần sử dụng","利用可能回数を入力する
+Nhập số lần sử dụng",入力,"数値
+Số","未入力時は無制限として扱う
+Nếu không nhập thì coi là không giới hạn","整数のみ
+Chỉ cho phép số nguyên",,,,,,
+,,,,,,,,,,,,,,,,,17.0,"キャンセル
+Hủy","入力内容を破棄する
+Hủy dữ liệu nhập",ボタン,"前画面へ戻る 未保存時確認表示
+Quay lại màn trước Nếu chưa lưu thì hỏi xác nhận","誤操作防止
+Tránh thao tác nhầm",-,,,,,,
+,,,,,,,,,,,,,,,,,18.0,"作成
+Tạo khuyến mãi","キャンペーンを登録する
+Tạo khuyến mãi",ボタン,"入力チェック後API送信 成功時画面遷移
+Kiểm tra dữ liệu rồi gọi API Thành công thì chuyển màn","二重送信防止 ローディング表示
+Chống gửi 2 lần Hiển thị loading",-,,,,,,
+,,,,,,,,,,,,,,,,,19.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,11.0,,画面タイトル,,"プロフィール画面
+(Màn hình Thông tin cá nhân)",,,,,,ロールID,,"1, 2",,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"Logo header
+ロゴ","ヘッダー部分に表示するシステムロゴ
+ Logo hiển thị ở header",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ログアウトリンク
+Link Đăng xuất","右端の「ログアウト / Đăng xuất」リンク
+Link ""Đăng xuất"" ở góc phải",リンク,-,"クリック時、セッションを破棄しログイン画面へ遷移する。
+Khi nhấp vào, hủy session và chuyển ra trang Login.クリック時、セッションを破棄しログイン画面へ遷移する。
+Khi nhấp vào, hủy session và chuyển ra trang Login.",-,,,,,,
+,,,,,,,,,,,,,,,,,3.0,"プロフィール画像
+Ảnh đại diện","ユーザーのプロフィール画像を表示する
+Hiển thị ảnh đại diện của người dùng",画像,-,"ユーザーの画像を取得して表示する 取得失敗時はデフォルト画像を表示
+Lấy ảnh và hiển thị Nếu lỗi thì hiển thị ảnh mặc định","円形表示
+Hiển thị dạng tròn",,,,,,
+,,,,,,,,,,,,,,,,,4.0,"ユーザー名
+Tên người dùng","ユーザーの表示名を表示する
+Hiển thị tên người dùng",テキスト,-,"ログインユーザーの名前を取得して表示する
+Lấy tên từ hệ thống và hiển thị",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"自己紹介
+Giới thiệu","ユーザーの紹介文を表示する
+Hiển thị phần giới thiệu",テキスト,-,"登録された紹介文を表示する 未設定時は非表示
+Hiển thị nội dung Nếu không có thì ẩn",-,,,,,,
+,,,,,,,,,,,,,,,,,6.0,"参加日
+Ngày tham gia","ユーザーの登録日を表示する
+Hiển thị ngày tham gia",テキスト,-,"登録日をフォーマットして表示する
+Hiển thị theo format ngày",-,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"編集ボタン
+Nút chỉnh sửa","プロフィール編集画面へ遷移するボタン
+Nút chuyển tới màn chỉnh sửa",ボタン,-,"押下時プロフィール編集画面へ遷移する
+Nhấn → chuyển trạng thái edit","ログイン必須
+Yêu cầu đăng nhập",,,,,,
+,,,,,,,,,,,,,,,,,8.0,"メール
+Email","ユーザーのメールアドレスを表示する
+Hiển thị email",テキスト,-,"登録されたメールアドレスを表示する
+Hiển thị email từ hệ thống","編集不可
+Không cho sửa",,,,,,
+,,,,,,,,,,,,,,,,,9.0,"電話番号
+Số điện thoại","ユーザーの電話番号を表示する
+Hiển thị số điện thoại",テキスト,-,"登録された電話番号を表示する
+Hiển thị số điện thoại","フォーマット表示
+Hiển thị đúng format",,,,,,
+,,,,,,,,,,,,,,,,,10.0,"所在地
+Địa điểm","ユーザーの所在地を表示する
+Hiển thị địa điểm",テキスト,-,"登録された住所情報を表示する
+Hiển thị địa chỉ","未設定時非表示
+Không có thì ẩn",,,,,,
+,,,,,,,,,,,,,,,,,11.0,"レビュー数
+Số đánh giá","ユーザーのレビュー件数を表示する
+Hiển thị số review",テキスト,-,"レビュー件数を取得して表示する
+Hiển thị số lượng review",,,,,,,
+,,,,,,,,,,,,,,,,,12.0,"お気に入り数
+Số yêu thích","お気に入り登録数を表示する
+Hiển thị số yêu thích",テキスト,-,"お気に入り数を表示する
+Hiển thị số lượng","リアルタイム更新可能
+Có thể update realtime",,,,,,
+,,,,,,,,,,,,,,,,,13.0,"いいね数
+Số lượt thích","いいね数を表示する
+Hiển thị số lượt thích",テキスト,-,"いいね数を取得して表示する
+Hiển thị số like","0以上
+Luôn >= 0",,,,,,
+,,,,,,,,,,,,,,,,,14.0,"お気に入りメニュー
+Menu yêu thích","お気に入り一覧へ遷移するメニュー
+Menu chuyển tới danh sách yêu thích",ボタン,-,"押下時お気に入り一覧画面へ遷移
+Nhấn → chuyển màn danh sách","一覧画面へリンク
+Link sang màn list",,,,,,
+,,,,,,,,,,,,,,,,,15.0,"キャンペーン通知
+Thông báo khuyến mãi","通知一覧画面へ遷移する
+Chuyển tới màn thông báo",ボタン,-,"押下時通知一覧へ遷移
+Nhấn → chuyển màn thông báo","未読表示あり
+Có trạng thái chưa đọc",,,,,,
+,,,,,,,,,,,,,,,,,16.0,"プライバシー設定
+Cài đặt quyền riêng tư","プライバシー設定画面へ遷移
+Chuyển tới màn cài đặt",ボタン,-,"押下時設定画面へ遷移
+Nhấn → chuyển màn setting","設定保存必要
+Cần lưu setting",,,,,,
+,,,,,,,,,,,,,,,,,17.0,"パスワード変更
+Đổi mật khẩu","パスワード変更画面へ遷移
+Chuyển tới màn đổi mật khẩu",ボタン,-,"押下時変更画面へ遷移
+Nhấn → chuyển màn đổi mật khẩu","認証必要
+Cần xác thực",,,,,,
+,,,,,,,,,,,,,,,,,18.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,12.0,,画面タイトル,,"店舗情報登録画面
+(Màn hình Đăng ký thông tin nhà hàng)",,,,,,ロールID,,2.0,,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"Logo header
+ロゴ","ヘッダー部分に表示するシステムロゴ
+ Logo hiển thị ở header",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ヘッダーナビゲーション
+Điều hướng Header","「管理画面」「プロフィール」リンク
+Các link đến Admin, Profile",リンク,"選択肢：
+・管理画面 / Quản lý
+・プロフィール / Hồ sơ","クリック時、対応する各画面へ遷移する。
+Khi nhấp vào, chuyển trang tương ứng.","リンクURL：/admin、/profile
+URL điều hướng: /admin, /profile",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"ログアウトリンク
+Link Đăng xuất","右端の「ログアウト / Đăng xuất」リンク
+Link ""Đăng xuất"" ở góc phải",リンク,-,"クリック時、セッションを破棄しログイン画面へ遷移する。
+Khi nhấp vào, hủy session và chuyển ra trang Login.クリック時、セッションを破棄しログイン画面へ遷移する。
+Khi nhấp vào, hủy session và chuyển ra trang Login.",-,,,,,,
+,,,,,,,,,,,,,,,,,4.0,"店舗登録
+Đăng ký nhà hàng","店舗登録画面のタイトルを表示する項目
+Mục hiển thị tiêu đề màn hình đăng ký nhà hàng",テキスト,-,"画面初期表示時にタイトルを表示する
+Khi mở màn hình thì hiển thị tiêu đề
+
+備考","固定文言として表示する
+Hiển thị dưới dạng nội dung cố định",,,,,,
+,,,,,,,,,,,,,,,,,5.0,"画面説明文
+Mô tả màn hình","店舗登録画面の案内文を表示する項目
+Mục hiển thị câu hướng dẫn của màn hình đăng ký nhà hàng",テキスト,-,"画面初期表示時に案内文を表示する
+Khi mở màn hình thì hiển thị câu hướng dẫn
+
+備考",-,,,,,,
+,,,,,,,,,,,,,,,,,6.0,"店舗名 日本語
+Tên quán tiếng Nhật","店舗名を日本語で入力する項目
+Mục nhập tên quán bằng tiếng Nhật",入力,"文字列
+Chuỗi ký tự","ユーザーが店舗名を日本語で入力する
+入力内容を登録データとして保持する
+未入力の場合はエラーとする
+Người dùng nhập tên quán bằng tiếng Nhật
+Giữ lại nội dung đã nhập để dùng khi đăng ký
+Nếu để trống thì báo lỗi","必須項目
+最大文字数制限を設定する
+Là trường bắt buộc
+Cần thiết lập giới hạn ký tự tối đa",,,,,,
+,,,,,,,,,,,,,,,,,7.0,"店舗名 ベトナム語
+Tên quán tiếng Việt","店舗名をベトナム語で入力する項目
+Mục nhập tên quán bằng tiếng Việt",入力,"文字列
+Chuỗi ký tự","ユーザーが店舗名を日本語で入力する
+入力内容を登録データとして保持する
+未入力の場合はエラーとする
+Người dùng nhập tên quán bằng tiếng Nhật
+Giữ lại nội dung đã nhập để dùng khi đăng ký
+Nếu để trống thì báo lỗi","必須項目
+最大文字数制限を設定する
+Là trường bắt buộc
+Cần thiết lập giới hạn ký tự tối đa",,,,,,
+,,,,,,,,,,,,,,,,,8.0,"説明 日本語
+Mô tả tiếng Nhật","店舗説明を日本語で入力する項目
+Mục nhập mô tả quán bằng tiếng Nhật",入力,"文字列
+Chuỗi ký tự nhiều dòng","ユーザーが店舗説明を日本語で入力する
+改行を含む文章を保持する
+未入力可否は要件に従う
+Người dùng nhập mô tả quán bằng tiếng Nhật
+Giữ nguyên nội dung có xuống dòng
+Việc bắt buộc hay không sẽ theo yêu cầu","プレースホルダーを表示する
+最大文字数制限を設定する
+Hiển thị placeholder
+Cần thiết lập giới hạn ký tự tối đa",,,,,,
+,,,,,,,,,,,,,,,,,9.0,"説明 日本語
+Mô tả tiếng Nhật","店舗説明を日本語で入力する項目
+Mục nhập mô tả quán bằng tiếng Nhật",入力,"文字列
+Chuỗi ký tự nhiều dòng","ユーザーが店舗説明を日本語で入力する
+改行を含む文章を保持する
+未入力可否は要件に従う
+Người dùng nhập mô tả quán bằng tiếng Nhật
+Giữ nguyên nội dung có xuống dòng
+Việc bắt buộc hay không sẽ theo yêu cầu","プレースホルダーを表示する
+最大文字数制限を設定する
+Hiển thị placeholder
+Cần thiết lập giới hạn ký tự tối đa",,,,,,
+,,,,,,,,,,,,,,,,,10.0,"住所
+Địa chỉ","店舗の所在地を入力する項目
+Mục nhập địa chỉ của nhà hàng",入力,"文字列
+Chuỗi ký tự","ユーザーが住所を入力する
+入力値を登録データとして保持する
+未入力の場合はエラーとする
+Người dùng nhập địa chỉ
+Giữ lại nội dung đã nhập để dùng khi đăng ký
+Nếu để trống thì báo lỗi","住所検索機能がある場合は別途定義する
+Là trường bắt buộc
+Nếu có chức năng tìm địa chỉ thì cần định nghĩa riêng",,,,,,
+,,,,,,,,,,,,,,,,,11.0,"区
+Quận","店舗所在地の区情報を入力する項目
+Mục nhập thông tin quận của địa chỉ nhà hàng",入力,"文字列
+Chuỗi ký tự","ユーザーが区情報を入力する
+入力内容を住所情報の一部として保持する
+未入力可否は要件に従う
+Người dùng nhập thông tin quận
+Giữ lại như một phần của địa chỉ
+Việc bắt buộc hay không sẽ theo yêu cầu","住所と分けて管理する場合に利用する
+Dùng khi hệ thống quản lý tách riêng quận với địa chỉ",,,,,,
+,,,,,,,,,,,,,,,,,12.0,"電話番号
+Số điện thoại","店舗の連絡先電話番号を入力する項目
+Mục nhập số điện thoại liên hệ của nhà hàng",入力,"数字 文字列
+Số hoặc chuỗi ký tự","ユーザーが電話番号を入力する
+入力形式をチェックする
+未入力または不正形式の場合はエラーとする
+Người dùng nhập số điện thoại
+Kiểm tra định dạng nhập
+Nếu để trống hoặc sai định dạng thì báo lỗi","国番号対応可否は要件確認
+Là trường bắt buộc
+Cần xác nhận có hỗ trợ mã quốc gia hay không",,,,,,
+,,,,,,,,,,,,,,,,,13.0,"メール
+Email","店舗の連絡用メールアドレスを入力する項目
+Mục nhập email liên hệ của nhà hàng",入力,"メール形式
+Định dạng email","ユーザーがメールアドレスを入力する
+メール形式をチェックする
+不正形式の場合はエラーとする
+Người dùng nhập địa chỉ email
+Kiểm tra định dạng email
+Nếu sai định dạng thì báo lỗi","必須項目
+重複登録チェックが必要な場合は実施する
+Là trường bắt buộc
+Nếu cần kiểm tra trùng lặp thì thực hiện",,,,,,
+,,,,,,,,,,,,,,,,,14.0,"営業時間
+Giờ mở cửa","店舗の営業時間を入力する項目
+Mục nhập giờ mở cửa của nhà hàng",入力,"文字列 時刻形式
+Chuỗi ký tự hoặc định dạng thời gian","ユーザーが営業時間を入力する
+表示用データとして保持する
+入力形式チェックを行う場合は要件に従う
+Người dùng nhập giờ mở cửa
+Giữ làm dữ liệu hiển thị
+Nếu cần kiểm tra định dạng thì theo yêu cầu",-,,,,,,
+,,,,,,,,,,,,,,,,,15.0,"価格帯
+Mức giá","店舗の価格帯情報を入力する項目
+Mục nhập thông tin mức giá của nhà hàng",入力,"文字列 数値
+Chuỗi hoặc số","ユーザーが価格帯を入力する
+一覧表示や詳細表示用データとして保持する
+Người dùng nhập mức giá
+Giữ làm dữ liệu để hiển thị ở danh sách hoặc chi tiết","通貨表記ルールを統一する
+Cần thống nhất quy tắc hiển thị tiền tệ",,,,,,
+,,,,,,,,,,,,,,,,,16.0,"料理カテゴリ
+Loại món ăn","店舗の料理ジャンルを入力または選択する項目
+Mục nhập hoặc chọn thể loại món ăn của nhà hàng",入力,"文字列
+Chuỗi ký tự","ユーザーが料理カテゴリを入力する
+登録後は検索条件や表示用ラベルとして利用する
+Người dùng nhập loại món ăn
+Sau khi đăng ký dùng cho tìm kiếm hoặc hiển thị nhãn",-,,,,,,
+,,,,,,,,,,,,,,,,,17.0,"画像アップロード
+Tải ảnh lên","店舗画像を登録する項目
+Mục đăng ký ảnh của nhà hàng",ファイルアップロード,"画像ファイル
+Tệp hình ảnh","ユーザーが画像ファイルを選択する
+選択された画像をアップロード対象として保持する
+対応形式以外はエラー表示する
+Người dùng chọn tệp ảnh
+Giữ lại ảnh đã chọn để tải lên khi đăng ký
+Nếu không đúng định dạng hỗ trợ thì báo lỗi","対応形式 PNG JPG JPEG
+最大ファイルサイズ制限あり
+Hỗ trợ PNG JPG JPEG
+Có giới hạn dung lượng tối đa",,,,,,
+,,,,,,,,,,,,,,,,,18.0,"画像プレビュー領域
+Vùng xem trước ảnh","選択した画像を事前に確認するための表示領域
+Vùng hiển thị xem trước ảnh đã chọn",画像,-,"画像選択後にプレビューを表示する
+画像未選択時は案内文を表示する
+Sau khi chọn ảnh thì hiển thị xem trước
+Nếu chưa chọn ảnh thì hiển thị hướng dẫn","初期状態ではプレースホルダー表示
+Ban đầu hiển thị placeholder",,,,,,
+,,,,,,,,,,,,,,,,,19.0,"注意書き
+Ghi chú hướng dẫn","画像アップロードや登録時の補足説明を表示する項目
+Mục hiển thị ghi chú bổ sung khi tải ảnh và đăng ký",入力,-,"画面上に補足説明を表示する
+Khi hiển thị màn hình thì hiện phần ghi chú bổ sung",-,,,,,,
+,,,,,,,,,,,,,,,,,20.0,"キャンセル
+Hủy","入力内容を破棄して前画面へ戻るボタン
+Nút hủy dữ liệu đã nhập và quay lại màn trước",ボタン,-,"押下時に前画面へ戻る
+未保存データがある場合は確認ダイアログを表示する
+Khi nhấn thì quay lại màn trước
+Nếu có dữ liệu chưa lưu thì hiển thị xác nhận
+
+備考",-,,,,,,
+,,,,,,,,,,,,,,,,,21.0,"登録
+Đăng ký","入力内容をもとに店舗情報を登録するボタン
+Nút đăng ký thông tin nhà hàng theo dữ liệu đã nhập
+
+分類",ボタン,-,"押下時に必須項目チェックを行う
+入力形式チェックを行う
+エラーがない場合は登録処理を実行する
+成功時は完了メッセージを表示し次画面へ遷移する
+失敗時はエラーメッセージを表示し入力内容を保持する
+Khi nhấn thì kiểm tra các trường bắt buộc
+Kiểm tra định dạng dữ liệu
+Nếu không có lỗi thì thực hiện đăng ký
+Nếu thành công thì hiển thị thông báo hoàn tất và chuyển màn hình tiếp theo
+Nếu thất bại thì hiển thị lỗi và giữ nguyên dữ liệu đã nhập",-,,,,,,
+,,,,,,,,,,,,,,,,,22.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,13.0,,画面タイトル,,"登録画面
+(Màn hình Đăng ký tài khoản)",,,,,,ロールID,,"1, 2, 3",,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"Logo header
+ロゴ","ヘッダー部分に表示するシステムロゴ
+ Logo hiển thị ở header",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,ログインボタンNút Đăng nhập,"ヘッダー右側の「ログイン / Đăng nhập」リンク
+Dòng chữ ""ログイン / Đăng nhập"" ở bên phải header",ボタン,-,"クリック時、「ログイン画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng nhập"".","ログインしていない場合、「ログイン」ボタンを表示する。ログイン後は「プロフィール」に変更され、ユーザーの個人情報画面へ遷移する。
+Hiển thị nút ""Đăng nhập"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Hồ sơ cá nhân"" và dẫn đến màn hình thông tin cá nhân.",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"登録ボタン
+Nút Đăng ký","ヘッダー右端の赤い「登録 / Đăng ký」ボタン
+Nút màu đỏ ""登録 / Đăng ký"" ở góc phải ngoài cùng header",ボタン,-,"クリック時、「サインアップ画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng ký"".","ログインしていない場合、「登録」ボタンを表示する。ログイン後は「ログアウト」に変更される。
+Hiển thị nút ""Đăng ký"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Đăng xuất"".",,,,,,
+,,,,,,,,,,,,,,,,,4.0,"登録
+Đăng ký","アカウント登録画面のタイトルを表示する
+Hiển thị tiêu đề màn đăng ký tài khoản",テキスト,-,"画面表示時にタイトルを表示する
+Khi load màn hình thì hiển thị tiêu đề",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"説明文
+Mô tả","新規アカウント作成の案内文を表示する
+Hiển thị hướng dẫn tạo tài khoản",テキスト,-,"画面表示時に案内文を表示する
+Hiển thị khi load màn",-,,,,,,
+,,,,,,,,,,,,,,,,,6.0,"ユーザータイプ
+Loại người dùng","登録するユーザー種別を選択する
+Chọn loại tài khoản
+
+分類",ボタン,"お客様    /   店舗オーナー
+Khách hàng    /   Chủ nhà hàng","選択時に対象タイプを設定する
+選択中のボタンを強調表示する
+Khi chọn sẽ set loại user
+Hiển thị trạng thái đang chọn",-,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"名前
+Tên","ユーザー名を入力する
+Nhập tên người dùng",テキストボックス,"文字列
+Chuỗi ký tự","入力値を保持する
+未入力の場合エラー表示
+Giữ giá trị nhập
+Nếu trống thì báo lỗi","必須項目
+Trường bắt buộc",,,,,,
+,,,,,,,,,,,,,,,,,8.0,"メール
+Email","ログイン用メールアドレスを入力する
+Nhập email dùng để đăng nhập",入力,"メール形式
+Định dạng email","ユーザーがメールアドレスを入力する
+メール形式をチェックする
+不正形式の場合はエラーとする
+Người dùng nhập địa chỉ email
+Kiểm tra định dạng email
+Nếu sai định dạng thì báo lỗi","必須項目
+重複登録チェックが必要な場合は実施する
+Là trường bắt buộc
+Nếu cần kiểm tra trùng lặp thì thực hiện",,,,,,
+,,,,,,,,,,,,,,,,,9.0,"電話番号
+Số điện thoại","連絡用電話番号を入力する
+Nhập số điện thoại liên hệ",入力,"数字 文字列
+Số hoặc chuỗi ký tự","ユーザーが電話番号を入力する
+入力形式をチェックする
+未入力または不正形式の場合はエラーとする
+Người dùng nhập số điện thoại
+Kiểm tra định dạng nhập
+Nếu để trống hoặc sai định dạng thì báo lỗi","任意項目または必須は要件次第
+Có thể bắt buộc tùy yêu cầu",,,,,,
+,,,,,,,,,,,,,,,,,10.0,"パスワード
+Mật khẩu","ログイン用パスワードを入力する
+Nhập mật khẩu",入力,"文字列
+Chuỗi ký tự","入力値を非表示で保持する
+条件チェックを行う
+Giữ dạng ẩn
+Kiểm tra điều kiện","最小文字数制限あり
+Có giới hạn tối thiểu",,,,,,
+,,,,,,,,,,,,,,,,,11.0,"パスワード確認
+Xác nhận mật khẩu","パスワード再入力
+Nhập lại mật khẩu",入力,"文字列
+Chuỗi ký tự","パスワードと一致するかチェック
+一致しない場合エラー表示
+Kiểm tra trùng với mật khẩu
+Không trùng thì báo lỗi","必須項目
+Bắt buộc",,,,,,
+,,,,,,,,,,,,,,,,,12.0,"利用規約同意
+Đồng ý điều khoản","利用規約への同意チェック
+Checkbox đồng ý điều khoản",チェックボックス,-,"チェック時のみ登録可能
+未チェック時エラー表示
+Chỉ cho đăng ký khi tick
+Không tick thì báo lỗi","必須チェック
+Bắt buộc tick",,,,,,
+,,,,,,,,,,,,,,,,,13.0,"登録ボタン
+Nút đăng ký","アカウントを登録する
+Thực hiện đăng ký",ボタン,-,"入力チェックを行う
+問題なければAPI送信
+成功時次画面へ遷移
+Kiểm tra dữ liệu
+Nếu hợp lệ thì gọi API
+Thành công thì chuyển màn",-,,,,,,
+,,,,,,,,,,,,,,,,,14.0,"ログインリンク
+Link đăng nhập","ログイン画面へ遷移する
+Chuyển tới màn đăng nhập",リンク,-,"押下時ログイン画面へ遷移
+Nhấn → chuyển màn login","未登録ユーザー向け導線
+Dành cho user chưa có tài khoản",,,,,,
+,,,,,,,,,,,,,,,,,15.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,14.0,,画面タイトル,,"クーポン管理画面  
+(Màn hình Quản lý mã giảm giá)",,,,,,ロールID,,2.0,,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"Logo header
+ロゴ","ヘッダー部分に表示するシステムロゴ
+ Logo hiển thị ở header",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ダッシュボード
+Dashboard","ダッシュボード画面へ遷移するためのボタン
+Nút chuyển tới màn hình dashboard",ボタン,"クリック
+Nhấn","押下時ダッシュボード画面へ遷移する 未保存データがある場合確認を行う
+Khi nhấn chuyển tới màn hình dashboard Nếu có dữ liệu chưa lưu thì hiển thị xác nhận","備考
+ヘッダーに常時表示 ログインユーザーのみ利用可能
+Luôn hiển thị trên header Chỉ dùng khi đã đăng nhập",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"店舗編集ボタン
+Nút sửa quán","舗情報編集画面へ遷移するボタン
+Nút chuyển tới màn chỉnh sửa thông tin nhà hàng",ボタン,"クリック
+Nhấn","押下時店舗編集画面へ遷移する
+ログインユーザーが対象店舗の管理者である場合のみ遷移可能とする
+権限がない場合はエラーメッセージを表示する
+Nhấn để chuyển tới màn chỉnh sửa nhà hàng
+Chỉ cho phép nếu user là quản lý của quán
+Nếu không có quyền thì hiển thị lỗi",-,,,,,,
+,,,,,,,,,,,,,,,,,4.0,"キャンペーン
+Khuyến mãi","キャンペーン一覧画面へ遷移するボタン
+Nút chuyển tới màn danh sách khuyến mãi",ボタン,"クリック
+Nhấn","押下時キャンペーン一覧画面へ遷移する 未保存データがある場合確認を行う
+Khi nhấn chuyển tới màn danh sách khuyến mãi Nếu có dữ liệu chưa lưu thì hiển thị xác nhận",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"ログアウト
+Đăng xuất","ログアウト処理を行うボタン
+Nút thực hiện đăng xuất",ボタン,"クリック
+Nhấn","処理内容
+押下時セッションを削除しログイン画面へ遷移する
+Khi nhấn xóa session và chuyển về màn hình đăng nhập",-,,,,,,
+,,,,,,,,,,,,,,,,,6.0,"キャンペーン管理
+Quản lý khuyến mãi","キャンペーン管理画面のタイトルを表示する
+Hiển thị tiêu đề màn hình quản lý khuyến mãi",テキスト,-,"画面表示時にタイトルを表示する
+Khi load màn hình thì hiển thị tiêu đề","画面上部に固定表示
+Hiển thị cố định phía trên",,,,,,
+,,,,,,,,,,,,,,,,,7.0,"作成したキャンペーンの管理と分析
+Quản lý và phân tích các khuyến mãi đã tạo","実行中のキャンペーン数を表示する
+Hiển thị số khuyến mãi đang hoạt động",テキスト,"固定テキスト
+Nội dung cố định","表示のみ
+Chỉ hiển thị
+タイトルの下に表示
+Hiển thị dưới tiêu đề",-,,,,,,
+,,,,,,,,,,,,,,,,,8.0,"新規作成
+Tạo mới","新しいキャンペーンを作成する
+Tạo chương trình khuyến mãi mới",ボタン,-,"作成画面へ遷移する
+Chuyển sang màn hình tạo
+右上・緑色ボタン
+Góc phải, màu xanh","作成画面へ遷移する
+Chuyển sang màn hình tạo",,,,,,
+,,,,,,,,,,,,,,,,,9.0,"総数
+Tổng số","キャンペーンの総数を表示する
+Hiển thị tổng số khuyến mãi",ラベル,-,"データを集計して表示する
+Hiển thị dữ liệu tổng hợp","カード形式
+Dạng card",,,,,,
+,,,,,,,,,,,,,,,,,10.0,"実施中
+Đang chạy","実行中のキャンペーン数を表示する
+Hiển thị số khuyến mãi đang hoạt động",ラベル,-,"ステータスが有効のデータをカウント
+Đếm các khuyến mãi đang hoạt động","緑色表示
+Màu xanh",,,,,,
+,,,,,,,,,,,,,,,,,11.0,"一時停止
+Tạm dừng","停止中のキャンペーン数を表示する
+Hiển thị số khuyến mãi đang tạm dừng",ラベル,-,"停止中のキャンペーン数を表示する
+Hiển thị số khuyến mãi đang tạm dừng","黄色表示
+Màu vàng",,,,,,
+,,,,,,,,,,,,,,,,,12.0,"総閲覧数
+Tổng lượt xem","全キャンペーンの閲覧数を表示する
+Hiển thị tổng lượt xem",ラベル,-,"全データを合計する
+Cộng toàn bộ dữ liệu","アイコン付き
+Có icon",,,,,,
+,,,,,,,,,,,,,,,,,13.0,"総利用数
+Tổng lượt dùng","全キャンペーンの利用数を表示する
+Hiển thị tổng lượt sử dụng",ラベル,-,"全データを合計する
+Cộng toàn bộ dữ liệu sử dụng","アイコン付き
+Có icon",,,,,,
+,,,,,,,,,,,,,,,,,14.0,"クーポンカード
+Thẻ mã giảm giá","クーポン情報をカード形式で表示する
+Hiển thị thông tin mã giảm giá dạng thẻ",カード,-,"コード、割引値、期間、利用数
+Mã, giá trị giảm, thời gian, lượt dùng","データをカード形式で一覧表示する
+Hiển thị dữ liệu dạng card
+キャンペーン一覧の一部として表示
+Hiển thị trong danh sách khuyến mãi",,,,,,
+,,,,,,,,,,,,,,,,,15.0,"キャンペーン名
+Tên khuyến mãi","これはキャンペーンのメインタイトルであり、最も重要な識別情報である。
+Đây là tiêu đề chính của chương trình và là thông tin nhận diện quan trọng nhất.",テキスト,-,"これはキャンペーンのメインタイトルであり、最も重要な識別情報である。
+Đây là tiêu đề chính của chương trình và là thông tin nhận diện quan trọng nhất.",-,,,,,,
+,,,,,,,,,,,,,,,,,16.0,"サブタイトル 
+Tên phụ","これはベトナム語側の補足名称として表示されている。
+Đây là tên bổ sung bằng tiếng Việt.
+
+",テキスト,-,"日本語タイトルの下に配置されており、多言語対応UIであることが分かる。
+Nó được đặt ngay dưới tên tiếng Nhật, cho thấy đây là giao diện hỗ trợ song ngữ.",-,,,,,,
+,,,,,,,,,,,,,,,,,17.0,"説明文
+ Mô tả","説明文は、このキャンペーンの目的や訴求内容を短く示している。
+Phần mô tả cho biết ngắn gọn mục đích và nội dung hấp dẫn của chương trình.",テキスト,-,"ユーザー向け表示でも、そのキャンペーンが何のためのものか伝わりやすい。
+Nếu hiển thị cho người dùng cuối, phần này cũng giúp họ biết chương trình áp dụng cho việc gì",-,,,,,,
+,,,,,,,,,,,,,,,,,18.0,"ステータスバッジ
+Nhãn trạng thái","キャンペーンの状態（実施中・一時停止・終了）を表示する
+Hiển thị trạng thái của khuyến mãi (đang chạy, tạm dừng, đã kết thúc)",ラベル,-,"""実施中 / 一時停止 / 終了
+Đang chạy / Tạm dừng / Hết hạn","カード右上に表示・色付きバッジ
+Hiển thị góc phải trên của card, dạng badge màu",,,,,,
+,,,,,,,,,,,,,,,,,19.0,"Loại khuyến mãi
+
+クーポン","キャンペーンの種類（クーポンまたは割引）を表示する
+Hiển thị loại của khuyến mãi (coupon hoặc giảm giá)",ラベル,-,"設定されたキャンペーンタイプをそのまま表示する
+Hiển thị loại khuyến mãi đã được thiết lập",-,,,,,,
+,,,,,,,,,,,,,,,,,20.0,"割引値
+Giá trị giảm","割引率または金額を表示する
+Hiển thị giá trị giảm theo phần trăm hoặc số tiền",ラベル,-,"％ / 金額
+% / số tiền
+設定された割引内容を表示する
+Hiển thị nội dung giảm giá đã được cài đặt",-,,,,,,
+,,,,,,,,,,,,,,,,,21.0,"コード
+  Mã coupon
+Mã giảm giá","クーポンの識別コードを表示する
+Hiển thị mã nhận diện của coupon",ラベル,-,"コードを表示し、コピーアイコン押下時はクリップボードにコピーする
+Hiển thị mã, khi nhấn icon copy thì sao chép vào bộ nhớ tạm","キャンペーンタイプがクーポンかつステータスが有効または一時停止の場合のみ表示する
+Chỉ hiển thị khi là coupon và trạng thái là đang chạy hoặc tạm dừng",,,,,,
+,,,,,,,,,,,,,,,,,22.0,"期間 
+Thời gian áp dụng","キャンペーンの有効期間を表示する
+Hiển thị thời gian hiệu lực của khuyến mãi",ラベル,-,"開始日 - 終了日
+Ngày bắt đầu - ngày kết thúc","全てのキャンペーンで表示
+Hiển thị cho tất cả khuyến mãi",,,,,,
+,,,,,,,,,,,,,,,,,23.0,"利用数 
+ Lượt dùng","クーポンの使用回数と上限を表示する
+Hiển thị số lượt sử dụng và giới hạn",ラベル,-,"クーポンタイプの場合のみ表示する
+Chỉ hiển thị với coupon
+割引タイプでは非表示
+Ẩn với giảm giá thường",-,,,,,,
+,,,,,,,,,,,,,,,,,24.0,"利用進捗バー
+ Thanh tiến độ sử dụng","クーポンの利用進捗を視覚的に表示する
+Hiển thị tiến độ sử dụng của coupon",ラベル,-,"利用数がある場合のみ表示
+Chỉ hiển thị khi có dữ liệu sử dụng",-,,,,,,
+,,,,,,,,,,,,,,,,,25.0,"閲覧数 
+ Lượt xem","キャンペーンの閲覧回数を表示する
+Hiển thị số lượt xem",ラベル,-,"全キャンペーンで表示する
+Hiển thị cho tất cả khuyến mãi",-,,,,,,
+,,,,,,,,,,,,,,,,,26.0,"編集ボタン
+Nút sửa","キャンペーン内容を編集する
+Chỉnh sửa khuyến mãi",ボタン,-,"押下時編集画面へ遷移する
+Chuyển sang màn hình chỉnh sửa","全状態で表示可能
+Hiển thị voi mọi trạng thái",,,,,,
+,,,,,,,,,,,,,,,,,27.0,"再開ボタン
+Nút tiếp tục","キャンペーンの状態を切り替える
+Chuyển đổi trạng thái khuyến mãi",ボタン,-,"ステータスが実施中の場合：一時停止ボタンを表示
+Nếu đang chạy → hiển thị nút tạm dừng
+ステータスが一時停止の場合：再開ボタンを表示
+Nếu tạm dừng → hiển thị nút tiếp tục
+ステータスが終了の場合：非表示
+Nếu hết hạn → không hiển thị",-,,,,,,
+,,,,,,,,,,,,,,,,,28.0,"削除ボタン
+Nút xóa","キャンペーンを削除する
+Xóa khuyến mãi",ボタン,-,"キャンペーンを削除する
+Xóa khuyến mãi","全状態で表示可能
+Hiển thị voi mọi trạng thái",,,,,,
+,,,,,,,,,,,,,,,,,29.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,15.0,,画面タイトル,,"店舗詳細情報画面
+(Màn hình Chi tiết thông tin nhà hàng)",,,,,,ロールID,,"1, 3",,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"ヘッダーロゴ
+Logo Header","サイト左上の「JVDine」ロゴ
+Logo ""JVDine"" ở góc trên bên trái trang web",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ログインリンク
+Link Đăng nhập","ヘッダー右側の「ログイン / Đăng nhập」リンク
+Dòng chữ ""ログイン / Đăng nhập"" ở bên phải header",ボタン,-,"クリック時、「ログイン画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng nhập"".","ログインしていない場合、「ログイン」ボタンを表示する。ログイン後は「プロフィール」に変更され、ユーザーの個人情報画面へ遷移する。
+Hiển thị nút ""Đăng nhập"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Hồ sơ cá nhân"" và dẫn đến màn hình thông tin cá nhân.",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"登録ボタン
+Nút Đăng ký","ヘッダー右端の赤い「登録 / Đăng ký」ボタン
+Nút màu đỏ ""登録 / Đăng ký"" ở góc phải ngoài cùng header",ボタン,-,"クリック時、「サインアップ画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng ký"".","ログインしていない場合、「登録」ボタンを表示する。ログイン後は「ログアウト」に変更される。
+Hiển thị nút ""Đăng ký"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Đăng xuất"".",,,,,,
+,,,,,,,,,,,,,,,,,4.0,"カバー画像
+Ảnh bìa","レストランの大きな写真
+Ảnh lớn đại diện cho nhà hàng (bát phở)",画像,-,-,-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"お気に入りボタン
+Nút Yêu thích","画像右上のハートアイコン
+Biểu tượng trái tim ở góc trên bên phải ảnh",ボタン,-,"クリック時、お気に入りリストに追加・削除する。
+Khi nhấp vào, thêm/xóa khỏi danh sách yêu thích.","要ログイン
+Yêu cầu đăng nhập",,,,,,
+,,,,,,,,,,,,,,,,,6.0,"レストラン名と説明
+Tên & Mô tả","「ハノイフォー」などのタイトルと説明文
+Tên nhà hàng ""Phở Hà Nội"" và đoạn mô tả",ラベル,-,-,-,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"評価バッジ
+Huy hiệu đánh giá","星マークと点数「4.5 (128件)」
+Biểu tượng sao và điểm số ""4.5 (128件)""",ラベル,-,"クリック時、「レビュー」タブへスクロールし切り替える。
+Khi nhấp vào, cuộn xuống và chuyển sang tab ""Đánh giá"".",-,,,,,,
+,,,,,,,,,,,,,,,,,8.0,"店舗基本情報
+Thông tin cơ bản","住所、電話番号、営業時間、価格帯
+Địa chỉ, sđt, giờ mở cửa, khoảng giá",ラベル,-,-,"アイコン付き
+Có kèm icon minh họa",,,,,,
+,,,,,,,,,,,,,,,,,9.0,"レビュー記入ボタン
+Nút Viết đánh giá","赤い「Write a Review」ボタン
+Nút màu đỏ ""Write a Review""",ボタン,-,"クリック時、「レビュー投稿モーダル」をポップアップ表示する。未ログイン時はログインへ誘導。
+Khi nhấp, hiển thị popup/modal form viết đánh giá. Yêu cầu đăng nhập.","要ログイン
+Yêu cầu đăng nhập",,,,,,
+,,,,,,,,,,,,,,,,,10.0,"タブナビゲーション
+Thanh điều hướng Tab","メニュー、レビュー、詳細情報の切り替えタブ
+Các tab Menu, Đánh giá, Thông tin chi tiết",タブ,"選択肢：メニュー、レビュー、詳細情報
+Lựa chọn: Menu, Đánh giá, Chi tiết","クリック時、対応する下部のコンテンツエリアを表示する。
+Khi nhấp vào, hiển thị nội dung tương ứng ở bên dưới.","アクティブなタブは赤線で強調
+Tab đang chọn được gạch chân đỏ",,,,,,
+,,,,,,,,,,,,,,,,,11.0,"店舗情報エリア
+Khung thông tin quán","店舗の説明文、設備、住所、営業時間などをまとめた紹介枠
+Khung tổng hợp thông tin giới thiệu quán bao gồm: Mô tả, tiện ích, địa chỉ, giờ mở cửa...",コンテンツ枠,-,"画面ロード時、DBから店舗の詳細情報を一括取得して表示する。
+Khi tải trang, lấy toàn bộ thông tin chi tiết của quán từ DB và hiển thị vào khung.",-,,,,,,
+,,,,,,,,,,,,,,,,,12.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,16.0,,画面タイトル,,"レビュー閲覧画面
+(Màn hình Xem đánh giá)",,,,,,ロールID,,"1, 3",,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"ヘッダーロゴ
+Logo Header","サイト左上の「JVDine」ロゴ
+Logo ""JVDine"" ở góc trên bên trái trang web",画像,-,"クリック時、ホームページへ遷移する。
+Khi nhấp vào, chuyển hướng về trang chủ.","ロゴURL：Link
+URL của logo: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ログインリンク
+Link Đăng nhập","ヘッダー右側の「ログイン / Đăng nhập」リンク
+Dòng chữ ""ログイン / Đăng nhập"" ở bên phải header",ボタン,-,"クリック時、「ログイン画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng nhập"".","ログインしていない場合、「ログイン」ボタンを表示する。ログイン後は「プロフィール」に変更され、ユーザーの個人情報画面へ遷移する。
+Hiển thị nút ""Đăng nhập"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Hồ sơ cá nhân"" và dẫn đến màn hình thông tin cá nhân.",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"登録ボタン
+Nút Đăng ký","ヘッダー右端の赤い「登録 / Đăng ký」ボタン
+Nút màu đỏ ""登録 / Đăng ký"" ở góc phải ngoài cùng header",ボタン,-,"クリック時、「サインアップ画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng ký"".","ログインしていない場合、「登録」ボタンを表示する。ログイン後は「ログアウト」に変更される。
+Hiển thị nút ""Đăng ký"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Đăng xuất"".",,,,,,
+,,,,,,,,,,,,,,,,,4.0,"カバー画像
+Ảnh bìa","レストランの大きな写真
+Ảnh lớn đại diện cho nhà hàng (bát phở)",画像,-,-,-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"お気に入りボタン
+Nút Yêu thích","画像右上のハートアイコン
+Biểu tượng trái tim ở góc trên bên phải ảnh",ボタン,-,"クリック時、お気に入りリストに追加・削除する。
+Khi nhấp vào, thêm/xóa khỏi danh sách yêu thích.","要ログイン
+Yêu cầu đăng nhập",,,,,,
+,,,,,,,,,,,,,,,,,6.0,"レストラン名と説明
+Tên & Mô tả","「ハノイフォー」などのタイトルと説明文
+Tên nhà hàng ""Phở Hà Nội"" và đoạn mô tả",ラベル,-,-,-,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"評価バッジ
+Huy hiệu đánh giá","星マークと点数「4.5 (128件)」
+Biểu tượng sao và điểm số ""4.5 (128件)""",ラベル,-,"クリック時、「レビュー」タブへスクロールし切り替える。
+Khi nhấp vào, cuộn xuống và chuyển sang tab ""Đánh giá"".",-,,,,,,
+,,,,,,,,,,,,,,,,,8.0,"店舗基本情報
+Thông tin cơ bản","住所、電話番号、営業時間、価格帯
+Địa chỉ, sđt, giờ mở cửa, khoảng giá",ラベル,-,-,"アイコン付き
+Có kèm icon minh họa",,,,,,
+,,,,,,,,,,,,,,,,,9.0,"レビュー記入ボタン
+Nút Viết đánh giá","赤い「Write a Review」ボタン
+Nút màu đỏ ""Write a Review""",ボタン,-,"クリック時、「レビュー投稿モーダル」をポップアップ表示する。未ログイン時はログインへ誘導。
+Khi nhấp, hiển thị popup/modal form viết đánh giá. Yêu cầu đăng nhập.","要ログイン
+Yêu cầu đăng nhập",,,,,,
+,,,,,,,,,,,,,,,,,10.0,"タブナビゲーション
+Thanh điều hướng Tab","メニュー、レビュー、詳細情報の切り替えタブ
+Các tab Menu, Đánh giá, Thông tin chi tiết",タブ,"選択肢：メニュー、レビュー、詳細情報
+Lựa chọn: Menu, Đánh giá, Chi tiết","クリック時、対応する下部のコンテンツエリアを表示する。
+Khi nhấp vào, hiển thị nội dung tương ứng ở bên dưới.","アクティブなタブは赤線で強調
+Tab đang chọn được gạch chân đỏ",,,,,,
+,,,,,,,,,,,,,,,,,11.0,"レビューリスト
+Danh sách đánh giá","ユーザー名、評価、投稿日、内容、写真のリスト
+Danh sách gồm tên, điểm, ngày, nội dung, ảnh",リスト,-,"最新のレビューから順に表示する。
+Hiển thị các đánh giá theo thứ tự mới nhất.",-,,,,,,
+,,,,,,,,,,,,,,,,,12.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,17.0,,画面タイトル,,"店舗情報編集画面（メニュー管理）
+(Màn hình Chỉnh sửa thông tin quán – Thực đơn)",,,,,,ロールID,,2.0,,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"ヘッダーロゴ
+Logo Header","サイト左上の「JVDine」ロゴ
+Logo ""JVDine"" ở góc trên bên trái trang web",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"ヘッダーナビゲーション
+Điều hướng Header","「ダッシュボード」等の各機能へのリンク
+Các link đến Dashboard, Sửa quán, Khuyến mãi",リンク,"選択肢：
+・ダッシュボード
+・店舗編集
+・キャンペーン
+
+Tùy chọn:
+• Dashboard
+• Sửa quán
+• Khuyến mãi","クリック時、対応する管理画面へ遷移する。
+Khi nhấp vào, chuyển hướng đến màn hình quản lý tương ứng.","現在のページ（ダッシュボード）は太字（アクティブ状態）で表示。
+
+Trang hiện tại (Dashboard) in đậm.",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"ログアウトボタン
+Nút Đăng xuất","右端の「ログアウト / Đăng xuất」ボタン
+Nút ""Đăng xuất"" ở góc phải",ボタン,-,"クリック時、セッションを破棄し、一般ユーザー向けのホームページまたはログイン画面へ遷移する。
+Khi nhấp vào, hủy session và chuyển hướng ra trang chủ hoặc trang Login.","ログアウト確認モーダルを出しても良い。
+
+Có thể thêm popup xác nhận.",,,,,,
+,,,,,,,,,,,,,,,,,4.0,"ページタイトル
+Tiêu đề trang","「店舗情報を編集 / Sửa thông tin quán」と説明文
+Tiêu đề và văn bản mô tả form",ラベル,-,"静的表示。
+Hiển thị tĩnh.",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"タブ切り替え
+Chuyển Tab","「基本情報」と「メニュー」タブ
+Tab ""Thông tin cơ bản"" và ""Menu""",タブ,"選択肢：
+・基本情報
+・メニュー
+
+Tùy chọn:
+• Thông tin cơ bản
+• Thực đơn","クリック時、該当する画面コンテンツに切り替える。
+
+Khi click, chuyển đổi nội dung màn hình tương ứng.",-,,,,,,
+,,,,,,,,,,,,,,,,,6.0,"セクションタイトル
+Tiêu đề Section","「＋ 新しい料理を追加」
+""+ Thêm món ăn mới""",ラベル,-,"静的表示。
+Hiển thị tĩnh.",-,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"料理名（日・越）
+Tên món (Nhật/Việt)","日本語とベトナム語の料理名入力欄
+Ô nhập tên món bằng tiếng Nhật và Việt",テキストボックス,"入力値：文字列
+Giá trị nhập: Chuỗi văn bản","入力フォーマットの制限なし。
+Không giới hạn định dạng nhập.","必須項目。
+Mục bắt buộc.",,,,,,
+,,,,,,,,,,,,,,,,,8.0,"説明（日・越）
+Mô tả (Nhật/Việt)","料理の詳細な説明を入力するエリア
+Ô nhập mô tả chi tiết của món ăn",テキストボックス,"入力値：文字列
+Giá trị nhập: Chuỗi văn bản","料理の成分や特徴を入力する。
+Nhập thành phần hoặc đặc điểm món ăn.",-,,,,,,
+,,,,,,,,,,,,,,,,,9.0,"価格 (VND)
+Giá (VND)","料理の価格入力欄
+Ô nhập giá món ăn",テキストボックス,"入力値：数値
+Giá trị nhập: Số","入力時に数値のみ許可するバリデーションを行う。
+Validate chỉ cho phép nhập số.","必須項目。
+Mục bắt buộc.",,,,,,
+,,,,,,,,,,,,,,,,,10.0,"カテゴリー
+Danh mục","料理のカテゴリー入力/選択欄
+Ô nhập/chọn danh mục món ăn",テキストボックス,"入力値：文字列
+Giá trị nhập: Chuỗi văn bản","料理の分類（例：麺類、揚げ物など）を入力。
+Nhập phân loại món ăn (VD: Món nước, đồ chiên...).","ドロップダウンにしても良い。
+Có thể làm dạng Dropdown.",,,,,,
+,,,,,,,,,,,,,,,,,11.0,"特別食材・アレルギーオプション
+Tùy chọn thành phần đặc biệt / dị ứng","料理に含まれる注意が必要な食材や特徴を選択する項目。辛さの有無や、アレルギー・嗜好に関わる特別な食材情報を管理者が設定するために使用する。選択された内容は、料理情報の登録時または更新時に保存され、必要に応じて一覧画面や詳細画面にタグとして表示する。
+Mục dùng để chọn các thành phần hoặc đặc điểm cần lưu ý của món ăn. Quản trị viên sử dụng mục này để thiết lập các thông tin như món có cay hay không, hoặc có chứa các thành phần đặc biệt liên quan đến dị ứng hay khẩu vị của người dùng. Nội dung được chọn sẽ được lưu khi thêm mới hoặc cập nhật món ăn, và khi cần có thể hiển thị dưới dạng tag ở màn hình danh sách hoặc màn hình chi tiết.",チェックボックス,"選択肢：
+・辛い
+・マム（エビペースト）
+・ピーナッツ
+・シーフード
+
+Tùy chọn:
+・Cay
+・Mắm (paste tôm)
+・Đậu phộng
+・Hải sản","該当する項目を1つ以上選択できる。複数選択可。料理登録時、選択されたオプションを料理データに紐づけて保存する。編集時は保存済みの選択状態を再表示する。未選択の場合は特別な食材情報なしとして扱う。
+Người dùng có thể chọn một hoặc nhiều mục phù hợp. Hệ thống cho phép chọn nhiều lựa chọn cùng lúc. Khi đăng ký món ăn, các option đã chọn sẽ được lưu kèm với dữ liệu món ăn. Khi sửa món, hệ thống hiển thị lại các lựa chọn đã lưu trước đó. Nếu không chọn mục nào thì hiểu là món không có thông tin thành phần đặc biệt cần lưu ý.","任意項目。必要に応じて、料理一覧画面や料理詳細画面でアイコンまたはタグとして表示しても良い。
+Mục không bắt buộc. Khi cần, có thể hiển thị ở màn hình danh sách món ăn hoặc màn hình chi tiết dưới dạng icon hoặc tag.",,,,,,
+,,,,,,,,,,,,,,,,,12.0,"追加ボタン
+Nút Thêm","青い「＋ 追加」ボタン
+Nút màu xanh ""+ Thêm""",ボタン,-,"クリック時、バリデーションを行い、下のリストに料理を追加する。
+Khi click, validate dữ liệu và thêm món ăn vào danh sách bên dưới.",-,,,,,,
+,,,,,,,,,,,,,,,,,13.0,"リストタイトル
+Tiêu đề danh sách","「現在のメニュー（〇品）」
+""Menu hiện tại (〇 món)""",ラベル,-,"登録されている料理の総数を動的に表示する。
+Hiển thị động tổng số món ăn đã đăng ký.",-,,,,,,
+,,,,,,,,,,,,,,,,,14.0,"メニューアイテム
+Item món ăn","登録済みの料理情報（名前、説明、価格）
+Thông tin món ăn (Tên, mô tả, giá)",ラベル,-,"DBから取得したデータをリスト形式で表示する。
+Hiển thị dữ liệu lấy từ DB dưới dạng danh sách.",-,,,,,,
+,,,,,,,,,,,,,,,,,15.0,"在庫ステータス
+Trạng thái kho","「在庫あり」等の表示タグ
+Tag hiển thị ""Còn hàng"" v.v.",ラベル,-,"現在の提供可能ステータスを表示する。
+Hiển thị trạng thái có thể phục vụ hiện tại.",-,,,,,,
+,,,,,,,,,,,,,,,,,16.0,"編集アイコン
+Icon Sửa","ペン型のアイコン
+Icon hình cây bút",ボタン,-,"クリック時、該当アイテムの情報を上部の入力フォームにセットする。
+Khi click, đưa thông tin của item đó lên form nhập liệu phía trên để sửa.",-,,,,,,
+,,,,,,,,,,,,,,,,,17.0,"削除アイコン
+Icon Xóa","ゴミ箱型のアイコン
+Icon hình thùng rác",ボタン,-,"クリック時、確認モーダルを表示し、承諾後にDBから削除する。
+Khi click, hiển thị popup xác nhận, nếu đồng ý sẽ xóa khỏi DB.",-,,,,,,
+,,,,,,,,,,,,,,,,,18.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,18.0,,画面タイトル,,"利用規約の画面 
+(Màn hình Điều khoản)",,,,,,ロールID,,"1,2",,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"Logo header
+ロゴ","ヘッダー部分に表示するシステムロゴ
+ Logo hiển thị ở header",画像,-,"
+画面初期表示時にロゴを表示。クリック時ホーム画面へ遷移。画像取得失敗時は代替画像表示。                                                            Khi load màn hình hiển thị logo, click về Home, lỗi ảnh → ảnh default
+","すべてのデザイン情報：Link
+Mọi thông tin Design: Link",,,,,,
+,,,,,,,,,,,,,,,,,2.0,"言語切り替えトグル
+Nút chuyển ngôn ngữ","システムの表示言語を変更
+Thay đổi ngôn ngữ hiển thị của hệ thống (nằm cạnh Logo)",トグルボタン,"JP / VN
+(Tiếng Nhật / Tiếng Việt)","クリック時、選択された言語にシステム全体のテキスト表記を切り替える。状態をローカルストレージに保持する。
+Khi click, cập nhật toàn bộ text trên hệ thống theo ngôn ngữ được chọn. Lưu trạng thái này vào Local Storage/Session.","デフォルトは「JP」
+Mặc định là ""JP""",,,,,,
+,,,,,,,,,,,,,,,,,3.0,"ログインリンク
+Link Đăng nhập","ヘッダー右側の「ログイン / Đăng nhập」リンク
+Dòng chữ ""ログイン / Đăng nhập"" ở bên phải header",ボタン,-,"クリック時、「ログイン画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng nhập"".","ログインしていない場合、「ログイン」ボタンを表示する。ログイン後は「プロフィール」に変更され、ユーザーの個人情報画面へ遷移する。
+Hiển thị nút ""Đăng nhập"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Hồ sơ cá nhân"" và dẫn đến màn hình thông tin cá nhân.",,,,,,
+,,,,,,,,,,,,,,,,,4.0,"登録ボタン
+Nút Đăng ký","ヘッダー右端の赤い「登録 / Đăng ký」ボタン
+Nút màu đỏ ""登録 / Đăng ký"" ở góc phải ngoài cùng header",ボタン,-,"クリック時、「サインアップ画面」へ遷移する。
+Khi nhấp vào, sẽ chuyển hướng đến ""Màn hình đăng ký"".","ログインしていない場合、「登録」ボタンを表示する。ログイン後は「ログアウト」に変更される。
+Hiển thị nút ""Đăng ký"" khi chưa đăng nhập. Sau khi đăng nhập, nút sẽ chuyển thành ""Đăng xuất"".",,,,,,
+,,,,,,,,,,,,,,,,,5.0,"利用規約
+Điều khoản sử dụng","ページタイトルを表示する
+Hiển thị tiêu đề trang",テキスト,-,,"画面中央上部に固定表示・スクロールしても表示維持
+Hiển thị cố định phía trên, không mất khi scroll",,,,,,
+,,,,,,,,,,,,,,,,,6.0,"最終更新日
+Ngày cập nhật","規約の最終更新日を表示
+Hiển thị ngày cập nhật",テキスト,-,"Lấy từ server và hiển thị
+タイトル下に小さく表示・フォーマット固定（YYYY/MM/DD）
+Hiển thị nhỏ dưới tiêu đề, format cố định",,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"はじめに
+Mở đầu","利用規約の導入説明を表示
+Hiển thị phần giới thiệu",テキスト,-,,"最初のセクションとして表示・スクロール対象
+Hiển thị đầu trang, nằm trong vùng scroll",,,,,,
+,,,,,,,,,,,,,,,,,8.0,"第1条：サービスの利用
+Điều 1: Sử dụng dịch vụ","サービス利用条件を表示
+Hiển thị điều khoản sử dụng",テキスト,-,"セクションとして順番に表示
+Hiển thị theo thứ tự nội dung
+見出し＋本文構成
+Có tiêu đề + nội dung",-,,,,,,
+,,,,,,,,,,,,,,,,,9.0,"禁止事項
+Điều cấm","禁止行為の一覧を表示
+Hiển thị các hành vi bị cấm",テキスト,-,"箇条書き形式で表示する
+Hiển thị dạng danh sách
+リスト形式・改行あり
+Dạng list, có xuống dòng",-,,,,,,
+,,,,,,,,,,,,,,,,,10.0,"第2条：レストランオーナー向け
+Điều 2: Dành cho chủ nhà hàng","オーナー向け規約を表示
+Hiển thị điều khoản cho chủ quán",テキスト,-,"スクロール内で表示
+Hiển thị trong vùng scroll
+セクションタイトル付き
+Có tiêu đề section",-,,,,,,
+,,,,,,,,,,,,,,,,,11.0,"キャンペーンプロモーション
+Khuyến mãi","キャンペーン利用ルールを表示
+Hiển thị quy định về khuyến mãi",テキスト,-,"表示のみ
+Chỉ hiển thị
+親セクションのサブ項目
+Là mục con của Điều 2",-,,,,,,
+,,,,,,,,,,,,,,,,,12.0,"レビュー対応
+Xử lý đánh giá","レビュー対応ルールを表示
+Hiển thị quy định xử lý review",テキスト,-,"表示のみ
+Chỉ hiển thị
+サブセクション表示
+Hiển thị như mục con",-,,,,,,
+,,,,,,,,,,,,,,,,,13.0,"レビュー対応ルールを表示
+Hiển thị quy định xử lý review","データ保護内容を表示
+Hiển thị chính sách dữ liệu",テキスト,-,"表示のみ
+Chỉ hiển thị
+アイコン付きセクション
+Có icon section",-,,,,,,
+,,,,,,,,,,,,,,,,,14.0,"収集情報
+Thông tin thu thập","収集するデータ一覧を表示
+Hiển thị dữ liệu thu thập",テキスト,-,"リストとして表示
+Hiển thị dạng list
+プライバシーセクション内
+Thuộc Điều 3",-,,,,,,
+,,,,,,,,,,,,,,,,,15.0,"第4条：料金
+Điều 4: Thanh toán","料金に関する内容を表示
+Hiển thị thông tin phí",テキスト,-,"表示のみ
+Chỉ hiển thị
+説明文中心
+Chủ yếu là text",-,,,,,,
+,,,,,,,,,,,,,,,,,16.0,"第5条：免責事項
+Miễn trách nhiệm","免責内容を表示
+Hiển thị điều khoản miễn trách",テキスト,-,"強調ボックス表示
+Hiển thị nổi bật
+背景色付き（注意喚起）
+Có background highlight",-,,,,,,
+,,,,,,,,,,,,,,,,,17.0,"第6条：変更
+Thay đổi điều khoản","規約変更内容を表示
+Hiển thị thay đổi điều khoản",テキスト,-,"表示のみ
+Chỉ hiển thị
+履歴なし（最新版のみ）
+Chỉ hiển thị bản mới nhất",-,,,,,,
+,,,,,,,,,,,,,,,,,18.0,"第7条：お問い合わせ
+Liên hệ","連絡先情報を表示
+Hiển thị thông tin liên hệ",テキスト,-,"連絡先情報（メール・電話番号・住所）を表示
+Hiển thị thông tin liên hệ (email, số điện thoại, địa chỉ)",-,,,,,,
+,,,,,,,,,,,,,,,,,19.0,"同意メッセージ
+Thông báo đồng ý","利用規約への同意文を表示
+Hiển thị thông báo đồng ý",ラベル,-,"緑背景・チェックアイコン付き
+Nền xanh + icon check",-,,,,,,
+,,,,,,,,,,,,,,,,,20.0,"同意して登録
+Đồng ý & đăng ký","規約に同意して登録処理を行う
+Đồng ý điều khoản và đăng ký",ボタン,-,"成功時ホームまたはダッシュボードへ遷移
+Khi nhấn: lưu trạng thái đồng ý + tạo tài khoản
+未同意の場合は無効（checkboxがある場合）
+Disable nếu chưa đồng ý (nếu có checkbox)",-,,,,,,
+,,,,,,,,,,,,,,,,,21.0,"ホームに戻る
+Quay về trang chủ","ホーム画面へ戻る
+Quay về trang chủ",ボタン,-,"押下時ホーム画面へ遷移
+Chuyển về trang chủ
+確認なしで遷移可能
+Không cần xác nhận",-,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,画面ID,,19.0,,画面タイトル,,"マップ用フィルターポップアップ画面
+(Màn hình popup bộ lọc bản đồ)",,,,,,ロールID,,"1, 3",,画面項目,,,,,,,,,,,,
+,画面レイアウト・デザイン,,,,,,,,,,,,,,,,No,項目名称,項目説明,分類,選択肢・入力値,処理内容,備考,,,,,,
+,,,,,,,,,,,,,,,,,1.0,"フィルター
+Bộ lọc","フィルター画面のタイトル
+Tiêu đề màn hình bộ lọc",ラベル,-,"静的表示。
+Hiển thị tĩnh.",-,,,,,,
+,,,,,,,,,,,,,,,,,2.0,"閉じるボタン
+Nút đóng","モーダルを閉じるための「×」ボタン
+Nút “×” để đóng popup",ボタン,-,"ルを閉じる。
+Khi click, đóng popup.",-,,,,,,
+,,,,,,,,,,,,,,,,,3.0,"エリア
+Khu vực","エリア選択セクションの見出し
+Tiêu đề phần chọn khu vực",ラベル,-,"静的表示。
+Hiển thị tĩnh.",-,,,,,,
+,,,,,,,,,,,,,,,,,4.0,"エリア選択
+Chọn khu vực","エリアを選択するチェック項目
+Các mục checkbox chọn khu vực",チェックボックス,"ホアンキエム
+Hoàn Kiếm
+レバイェン
+Ba Đình
+ハイバーチュン
+Hai Bà Trưng
+ドンダー
+Đống Đa
+タインスアン
+Thanh Xuân
+カウザイ
+Cầu Giấy","チェックした項目を選択する。
+Chọn các mục được tick.",-,,,,,,
+,,,,,,,,,,,,,,,,,5.0,"予算 (VND)
+Ngân sách (VND)","予算入力セクションの見出し
+Tiêu đề phần nhập ngân sách",ラベル,-,"静的表示。
+Hiển thị tĩnh.",-,,,,,,
+,,,,,,,,,,,,,,,,,6.0,"最低予算入力欄
+Ô nhập ngân sách tối thiểu","最低予算を入力する欄
+Ô nhập ngân sách tối thiểu",入力,"最低予算
+Placeholder: ngân sách tối thiểu
+数値入力
+Nhập giá trị số","値を入力する。
+Nhập giá trị.",-,,,,,,
+,,,,,,,,,,,,,,,,,7.0,"最高予算入力欄
+Ô nhập ngân sách tối đa","最高予算を入力する欄
+Ô nhập ngân sách tối đa",入力,"最高予算
+Placeholder: ngân sách tối đa
+数値入力
+Nhập giá trị số","値を入力する。
+Nhập giá trị.",-,,,,,,
+,,,,,,,,,,,,,,,,,8.0,"料理
+Món ăn","料理選択セクションの見出し
+Tiêu đề phần chọn món ăn",ラベル,-,"静的表示。
+Hiển thị tĩnh.",-,,,,,,
+,,,,,,,,,,,,,,,,,9.0,"料理選択
+Chọn món ăn","料理を選択するチェック項目
+Các mục checkbox chọn món ăn",チェックボックス,"ベトナム料理
+Món Việt Nam
+海鮮
+Hải sản
+ベジタリアン
+Món chay
+タイ料理
+Món Thái","チェックした項目を選択する。
+Chọn các mục được tick.",-,,,,,,
+,,,,,,,,,,,,,,,,,10.0,"リセットボタン
+Nút reset","選択内容をリセットするボタン
+Nút đặt lại nội dung đã chọn",ボタン,-,"クリック時、選択内容をリセットする。
+Khi click, reset nội dung đã chọn.",-,,,,,,
+,,,,,,,,,,,,,,,,,11.0,"適用ボタン
+Nút áp dụng","選択内容を適用するボタン
+Nút áp dụng nội dung đã chọn",ボタン,-,"リック時、選択内容を適用する。
+Khi click, áp dụng nội dung đã chọn.",-,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,

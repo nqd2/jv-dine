@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: jv-dine-postgres
+    environment:
+      POSTGRES_DB: jv_dine
+      POSTGRES_USER: jvdine
+      POSTGRES_PASSWORD: jvdine
+    ports:
+      - '5432:5432'
+    volumes:
+      - jv_dine_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U jvdine -d jv_dine']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  jv_dine_postgres_data:
