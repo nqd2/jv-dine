@@ -19,7 +19,7 @@ pnpm dev:web
 
 Default URL is `http://localhost:3000`. Visiting `/` opens the guest home/search screen, while `/login` and `/signup` remain dedicated auth routes.
 
-If API is also running on `:3000`, Next.js will move to `:3001`.
+If port **3000** is already taken, Next picks another (e.g. **3001**). The API defaults to port **5000** (`NEXT_PUBLIC_API_BASE_URL`).
 
 ## Language toggle
 
@@ -30,7 +30,7 @@ The home and auth screens use a client-side JP/VN language toggle stored in `loc
 Use `apps/web/.env.local` (from `apps/web/.env.example`):
 
 ```env
-NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
+NEXT_PUBLIC_API_BASE_URL=http://localhost:5000
 ```
 
 ## Commands

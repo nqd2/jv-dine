@@ -16,7 +16,7 @@ export class RestaurantSearchCacheService {
     const token = this.config.get<string>('UPSTASH_REDIS_REST_TOKEN')?.trim();
     if (url && token) {
       this.redis = new Redis({ url, token });
-      this.log.log('Restaurant search: Upstash Redis cache enabled');
+      this.log.debug('Restaurant search: Upstash Redis cache enabled');
     } else {
       this.redis = null;
     }

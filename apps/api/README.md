@@ -6,7 +6,7 @@ NestJS backend API for JV Dine.
 
 - Node.js 20+
 - pnpm 10.11.0
-- PostgreSQL
+- PostgreSQL (e.g. **Supabase** — URLs only in `apps/api/.env`, no repo-root `.env`)
 
 ## Local setup
 
@@ -15,7 +15,6 @@ From repo root:
 ```bash
 pnpm install
 cp apps/api/.env.example apps/api/.env
-pnpm db:up
 pnpm prisma:generate
 pnpm prisma:migrate:dev
 pnpm dev:api
@@ -33,6 +32,9 @@ PORT=5000
 DATABASE_URL=postgresql://...
 DIRECT_URL=postgresql://...
 WEB_ORIGIN=http://localhost:3000
+
+# Optional: log full HTTP bodies (verbose). Omit for compact logs (see HttpLoggingInterceptor).
+# VERBOSE_HTTP_LOGS=1
 
 # Upload ảnh nhà hàng → Cloudflare R2 (xem apps/api/.env.example)
 R2_ENDPOINT=https://<account>.r2.cloudflarestorage.com

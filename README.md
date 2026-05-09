@@ -10,9 +10,9 @@ Monorepo managed with `pnpm` workspaces and Turborepo for local development.
 
 ## Prerequisites
 
-- Node.js 22+
+- Node.js 20+
 - `pnpm` 10+
-- Docker (recommended for local PostgreSQL)
+- A PostgreSQL database (e.g. **Supabase**) — connection strings go only in **`apps/api/.env`** (there is **no** root `.env` in this repo).
 
 ## Local setup
 
@@ -20,20 +20,18 @@ Monorepo managed with `pnpm` workspaces and Turborepo for local development.
    ```bash
    pnpm install
    ```
-2. Create local env file from template:
+2. Create env files from templates (**per app**, not at repo root):
    ```bash
-   cp .env.example .env
+   cp apps/api/.env.example apps/api/.env && cp apps/web/.env.example apps/web/.env.local
    ```
-3. Start local PostgreSQL:
-   ```bash
-   pnpm db:up
-   ```
-4. Generate Prisma client and apply migrations:
+   Fill `DATABASE_URL`, `DIRECT_URL`, and JWT secrets in `apps/api/.env` using your Supabase project; web vars in `apps/web/.env.local`.
+3. Generate Prisma client and apply migrations (against the DB URLs in `apps/api/.env`):
    ```bash
    pnpm prisma:generate
    pnpm prisma:migrate:dev
    ```
-5. Start web and API together:
+   For an existing remote DB that predates these migrations, see baseline notes in `apps/api/README.md`.
+4. Start web and API together:
    ```bash
    pnpm dev
    ```
@@ -45,9 +43,7 @@ Monorepo managed with `pnpm` workspaces and Turborepo for local development.
 - `pnpm dev:api`: run API only
 - `pnpm build`: build all apps
 - `pnpm lint`: lint all apps
-- `pnpm db:up`: start local PostgreSQL
-- `pnpm db:down`: stop local PostgreSQL
-- `pnpm db:logs`: stream PostgreSQL logs
+- `pnpm db:up` / `pnpm db:down` / `pnpm db:logs`: optional **local** PostgreSQL via Docker (only if you use `docker-compose.local.yml`; not required when using Supabase)
 
 ## App guides
 

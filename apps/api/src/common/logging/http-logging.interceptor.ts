@@ -89,6 +89,38 @@ function isStreamLike(data: unknown): boolean {
   return typeof (data as { pipe?: unknown }).pipe === 'function';
 }
 
+/** Full request/response bodies only when `VERBOSE_HTTP_LOGS=1` or `true` (see `.env.example`). */
+function verboseHttpLogs(): boolean {
+  const v = process.env.VERBOSE_HTTP_LOGS?.trim().toLowerCase();
+  return v === '1' || v === 'true' || v === 'yes';
+}
+
+function summarizeRequest(req: Request): string {
+  const query = req.query;
+  const hasQuery =
+    query && typeof query === 'object' && Object.keys(query).length > 0;
+  const q =
+    hasQuery &&
+    query !== null &&
+    typeof query === 'object' &&
+    !Array.isArray(query)
+      ? ` ${JSON.stringify(query)}`
+      : '';
+
+  const body = req.body as Record<string, unknown> | undefined;
+  const hasBody =
+    body !== undefined &&
+    body !== null &&
+    !(
+      typeof body === 'object' &&
+      !Array.isArray(body) &&
+      Object.keys(body).length === 0
+    );
+  const bodyHint = hasBody ? ' [body]' : '';
+
+  return `${req.method} ${req.originalUrl}${q}${bodyHint}`;
+}
+
 function summarizePayload(data: unknown): unknown {
   if (Buffer.isBuffer(data)) {
     return { type: 'Buffer', length: data.length };
@@ -143,10 +175,15 @@ export class HttpLoggingInterceptor implements NestInterceptor {
     const res = http.getResponse<Response>();
     const { method, originalUrl } = req;
 
-    const incoming = prettifyJson(redact(requestPayload(req)));
-    this.logger.log(
-      `${method} ${originalUrl} — incoming\n${incoming}\n${'─'.repeat(72)}`,
-    );
+    const verbose = verboseHttpLogs();
+    if (verbose) {
+      const incoming = prettifyJson(redact(requestPayload(req)));
+      this.logger.log(
+        `${method} ${originalUrl} — incoming\n${incoming}\n${'─'.repeat(72)}`,
+      );
+    } else {
+      this.logger.log(`→ ${summarizeRequest(req)}`);
+    }
 
     const started = Date.now();
 
@@ -155,10 +192,14 @@ export class HttpLoggingInterceptor implements NestInterceptor {
         next: (data: unknown) => {
           const ms = Date.now() - started;
           const status = res.statusCode;
-          const outgoing = prettifyJson(redact(summarizePayload(data)));
-          this.logger.log(
-            `${method} ${originalUrl} — ${status} ${ms}ms — outgoing\n${outgoing}\n${'═'.repeat(72)}`,
-          );
+          if (verbose) {
+            const outgoing = prettifyJson(redact(summarizePayload(data)));
+            this.logger.log(
+              `${method} ${originalUrl} — ${status} ${ms}ms — outgoing\n${outgoing}\n${'═'.repeat(72)}`,
+            );
+          } else {
+            this.logger.log(`← ${method} ${originalUrl} ${status} ${ms}ms`);
+          }
         },
         error: (err: unknown) => {
           const ms = Date.now() - started;
