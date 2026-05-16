@@ -72,6 +72,12 @@ flowchart TD
 - `クーポン管理画面` là nơi liệt kê mã, click "Tạo mới" mở `キャンペーン・クーポン作成画面`.
 - `店舗情報編集画面` mở thêm `店舗情報編集画面（メニュー管理）` để CRUD món ăn.
 
+**Web (`apps/web`) — route tương ứng (Sprint 2):**
+
+- `管理者ダッシュボード画面` → `/dashboard`
+- `店舗情報編集画面` → `/dashboard/restaurants/{id}/edit` (tab 基本情報 + form PATCH `restaurants`)
+- `店舗情報編集画面（メニュー管理）` → `/dashboard/restaurants/{id}/menu` (placeholder; CRUD món sẽ theo backlog メニュー)
+
 ## Role 3 — ゲスト / Guest (chưa login) — bao gồm flow Auth chung
 
 ```mermaid

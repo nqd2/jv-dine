@@ -36,8 +36,14 @@ WEB_ORIGIN=http://localhost:3000
 # Optional: log full HTTP bodies (verbose). Omit for compact logs (see HttpLoggingInterceptor).
 # VERBOSE_HTTP_LOGS=1
 
-# Upload ảnh nhà hàng → Cloudflare R2 (xem apps/api/.env.example)
+# JWT (bắt buộc cho auth guards)
+JWT_ACCESS_TOKEN_SECRET=
+JWT_REFRESH_TOKEN_SECRET=
+# Hoặc dùng JWT_SECRET cho cả hai khi dev
+
+# Upload ảnh (API + script seed) — Cloudflare R2 (xem apps/api/.env.example)
 R2_ENDPOINT=https://<account>.r2.cloudflarestorage.com
+# Hoặc R2_ACCOUNT_ID (script/API ghép endpoint S3)
 R2_ACCESS_KEY_ID=
 R2_SECRET_ACCESS_KEY=
 R2_BUCKET_NAME=
@@ -46,9 +52,39 @@ R2_PUBLIC_BASE_URL=https://pub-xxxx.r2.dev
 
 Mẫu đầy đủ hơn: [`apps/api/.env.example`](/apps/api/.env.example).
 
-## Cloudflare R2 — ảnh nhà hàng
+## Auth guards (Sprint 2)
+
+Global guards: `JwtAuthGuard` + `RolesGuard` (xem `src/common/auth/`).
+
+| Route | Auth |
+|---|---|
+| `GET /restaurants/search`, `GET /restaurants/:id` | Public |
+| `GET /menus`, `GET /menus/restaurant/:id`, `GET /menus/:id` | Public |
+| `GET /reviews`, `GET /reviews/restaurant/:id`, `GET /reviews/:id` | Public |
+| `POST/PATCH/DELETE /restaurants*` | Owner JWT; mutate chỉ khi `owner_id === user.id` |
+| `POST/PATCH/DELETE /menus*` | Owner JWT; menu thuộc quán của owner |
+| `POST /reviews` | User hoặc Owner JWT (`userId` lấy từ token) |
+| `POST /uploads/images` | User hoặc Owner JWT; multipart field `file` |
+
+Header: `Authorization: Bearer <accessToken>` (token từ `POST /auth/login`).
+
+## Cloudflare R2 — upload API & ảnh nhà hàng
+
+`POST /uploads/images` — multipart field **`file`**, MIME `image/png`, `image/jpeg`, `image/jpg`, `image/webp`, tối đa **10MB**. Trả `{ "imageUrl": "https://...", "key": "uploads/..." }`. Thiếu `R2_*` → **503**.
+
+Script seed ảnh mẫu (cùng biến môi trường):
 
 Migration thêm `restaurants.image_url` được đặt **sau** migration init trong `prisma/migrations` (theo timestamp thư mục), không được chạy trước lúc tạo bảng — nếu không sẽ lỗi shadow DB (“table does not exist”).
+
+Migration **`20260514120000_restaurant_edit_fields`** (màn chỉnh sửa thông tin quán / Figma 117:104) thêm trên bảng `restaurants`: `name_vn`, `description_ja`, `description_vn`, `phone`, `cuisine`, và các cột boolean tiện ích (`has_wifi`, `has_parking`, …). Trên **Supabase Postgres**, sau khi `DATABASE_URL` / `DIRECT_URL` trỏ đúng project:
+
+```bash
+cd apps/api
+pnpm exec prisma migrate deploy --schema prisma/schema.prisma
+pnpm exec prisma generate --schema prisma/schema.prisma
+```
+
+Nếu DB đã drift so với history (P3009 / reset), xử lý baseline/ghi nhận migration như mục **Database notes** bên dưới rồi chạy lại `migrate deploy`.
 
 ```bash
 pnpm prisma:migrate:dev

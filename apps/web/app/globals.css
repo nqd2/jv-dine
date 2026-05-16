@@ -13,6 +13,11 @@
   --color-hero-gradient-end: #ff6900;
   --color-primary-hover: #bf0009;
   --color-banner-blue: #eff6ff;
+  /** Owner restaurant edit screen (Figma 117:104 — tabs / save) */
+  --color-restaurant-edit-accent: #155dfc;
+  --color-restaurant-edit-accent-hover: #1249d1;
+  --color-restaurant-edit-accent-surface: #eff6ff;
+  --ring-restaurant-edit-soft: #155dfc26;
   --color-border-input: #d1d5dc;
   --color-border-navbar: rgb(0 0 0 / 0.1);
   --color-muted-surface: #f9fafb;

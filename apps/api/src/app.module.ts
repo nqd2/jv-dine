@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { AuthGuardsModule } from './common/auth/auth-guards.module';
 import { AppConfigModule } from './common/config/app-config.module';
 import { PrismaModule } from './common/prisma/prisma.module';
 import { AppController } from './app.controller';
@@ -11,11 +12,13 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
 import { RestaurantsModule } from './modules/restaurants/restaurants.module';
 import { ReviewsModule } from './modules/reviews/reviews.module';
 import { RolesModule } from './modules/roles/roles.module';
+import { UploadsModule } from './modules/uploads/uploads.module';
 import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
     AppConfigModule,
+    AuthGuardsModule,
     PrismaModule,
     AuthModule,
     HealthModule,
@@ -26,6 +29,7 @@ import { UsersModule } from './modules/users/users.module';
     CouponsModule,
     ReviewsModule,
     NotificationsModule,
+    UploadsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

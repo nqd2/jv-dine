@@ -1,15 +1,16 @@
 "use client";
 
-import { Lock, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FormEvent, useState, useSyncExternalStore } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { FormEvent, useEffect, useState, useSyncExternalStore } from "react";
 
 import {
   AUTH_COPY_BY_LANGUAGE,
   AUTH_SERVER_MESSAGES,
 } from "@lib/auth-copy";
-import { notifyStoredSessionUpdated } from "@lib/auth-session";
+import { persistAuthSession } from "@lib/auth-session";
+import { resolveReturnUrl } from "@lib/api-client";
 import {
   getLanguageSnapshot,
   getServerLanguageSnapshot,
@@ -20,6 +21,7 @@ import {
   FormErrorAlert,
   FormField,
   InputWithLeading,
+  PasswordInput,
   textFieldClasses,
 } from "./ui/form";
 import { Navbar } from "./ui/navbar";
@@ -68,8 +70,20 @@ const SIGNUP_SEGMENT_ACTIVE = `${SIGNUP_SEGMENT_BASE} bg-primary text-white`;
 
 const SIGNUP_SEGMENT_INACTIVE = `${SIGNUP_SEGMENT_BASE} text-label hover:bg-white`;
 
+function readEmailFromLocation(): string {
+  if (typeof window === "undefined") {
+    return "";
+  }
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("password")) {
+    return "";
+  }
+  return params.get("email") ?? "";
+}
+
 export function AuthPage({ mode }: { mode: AuthMode }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const isLogin = mode === "login";
   const language = useSyncExternalStore(
     subscribeLanguage,
@@ -78,7 +92,7 @@ export function AuthPage({ mode }: { mode: AuthMode }) {
   );
   const copy = AUTH_COPY_BY_LANGUAGE[language];
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(readEmailFromLocation);
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [username, setUsername] = useState("");
@@ -88,6 +102,24 @@ export function AuthPage({ mode }: { mode: AuthMode }) {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const emailParam = searchParams.get("email");
+    const passwordParam = searchParams.get("password");
+    const returnUrl = searchParams.get("returnUrl");
+
+    if (!emailParam && !passwordParam) {
+      return;
+    }
+
+    const clean = new URLSearchParams();
+    if (returnUrl) {
+      clean.set("returnUrl", returnUrl);
+    }
+    const basePath = isLogin ? "/login" : "/signup";
+    const query = clean.toString();
+    router.replace(query ? `${basePath}?${query}` : basePath);
+  }, [isLogin, router, searchParams]);
 
   function translateServerMessage(raw: string): string {
     const mapped = AUTH_SERVER_MESSAGES[language][raw];
@@ -209,8 +241,20 @@ export function AuthPage({ mode }: { mode: AuthMode }) {
       }
 
       const authData = parsedJson as AuthResponse;
-      persistTokens(authData, rememberMe);
+      persistAuthSession(
+        authData.user,
+        {
+          accessToken: authData.tokens.accessToken,
+          refreshToken: authData.tokens.refreshToken,
+        },
+        rememberMe,
+      );
 
+      const returnUrl = resolveReturnUrl(searchParams.get("returnUrl"));
+      if (returnUrl) {
+        router.push(returnUrl);
+        return;
+      }
       router.push(authData.user.roleId === 2 ? "/dashboard" : "/home");
     } catch (requestError) {
       setError(
@@ -271,7 +315,12 @@ export function AuthPage({ mode }: { mode: AuthMode }) {
           </p>
 
           <Card className="mt-8 w-full px-5 pb-8 pt-6 sm:px-10 sm:pb-10 sm:pt-8">
-            <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
+            <form
+              method="post"
+              action={isLogin ? "/login" : "/signup"}
+              onSubmit={handleSubmit}
+              className="space-y-5 sm:space-y-6"
+            >
               {!isLogin ? (
                 <div
                   role="group"
@@ -361,22 +410,15 @@ export function AuthPage({ mode }: { mode: AuthMode }) {
                 label={copy.password}
                 htmlFor={isLogin ? "login-password" : "signup-password"}
               >
-                <InputWithLeading leading={<AuthLeadingLock />}>
-                  <input
-                    id={isLogin ? "login-password" : "signup-password"}
-                    name="password"
-                    type="password"
-                    autoComplete={
-                      isLogin ? "current-password" : "new-password"
-                    }
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    required
-                    minLength={8}
-                    className={`${textFieldClasses} pl-10`}
-                    placeholder="••••••••"
-                  />
-                </InputWithLeading>
+                <PasswordInput
+                  id={isLogin ? "login-password" : "signup-password"}
+                  name="password"
+                  autoComplete={isLogin ? "current-password" : "new-password"}
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  showPasswordLabel={copy.showPassword}
+                  hidePasswordLabel={copy.hidePassword}
+                />
               </FormField>
 
               {!isLogin ? (
@@ -384,19 +426,16 @@ export function AuthPage({ mode }: { mode: AuthMode }) {
                   label={copy.confirmPassword}
                   htmlFor="signup-password2"
                 >
-                  <input
+                  <PasswordInput
                     id="signup-password2"
                     name="passwordConfirmation"
-                    type="password"
                     autoComplete="new-password"
                     value={passwordConfirmation}
                     onChange={(event) =>
                       setPasswordConfirmation(event.target.value)
                     }
-                    required
-                    minLength={8}
-                    className={textFieldClasses}
-                    placeholder="••••••••"
+                    showPasswordLabel={copy.showPassword}
+                    hidePasswordLabel={copy.hidePassword}
                   />
                 </FormField>
               ) : null}
@@ -485,30 +524,6 @@ function AuthLeadingMail() {
       strokeWidth={1.5}
     />
   );
-}
-
-function AuthLeadingLock() {
-  return (
-    <Lock
-      aria-hidden
-      className="size-full shrink-0"
-      strokeWidth={1.5}
-    />
-  );
-}
-
-function persistTokens(data: AuthResponse, rememberMe: boolean) {
-  const primary = rememberMe ? window.localStorage : window.sessionStorage;
-  const secondary = rememberMe ? window.sessionStorage : window.localStorage;
-
-  secondary.removeItem("jvdine-access-token");
-  secondary.removeItem("jvdine-refresh-token");
-  secondary.removeItem("jvdine-user");
-
-  primary.setItem("jvdine-access-token", data.tokens.accessToken);
-  primary.setItem("jvdine-refresh-token", data.tokens.refreshToken);
-  primary.setItem("jvdine-user", JSON.stringify(data.user));
-  notifyStoredSessionUpdated();
 }
 
 function tryParseJson(text: string): unknown {

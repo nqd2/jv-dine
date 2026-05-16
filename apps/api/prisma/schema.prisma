@@ -42,13 +42,24 @@ model Restaurant {
   id                   Int      @id @default(autoincrement())
   owner_id             Int
   name                 String   @db.VarChar
+  name_vn              String?  @db.VarChar(255)
+  description_ja       String?  @db.Text
+  description_vn       String?  @db.Text
   address              String   @db.VarChar
   area                 String?  @db.VarChar
+  phone                String?  @db.VarChar(64)
+  cuisine              String?  @db.VarChar(128)
   working_hours        String?  @db.VarChar
   min_budget           Decimal? @db.Decimal(10, 2)
   max_budget           Decimal? @db.Decimal(10, 2)
   has_air_conditioner  Boolean  @default(false)
   is_japanese_friendly Boolean  @default(false)
+  has_wifi             Boolean  @default(false)
+  has_parking          Boolean  @default(false)
+  has_english_support  Boolean  @default(false)
+  accepts_cards        Boolean  @default(false)
+  has_delivery         Boolean  @default(false)
+  accepts_reservations Boolean  @default(false)
   cleanliness_level    Int?
   languages            String?  @db.VarChar
   lat                  Float?
@@ -64,15 +75,19 @@ model Restaurant {
 }
 
 model Menu {
-  id            Int      @id @default(autoincrement())
-  restaurant_id Int
-  item_name     String   @db.VarChar
-  price         Decimal  @db.Decimal(10, 2)
-  warning_tags  String?  @db.VarChar
-  image_url     String?  @db.VarChar
+  id                    Int      @id @default(autoincrement())
+  restaurant_id         Int
+  item_name             String   @db.VarChar
+  name_vn               String?  @db.VarChar(255)
+  description           String?  @db.Text
+  price                 Decimal  @db.Decimal(10, 2)
+  is_japanese_friendly  Boolean  @default(false)
+  warning_tags          String?  @db.VarChar
+  image_url             String?  @db.VarChar
 
   restaurant Restaurant @relation(fields: [restaurant_id], references: [id], onDelete: Cascade)
 
+  @@index([restaurant_id])
   @@map("menus")
 }
 
@@ -92,9 +107,10 @@ model Review {
   id                 Int      @id @default(autoincrement())
   user_id            Int
   restaurant_id      Int
-  rating_taste       Int
-  rating_cleanliness Int
-  rating_service     Int
+  rating             Int
+  rating_taste       Int?
+  rating_cleanliness Int?
+  rating_service     Int?
   comment            String?  @db.Text
   image_url          String?  @db.VarChar
   created_at         DateTime @default(now()) @db.Timestamptz
@@ -102,6 +118,8 @@ model Review {
   user       User       @relation(fields: [user_id], references: [id])
   restaurant Restaurant @relation(fields: [restaurant_id], references: [id], onDelete: Cascade)
 
+  @@unique([user_id, restaurant_id])
+  @@index([restaurant_id])
   @@map("reviews")
 }
 

@@ -35,7 +35,10 @@ export class MenusRepository {
       data: {
         restaurant_id: data.restaurantId,
         item_name: data.itemName,
+        name_vn: data.nameVn,
+        description: data.description,
         price: data.price,
+        is_japanese_friendly: data.isJapaneseFriendly ?? false,
         warning_tags: data.warningTags,
         image_url: data.imageUrl,
       },
@@ -55,7 +58,10 @@ export class MenusRepository {
       data: {
         restaurant_id: data.restaurantId,
         item_name: data.itemName,
+        name_vn: data.nameVn,
+        description: data.description,
         price: data.price,
+        is_japanese_friendly: data.isJapaneseFriendly,
         warning_tags: data.warningTags,
         image_url: data.imageUrl,
       },
@@ -86,7 +92,10 @@ export class MenusRepository {
     id: number;
     restaurant_id: number;
     item_name: string;
+    name_vn: string | null;
+    description: string | null;
     price: { toString(): string };
+    is_japanese_friendly: boolean;
     warning_tags: string | null;
     image_url: string | null;
   }): MenuModel {
@@ -94,7 +103,10 @@ export class MenusRepository {
       id: menu.id,
       restaurantId: menu.restaurant_id,
       itemName: menu.item_name,
+      nameVn: menu.name_vn,
+      description: menu.description,
       price: menu.price.toString(),
+      isJapaneseFriendly: menu.is_japanese_friendly,
       warningTags: menu.warning_tags,
       imageUrl: menu.image_url,
     };

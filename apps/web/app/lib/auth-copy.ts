@@ -7,6 +7,8 @@ export type AuthCopy = {
   subtitleSignup: string;
   email: string;
   password: string;
+  showPassword: string;
+  hidePassword: string;
   remember: string;
   forgotPassword: string;
   noAccount: string;
@@ -41,6 +43,8 @@ export const AUTH_COPY_BY_LANGUAGE: Record<Language, AuthCopy> = {
     subtitleSignup: "新しいアカウントを作成する",
     email: "メール",
     password: "パスワード",
+    showPassword: "パスワードを表示",
+    hidePassword: "パスワードを非表示",
     remember: "ログイン状態を保持",
     forgotPassword: "パスワード忘れ",
     noAccount: "アカウントをお持ちでない場合?",
@@ -74,6 +78,8 @@ export const AUTH_COPY_BY_LANGUAGE: Record<Language, AuthCopy> = {
     subtitleSignup: "Tạo tài khoản mới",
     email: "Email",
     password: "Mật khẩu",
+    showPassword: "Hiện mật khẩu",
+    hidePassword: "Ẩn mật khẩu",
     remember: "Giữ trạng thái đăng nhập",
     forgotPassword: "Quên mật khẩu",
     noAccount: "Chưa có tài khoản?",

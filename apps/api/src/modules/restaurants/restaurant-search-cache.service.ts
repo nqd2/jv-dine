@@ -28,10 +28,15 @@ export class RestaurantSearchCacheService {
       ar: (params.area ?? '').trim(),
       bmin: (params.budgetMin ?? '').trim(),
       bmax: (params.budgetMax ?? '').trim(),
+      cuisine: (params.cuisine ?? '').trim(),
       lang: (params.language ?? '').trim(),
       cln: (params.cleanlinessLevel ?? '').trim(),
       ac: (params.hasAirConditioner ?? '').trim(),
       jp: (params.isJapaneseFriendly ?? '').trim(),
+      lat: (params.lat ?? '').trim(),
+      lng: (params.long ?? '').trim(),
+      radius: (params.radiusKm ?? '').trim(),
+      rating: (params.ratingMin ?? '').trim(),
     };
     return `jv:rest:${CACHE_VERSION}:${JSON.stringify(norm)}`;
   }

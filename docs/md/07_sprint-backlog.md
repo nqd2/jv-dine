@@ -87,19 +87,69 @@
 
 ---
 
-## Sprint 2 (Template – chưa lên kế hoạch)
+## Sprint 2 (Đã có kế hoạch chi tiết)
 
-- **Kỳ (placeholder)**: `5/5 ~ 5/10`
-- **Sprint Goal**: chưa điền (`このスプリントで`).
-- **Sprint Backlog**: chưa lập task — chỉ giữ lại 18 hàng PIC theo cùng cấu trúc Sprint 1 (Tiến Đạt, Tiến Đạt, Huy, Tuấn, Huy, Tuấn, Tuấn, Quý, Hải, Hải, Thế Đạt, Thế Đạt, Quý, Hải, Đức, Đức, Đức, Quý).
-- **POT đã approve**: ❌
+- **Kỳ**: `2026/05/12 (火) ~ 2026/05/17 (日)`
+- **Sprint Goal**:
+  > 店舗管理者は、店舗情報の登録および編集が可能です。一般ユーザーおよびゲストは、地図上で周辺の店舗を検索・閲覧できるほか、メニュー上の警告タグや「日本人の口に合う」バッジを確認できます。また、一般ユーザーは、写真や星評価付きのレビューを投稿・閲覧することが可能です。
+  >
+  > *Quản lý cửa hàng có thể đăng ký và sửa thông tin quán. Người dùng thông thường và khách có thể tìm kiếm và xem các quán xung quanh trên bản đồ, có thể xem các thẻ cảnh báo và huy hiệu "Hợp khẩu vị Nhật" trên thực đơn. Người dùng thông thường có thể đăng và xem các đánh giá có kèm hình ảnh và số sao.*
+- **POT đã approve sprint goal + sprint backlog**: ❌ *(điền ✅ khi POT xác nhận)*
 - **Sprint Review**: chưa thực hiện.
+
+### Sprint Backlog – Sprint 2 (18 tasks)
+
+| ID | P_ID | Task | PIC | Est. (h) | Gắn goal? | Done? |
+|---:|:---:|---|---|:---:|:---:|:---:|
+| 1 | 5 | [FE] 店舗情報編集画面のレイアウトコーディング — Code layout màn hình chỉnh sửa thông tin quán (Web) | Tiến Đạt | 2 | あり | ✅ |
+| 2 | 5 | [BE] 店舗情報編集用API — API chỉnh sửa thông tin quán | Tiến Đạt | 2 | あり | ✅ |
+| 3 | 5 | [BE] 店舗情報編集画面のUIとAPIの連携 — Kết nối UI chỉnh sửa thông tin quán với API | Tiến Đạt | 2 | あり | ✅ |
+| 4 | 6 | [FE] 地図検索画面のレイアウトコーディング — Code layout màn hình tìm kiếm bằng bản đồ | Huy | 2 | あり | ✅ |
+| 5 | 6 | [BE] 地図検索用API — API tìm kiếm bằng bản đồ | Huy | 2 | あり | ✅ |
+| 6 | 6 | [BE] 地図検索画面のUIとAPIの連携 — Kết nối UI tìm kiếm bản đồ với API | Huy | 2 | あり | ✅ |
+| 7 | 7 | [FE] 店舗詳細・メニュー画面のレイアウトコーディング — Code layout màn hình chi tiết quán và thực đơn | Tuấn | 2 | あり | ✅ |
+| 8 | 7 | [BE] 店舗詳細・メニュー用API — API chi tiết quán và thực đơn | Tuấn | 2 | あり | ✅ |
+| 9 | 7 | [BE] 店舗詳細・メニュー画面のUIとAPIの連携 — Kết nối UI chi tiết quán và thực đơn với API | Tuấn | 2 | あり | ✅ |
+| 10 | 8 | [FE] レビュー閲覧画面のレイアウトコーディング — Code layout màn hình xem đánh giá | Thế Đạt | 2 | あり | ✅ |
+| 11 | 8 | [BE] レビュー用APIおよびレビュー閲覧画面のUIとAPIの連携 — API đánh giá + kết nối UI xem đánh giá với API | Thế Đạt | 4 | あり | ✅ |
+| 12 | 5 | [FE] 店舗詳細情報画面のレイアウトコーディング — Code layout màn hình chi tiết thông tin nhà hàng | Đức | 2 | あり | ✅ |
+| 13 | 5 | [BE] レストラン詳細情報用API — API chi tiết thông tin nhà hàng | Đức | 2 | あり | ✅ |
+| 14 | 5 | [FE] レストラン詳細情報画面のUIとAPIの連携 — Kết nối UI chi tiết thông tin nhà hàng với API | Đức | 2 | あり | ✅ |
+| 15 | 5 | [QA] 店舗登録・情報編集のテスト — Kiểm thử đăng ký và sửa thông tin quán | Hải | 2 | あり | ✅ |
+| 16 | 6 | [QA] 地図検索のテスト — Kiểm thử tìm kiếm bằng bản đồ | Hải | 2 | あり | ✅ |
+| 17 | 7 | [QA] 店舗詳細・メニューのテスト — Kiểm thử chi tiết quán và thực đơn | Quý | 2 | あり | ✅ |
+| 18 | 8 | [QA] レストラン詳細情報のテスト — Kiểm thử chi tiết thông tin nhà hàng | Quý | 2 | あり | ✅ |
+
+### Phân bổ thời gian Sprint 2
+
+| Vai trò | Tổng giờ ước lượng |
+|---|:---:|
+| Tiến Đạt (FE/BE) | 6 |
+| Huy (FE/BE) | 6 |
+| Tuấn (FE/BE) | 6 |
+| Thế Đạt (FE/BE) | 6 |
+| Đức (FE/BE) | 6 |
+| Hải (FE/QA) | 4 |
+| Quý (QA) | 4 |
+| **Tổng cộng** | **38 h** |
+
+
+### Trạng thái Sprint 2 (cập nhật theo repo hiện tại)
+
+- Task 1–3 — ✅ Owner edit/register + PATCH/POST wire (`restaurant-edit-page.tsx`, `/dashboard/restaurants/new`)
+- Task 4–6 — ✅ Map search `/map` + geo API + home links (`map-search-page.tsx`)
+- Task 7–9 — ✅ Guest detail tab Menu (`/restaurants/[id]`, warning tags + JP badge)
+- Task 10–11 — ✅ Reviews tab + write modal (`review-write-modal.tsx`, `POST /reviews`)
+- Task 12–14 — ✅ Tab 詳細情報 + `GET /restaurants/:id/detail`
+- Task 15–18 — ⚠️ UAT cần chạy thủ công với env Maps + R2
+- **POT approve**: ❌ (chưa xác nhận)
+- **Sprint Review**: chưa điền template
 
 ## Sprint 3 (Template – chưa lên kế hoạch)
 
 - **Kỳ (placeholder)**: `5/5 ~ 5/10`
 - **Sprint Goal**: chưa điền.
-- **Sprint Backlog**: chưa lập task; layout PIC giống Sprint 2.
+- **Sprint Backlog**: chưa lập task.
 - **POT đã approve**: ❌
 - **Sprint Review**: chưa thực hiện.
 
@@ -107,7 +157,7 @@
 
 - **Kỳ (placeholder)**: `5/5 ~ 5/10`
 - **Sprint Goal**: chưa điền.
-- **Sprint Backlog**: chưa lập task; layout PIC giống Sprint 2.
+- **Sprint Backlog**: chưa lập task.
 - **POT đã approve**: ❌
 - **Sprint Review**: chưa thực hiện.
 

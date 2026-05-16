@@ -36,6 +36,11 @@ import {
   subscribeLanguage,
   type Language,
 } from "@lib/jvdine-language";
+import {
+  buildRestaurantSearchParams,
+  INITIAL_SEARCH_FORM,
+  type SearchFormState,
+} from "@lib/search-params";
 import { Card } from "./ui/card";
 import { Navbar } from "./ui/navbar";
 import { SiteLogoLanguageCluster } from "./ui/nav-brand";
@@ -112,8 +117,8 @@ const HOME_COPY: Record<Language, HomeCopy> = {
     keywordPlaceholder: "レストラン、料理を検索",
     area: "エリア",
     budgetSection: "予算",
-    budgetMinPlaceholder: "最低価格",
-    budgetMaxPlaceholder: "最高価格",
+    budgetMinPlaceholder: "最低価格 (kVND)",
+    budgetMaxPlaceholder: "最高価格 (kVND)",
     cuisine: "料理",
     language: "言語",
     anyLanguage: "指定なし",
@@ -123,7 +128,7 @@ const HOME_COPY: Record<Language, HomeCopy> = {
     japaneseFriendly: "日本人向け",
     search: "検索",
     searchOnMap: "地図で検索",
-    mapSearchHint: "地図での検索は近日対応です。",
+    mapSearchHint: "地図検索画面へ",
     recommended: "おすすめのレストラン",
     filterMore: "フィルター",
     resultCount: (count) => `${count}件の候補`,
@@ -171,8 +176,8 @@ const HOME_COPY: Record<Language, HomeCopy> = {
     keywordPlaceholder: "Tên quán, loại món",
     area: "Khu vực",
     budgetSection: "Ngân sách",
-    budgetMinPlaceholder: "Tối thiểu (VND)",
-    budgetMaxPlaceholder: "Tối đa (VND)",
+    budgetMinPlaceholder: "Tối thiểu (kVND)",
+    budgetMaxPlaceholder: "Tối đa (kVND)",
     cuisine: "Ẩm thực",
     language: "Ngôn ngữ",
     anyLanguage: "Không chọn",
@@ -182,7 +187,7 @@ const HOME_COPY: Record<Language, HomeCopy> = {
     japaneseFriendly: "Phù hợp khách Nhật",
     search: "Tìm kiếm",
     searchOnMap: "Tìm trên bản đồ",
-    mapSearchHint: "Bản đồ sẽ có trong bản tiếp theo.",
+    mapSearchHint: "Mở tìm trên bản đồ",
     recommended: "Gợi ý nhà hàng",
     filterMore: "Bộ lọc thêm",
     resultCount: (count) => `${count} kết quả`,
@@ -224,29 +229,7 @@ const HOME_COPY: Record<Language, HomeCopy> = {
 const apiBaseUrl =
   process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:5000";
 
-type SearchFormState = {
-  keyword: string;
-  cuisine: string;
-  area: string;
-  budgetMin: string;
-  budgetMax: string;
-  language: string;
-  cleanlinessLevel: string;
-  hasAirConditioner: boolean;
-  isJapaneseFriendly: boolean;
-};
-
-const INITIAL_FORM_STATE: SearchFormState = {
-  keyword: "",
-  cuisine: "",
-  area: "",
-  budgetMin: "",
-  budgetMax: "",
-  language: "",
-  cleanlinessLevel: "",
-  hasAirConditioner: false,
-  isJapaneseFriendly: false,
-};
+const INITIAL_FORM_STATE = INITIAL_SEARCH_FORM;
 
 function mergedKeyword(nextForm: SearchFormState): string {
   return [nextForm.keyword, nextForm.cuisine]
@@ -428,6 +411,10 @@ export function HomeSearchPage({ mode }: { mode: ViewerMode }) {
               <button
                 type="button"
                 title={copy.mapSearchHint}
+                onClick={() => {
+                  const q = buildRestaurantSearchParams(form).toString();
+                  router.push(q ? `/map?${q}` : "/map");
+                }}
                 className="inline-flex h-[50px] shrink-0 items-center justify-center gap-2 rounded-[10px] bg-primary px-5 text-base font-medium text-white transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2 sm:min-w-[200px]"
               >
                 <MapPinned aria-hidden className="size-5" />
@@ -634,8 +621,12 @@ export function HomeSearchPage({ mode }: { mode: ViewerMode }) {
           ) : (
             <div className="mt-8 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
               {results.map((restaurant) => (
-                <article
+                <Link
                   key={restaurant.id}
+                  href={`/restaurants/${restaurant.id}`}
+                  className="block"
+                >
+                  <article
                   className="overflow-hidden rounded-[10px] bg-white shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-2px_rgba(0,0,0,0.1)]"
                 >
                   <div className="relative isolate h-48 bg-muted-surface">
@@ -691,7 +682,7 @@ export function HomeSearchPage({ mode }: { mode: ViewerMode }) {
                       </span>
                     </div>
                   </div>
-                </article>
+                </article></Link>
               ))}
             </div>
           )}

@@ -1,13 +1,24 @@
 export type UpdateRestaurantDto = {
   ownerId?: number;
   name?: string;
+  nameVn?: string | null;
+  descriptionJa?: string | null;
+  descriptionVn?: string | null;
   address?: string;
   area?: string | null;
+  phone?: string | null;
+  cuisine?: string | null;
   workingHours?: string | null;
   minBudget?: string | number | null;
   maxBudget?: string | number | null;
   hasAirConditioner?: boolean;
   isJapaneseFriendly?: boolean;
+  hasWifi?: boolean;
+  hasParking?: boolean;
+  hasEnglishSupport?: boolean;
+  acceptsCards?: boolean;
+  hasDelivery?: boolean;
+  acceptsReservations?: boolean;
   cleanlinessLevel?: number | null;
   languages?: string | null;
   lat?: number | null;

@@ -1,9 +1,11 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { Public } from '../../common/auth/decorators/public.decorator';
 import { AuthService } from './auth.service';
-import type { LoginDto } from './dtos/login.dto';
-import type { RefreshTokenDto } from './dtos/refresh-token.dto';
-import type { SignupDto } from './dtos/signup.dto';
+import { LoginDto } from './dtos/login.dto';
+import { RefreshTokenDto } from './dtos/refresh-token.dto';
+import { SignupDto } from './dtos/signup.dto';
 
+@Public()
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

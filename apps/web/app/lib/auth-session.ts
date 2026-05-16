@@ -1,3 +1,5 @@
+import { clearSelectedRestaurantId } from "./restaurant-session";
+
 export type StoredUser = {
   id: number;
   username: string;
@@ -17,6 +19,54 @@ function getStoragePairs(): Storage[] {
   }
 
   return [window.localStorage, window.sessionStorage];
+}
+
+export type AuthTokens = {
+  accessToken: string;
+  refreshToken: string;
+};
+
+/** Bearer token for API calls (same key as login/signup persist). */
+export function getStoredAccessToken(): string | null {
+  for (const storage of getStoragePairs()) {
+    const token = storage.getItem(ACCESS_TOKEN_KEY);
+    if (token) {
+      return token;
+    }
+  }
+  return null;
+}
+
+export function getStoredRefreshToken(): string | null {
+  for (const storage of getStoragePairs()) {
+    const token = storage.getItem(REFRESH_TOKEN_KEY);
+    if (token) {
+      return token;
+    }
+  }
+  return null;
+}
+
+export function persistAuthSession(
+  user: StoredUser,
+  tokens: AuthTokens,
+  rememberMe: boolean,
+): void {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  const primary = rememberMe ? window.localStorage : window.sessionStorage;
+  const secondary = rememberMe ? window.sessionStorage : window.localStorage;
+
+  secondary.removeItem(ACCESS_TOKEN_KEY);
+  secondary.removeItem(REFRESH_TOKEN_KEY);
+  secondary.removeItem(USER_KEY);
+
+  primary.setItem(ACCESS_TOKEN_KEY, tokens.accessToken);
+  primary.setItem(REFRESH_TOKEN_KEY, tokens.refreshToken);
+  primary.setItem(USER_KEY, JSON.stringify(user));
+  notifyStoredSessionUpdated();
 }
 
 /** String snapshot cho `useSyncExternalStore` — cùng nội dung storage ⇒ cùng giá trị so sánh được, không tạo object mới mỗi render. */
@@ -66,6 +116,7 @@ export function clearStoredSession() {
     storage.removeItem(USER_KEY);
   }
 
+  clearSelectedRestaurantId();
   notifyStoredSessionUpdated();
 }
 

@@ -1,9 +1,10 @@
 export type UpdateReviewDto = {
   userId?: number;
   restaurantId?: number;
-  ratingTaste?: number;
-  ratingCleanliness?: number;
-  ratingService?: number;
+  rating?: number;
+  ratingTaste?: number | null;
+  ratingCleanliness?: number | null;
+  ratingService?: number | null;
   comment?: string | null;
   imageUrl?: string | null;
 };

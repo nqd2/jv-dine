@@ -10,6 +10,7 @@ export class ReviewsRepository {
 
   async findAll(): Promise<ReviewModel[]> {
     const reviews = await this.prisma.review.findMany({
+      include: { user: { select: { username: true } } },
       orderBy: { created_at: 'desc' },
     });
 
@@ -19,6 +20,7 @@ export class ReviewsRepository {
   async findByRestaurantId(restaurantId: number): Promise<ReviewModel[]> {
     const reviews = await this.prisma.review.findMany({
       where: { restaurant_id: restaurantId },
+      include: { user: { select: { username: true } } },
       orderBy: { created_at: 'desc' },
     });
 
@@ -26,15 +28,33 @@ export class ReviewsRepository {
   }
 
   async findById(id: number): Promise<ReviewModel | null> {
-    const review = await this.prisma.review.findUnique({ where: { id } });
+    const review = await this.prisma.review.findUnique({
+      where: { id },
+      include: { user: { select: { username: true } } },
+    });
     return review ? this.toModel(review) : null;
   }
 
-  async create(data: CreateReviewDto): Promise<ReviewModel> {
+  async findByUserAndRestaurant(
+    userId: number,
+    restaurantId: number,
+  ): Promise<ReviewModel | null> {
+    const review = await this.prisma.review.findFirst({
+      where: { user_id: userId, restaurant_id: restaurantId },
+      include: { user: { select: { username: true } } },
+    });
+    return review ? this.toModel(review) : null;
+  }
+
+  async create(
+    data: CreateReviewDto & { userId: number },
+  ): Promise<ReviewModel> {
     const review = await this.prisma.review.create({
+      include: { user: { select: { username: true } } },
       data: {
         user_id: data.userId,
         restaurant_id: data.restaurantId,
+        rating: data.rating,
         rating_taste: data.ratingTaste,
         rating_cleanliness: data.ratingCleanliness,
         rating_service: data.ratingService,
@@ -53,10 +73,12 @@ export class ReviewsRepository {
     }
 
     const review = await this.prisma.review.update({
+      include: { user: { select: { username: true } } },
       where: { id },
       data: {
         user_id: data.userId,
         restaurant_id: data.restaurantId,
+        rating: data.rating,
         rating_taste: data.ratingTaste,
         rating_cleanliness: data.ratingCleanliness,
         rating_service: data.ratingService,
@@ -74,7 +96,10 @@ export class ReviewsRepository {
       return null;
     }
 
-    const review = await this.prisma.review.delete({ where: { id } });
+    const review = await this.prisma.review.delete({
+      where: { id },
+      include: { user: { select: { username: true } } },
+    });
     return this.toModel(review);
   }
 
@@ -90,17 +115,21 @@ export class ReviewsRepository {
     id: number;
     user_id: number;
     restaurant_id: number;
-    rating_taste: number;
-    rating_cleanliness: number;
-    rating_service: number;
+    rating: number;
+    rating_taste: number | null;
+    rating_cleanliness: number | null;
+    rating_service: number | null;
     comment: string | null;
     image_url: string | null;
     created_at: Date;
+    user?: { username: string } | null;
   }): ReviewModel {
     return {
       id: review.id,
       userId: review.user_id,
+      userName: review.user?.username ?? null,
       restaurantId: review.restaurant_id,
+      rating: review.rating,
       ratingTaste: review.rating_taste,
       ratingCleanliness: review.rating_cleanliness,
       ratingService: review.rating_service,

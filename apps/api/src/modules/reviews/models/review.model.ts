@@ -1,10 +1,12 @@
 export type ReviewModel = {
   id: number;
   userId: number;
+  userName: string | null;
   restaurantId: number;
-  ratingTaste: number;
-  ratingCleanliness: number;
-  ratingService: number;
+  rating: number;
+  ratingTaste: number | null;
+  ratingCleanliness: number | null;
+  ratingService: number | null;
   comment: string | null;
   imageUrl: string | null;
   createdAt: string;
