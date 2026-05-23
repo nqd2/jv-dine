@@ -1,12 +1,21 @@
 "use client";
 
-import { Flame, MapPin, Star } from "lucide-react";
+import { Flame, LogIn, LogOut, MapPin, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 
-import { getStoredUser } from "@lib/auth-session";
+import {
+  clearStoredSession,
+  getServerStoredUserRawSnapshot,
+  getStoredUserRawSnapshot,
+  getStoredUser,
+  subscribeStoredUser,
+  type StoredUser,
+} from "@lib/auth-session";
+import { fetchMyFavoriteIds } from "@lib/favorites-api";
+import { recordRestaurantView } from "@lib/coupon-api";
 import { getAllergenLabel, parseWarningTags } from "@lib/menu-api";
 import {
   fetchRestaurantDetail,
@@ -19,8 +28,10 @@ import {
   type Language,
 } from "@lib/jvdine-language";
 import { ReviewWriteModal } from "./review-write-modal";
+import { FavoriteButton } from "./favorite-button";
 import { Navbar } from "./ui/navbar";
 import { SiteLogoLanguageCluster } from "./ui/nav-brand";
+import { UserNavLinks } from "./user-nav-links";
 import { Card } from "./ui/card";
 
 type TabId = "menu" | "reviews" | "details";
@@ -37,6 +48,9 @@ const COPY: Record<
     loadError: string;
     reviewsEmpty: string;
     ratingCount: (avg: string, count: number) => string;
+    login: string;
+    signup: string;
+    logout: string;
   }
 > = {
   JP: {
@@ -49,6 +63,9 @@ const COPY: Record<
     loadError: "読み込みに失敗しました",
     reviewsEmpty: "レビューはまだありません",
     ratingCount: (avg, count) => `${avg} (${count}件)`,
+    login: "ログイン",
+    signup: "登録",
+    logout: "ログアウト",
   },
   VN: {
     home: "Trang chủ",
@@ -60,10 +77,14 @@ const COPY: Record<
     loadError: "Không tải được",
     reviewsEmpty: "Chưa có đánh giá",
     ratingCount: (avg, count) => `${avg} (${count} lượt)`,
+    login: "Đăng nhập",
+    signup: "Đăng ký",
+    logout: "Đăng xuất",
   },
 };
 
 export function RestaurantDetailPage({ restaurantId }: { restaurantId: string }) {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const language = useSyncExternalStore(
     subscribeLanguage,
@@ -74,10 +95,27 @@ export function RestaurantDetailPage({ restaurantId }: { restaurantId: string })
   const numericId = Number(restaurantId);
   const initialTab = (searchParams.get("tab") as TabId) || "menu";
 
+  const userSnapshot = useSyncExternalStore(
+    subscribeStoredUser,
+    getStoredUserRawSnapshot,
+    getServerStoredUserRawSnapshot,
+  );
+  const currentUser = useMemo((): StoredUser | null => {
+    if (!userSnapshot) {
+      return null;
+    }
+    try {
+      return JSON.parse(userSnapshot) as StoredUser;
+    } catch {
+      return null;
+    }
+  }, [userSnapshot]);
+
   const [detail, setDetail] = useState<RestaurantDetailRecord | null>(null);
   const [tab, setTab] = useState<TabId>(initialTab);
   const [loadState, setLoadState] = useState<"loading" | "idle" | "error">("loading");
   const [showReviewModal, setShowReviewModal] = useState(false);
+  const [favorited, setFavorited] = useState(false);
 
   const load = useCallback(async () => {
     if (!Number.isInteger(numericId) || numericId <= 0) {
@@ -86,8 +124,17 @@ export function RestaurantDetailPage({ restaurantId }: { restaurantId: string })
     }
     setLoadState("loading");
     try {
+      void recordRestaurantView(numericId);
       const data = await fetchRestaurantDetail(numericId);
       setDetail(data);
+      if (getStoredUser()) {
+        try {
+          const ids = await fetchMyFavoriteIds();
+          setFavorited(ids.includes(numericId));
+        } catch {
+          // ignore
+        }
+      }
       setLoadState("idle");
     } catch {
       setLoadState("error");
@@ -105,14 +152,49 @@ export function RestaurantDetailPage({ restaurantId }: { restaurantId: string })
   const avg = detail?.ratingSummary.averageRating;
   const avgLabel = avg != null ? avg.toFixed(1) : "—";
 
+  function handleLogout() {
+    clearStoredSession();
+    router.push("/login");
+  }
+
   return (
     <div className="min-h-dvh bg-background text-foreground">
       <Navbar
-        start={<SiteLogoLanguageCluster logoHref="/" />}
+        start={
+          <SiteLogoLanguageCluster
+            logoHref={currentUser ? "/home" : "/"}
+          />
+        }
         end={
-          <Link href="/" className="text-sm font-semibold text-primary">
-            {copy.home}
-          </Link>
+          currentUser ? (
+            <div className="flex flex-wrap items-center gap-2 text-sm">
+              <UserNavLinks />
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="inline-flex items-center gap-2 rounded-full px-3 py-2 font-semibold text-primary transition-colors hover:bg-rose-50 hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2"
+              >
+                <LogOut aria-hidden className="size-4" />
+                {copy.logout}
+              </button>
+            </div>
+          ) : (
+            <nav className="flex flex-wrap items-center gap-3 text-sm font-semibold sm:gap-4">
+              <Link
+                href="/login"
+                className="inline-flex h-10 items-center gap-2 rounded-[10px] px-4 text-base font-normal text-label transition-colors hover:bg-muted-surface hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2"
+              >
+                <LogIn aria-hidden className="size-4" />
+                {copy.login}
+              </Link>
+              <Link
+                href="/signup"
+                className="inline-flex h-10 items-center justify-center rounded-[10px] bg-primary px-5 text-base font-normal text-white transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2"
+              >
+                {copy.signup}
+              </Link>
+            </nav>
+          )
         }
       />
       <main className="mx-auto max-w-3xl px-5 pb-16 pt-6">
@@ -127,6 +209,12 @@ export function RestaurantDetailPage({ restaurantId }: { restaurantId: string })
               {r.imageUrl ? (
                 <Image src={r.imageUrl} alt="" fill className="object-cover" unoptimized />
               ) : null}
+              <FavoriteButton
+                restaurantId={numericId}
+                initialFavorited={favorited}
+                returnUrl={`/restaurants/${numericId}`}
+                onToggle={setFavorited}
+              />
             </div>
             <h1 className="text-2xl font-bold text-title">{r.name}</h1>
             {r.nameVn ? <p className="text-subtitle">{r.nameVn}</p> : null}

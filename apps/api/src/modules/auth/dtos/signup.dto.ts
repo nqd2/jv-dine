@@ -38,4 +38,8 @@ export class SignupDto {
   @IsOptional()
   @IsBoolean()
   rememberMe?: boolean;
+
+  @IsOptional()
+  @IsString()
+  phone?: string;
 }

@@ -16,8 +16,8 @@ import { CurrentUser } from '../../common/auth/decorators/current-user.decorator
 import { Public } from '../../common/auth/decorators/public.decorator';
 import { Roles } from '../../common/auth/decorators/roles.decorator';
 import type { AuthenticatedUser } from '../../common/auth/auth.types';
-import type { CreateRestaurantDto } from './dtos/create-restaurant.dto';
-import type { UpdateRestaurantDto } from './dtos/update-restaurant.dto';
+import { CreateRestaurantDto } from './dtos/create-restaurant.dto';
+import { UpdateRestaurantDto } from './dtos/update-restaurant.dto';
 import { RestaurantOwnerGuard } from './guards/restaurant-owner.guard';
 import { RestaurantsService } from './restaurants.service';
 
@@ -65,6 +65,32 @@ export class RestaurantsController {
       radiusKm,
       ratingMin,
     });
+  }
+
+  @Public()
+  @Post(':id/view')
+  async incrementView(@Param('id', ParseIntPipe) id: number) {
+    await this.restaurantsService.incrementView(id);
+    return { ok: true };
+  }
+
+  @Roles('OWNER')
+  @UseGuards(RestaurantOwnerGuard)
+  @Get(':id/analytics')
+  async getAnalytics(
+    @Param('id', ParseIntPipe) id: number,
+    @Query('period') period?: string,
+  ) {
+    const normalized =
+      period === 'month' || period === 'year' ? period : 'week';
+    const analytics = await this.restaurantsService.getAnalytics(
+      id,
+      normalized,
+    );
+    if (!analytics) {
+      throw new NotFoundException(`Restaurant ${id} was not found`);
+    }
+    return analytics;
   }
 
   @Public()

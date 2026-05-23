@@ -31,7 +31,16 @@ export class UsersRepository {
       return null;
     }
 
-    return this.toModel(user);
+    const [reviewCount, favoritesCount] = await Promise.all([
+      this.prisma.review.count({ where: { user_id: id } }),
+      this.prisma.userFavorite.count({ where: { user_id: id } }),
+    ]);
+
+    return {
+      ...this.toModel(user),
+      reviewCount,
+      favoritesCount,
+    };
   }
 
   async findByEmailForAuth(email: string): Promise<UserAuthRecord | null> {
@@ -95,6 +104,10 @@ export class UsersRepository {
         password: data.password,
         role_id: data.roleId,
         allergy_info: data.allergyInfo,
+        phone: data.phone,
+        location: data.location,
+        bio: data.bio,
+        avatar_url: data.avatarUrl,
         is_verified: data.isVerified,
       },
       include: { role: true },
@@ -131,6 +144,10 @@ export class UsersRepository {
     email: string;
     role_id: number;
     allergy_info: string | null;
+    phone: string | null;
+    location: string | null;
+    bio: string | null;
+    avatar_url: string | null;
     is_verified: boolean;
     created_at: Date;
     role: {
@@ -144,6 +161,10 @@ export class UsersRepository {
       roleId: user.role_id,
       roleName: user.role.role_name,
       allergyInfo: user.allergy_info,
+      phone: user.phone,
+      location: user.location,
+      bio: user.bio,
+      avatarUrl: user.avatar_url,
       isVerified: user.is_verified,
       createdAt: user.created_at.toISOString(),
     };

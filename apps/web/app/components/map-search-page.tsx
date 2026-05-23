@@ -1,17 +1,18 @@
 "use client";
 
-import {
-  APIProvider,
-  AdvancedMarker,
-  InfoWindow,
-  Map,
-  useMap,
-} from "@vis.gl/react-google-maps";
-import { Filter, MapPin, Search } from "lucide-react";
+import dynamic from "next/dynamic";
+import { Filter, LogIn, LogOut, MapPin, Search } from "lucide-react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
 
+import {
+  clearStoredSession,
+  getServerStoredUserRawSnapshot,
+  getStoredUserRawSnapshot,
+  subscribeStoredUser,
+  type StoredUser,
+} from "@lib/auth-session";
 import {
   searchRestaurants,
   type RestaurantSearchResult,
@@ -27,9 +28,21 @@ import {
   subscribeLanguage,
   type Language,
 } from "@lib/jvdine-language";
+import { PlaceAutocompleteInput } from "./ui/place-autocomplete-input";
 import { Navbar } from "./ui/navbar";
 import { SiteLogoLanguageCluster } from "./ui/nav-brand";
+import { UserNavLinks } from "./user-nav-links";
 import { Card } from "./ui/card";
+
+const MapSearchMap = dynamic(
+  () => import("./map-search-map").then((mod) => mod.MapSearchMap),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-[320px] w-full animate-pulse bg-muted-surface" />
+    ),
+  },
+);
 
 const DEFAULT_CENTER = { lat: 21.0285, lng: 105.8542 };
 const RADIUS_OPTIONS = ["1", "2", "5", "10"] as const;
@@ -46,6 +59,9 @@ const COPY: Record<
     empty: string;
     home: string;
     km: string;
+    login: string;
+    signup: string;
+    logout: string;
   }
 > = {
   JP: {
@@ -58,6 +74,9 @@ const COPY: Record<
     empty: "周辺に店舗が見つかりません",
     home: "ホーム",
     km: "km",
+    login: "ログイン",
+    signup: "登録",
+    logout: "ログアウト",
   },
   VN: {
     title: "Tìm trên bản đồ",
@@ -69,36 +88,50 @@ const COPY: Record<
     empty: "Không có quán trong bán kính",
     home: "Trang chủ",
     km: "km",
+    login: "Đăng nhập",
+    signup: "Đăng ký",
+    logout: "Đăng xuất",
   },
 };
 
-function MapSearchInner({
-  language,
-  form,
-  setForm,
-  center,
-  setCenter,
-  radiusKm,
-  setRadiusKm,
-  mapId,
-}: {
-  language: Language;
-  form: SearchFormState;
-  setForm: (f: SearchFormState) => void;
-  center: { lat: number; lng: number };
-  setCenter: (c: { lat: number; lng: number }) => void;
-  radiusKm: string;
-  setRadiusKm: (v: string) => void;
-  mapId: string;
-}) {
+export function MapSearchPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const language = useSyncExternalStore(
+    subscribeLanguage,
+    getLanguageSnapshot,
+    getServerLanguageSnapshot,
+  );
   const copy = COPY[language];
-  const map = useMap();
+
+  const userSnapshot = useSyncExternalStore(
+    subscribeStoredUser,
+    getStoredUserRawSnapshot,
+    getServerStoredUserRawSnapshot,
+  );
+  const currentUser = useMemo((): StoredUser | null => {
+    if (!userSnapshot) {
+      return null;
+    }
+    try {
+      return JSON.parse(userSnapshot) as StoredUser;
+    } catch {
+      return null;
+    }
+  }, [userSnapshot]);
+
+  const [form, setForm] = useState<SearchFormState>(() =>
+    searchParams
+      ? searchFormFromQuery(new URLSearchParams(searchParams.toString()))
+      : INITIAL_SEARCH_FORM,
+  );
+  const [center, setCenter] = useState(DEFAULT_CENTER);
+  const [placeQuery, setPlaceQuery] = useState("");
+  const [radiusKm, setRadiusKm] = useState("2");
   const [results, setResults] = useState<RestaurantSearchResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [showFilters, setShowFilters] = useState(false);
-  const selectedRestaurant =
-    results.find((restaurant) => restaurant.id === selectedId) ?? null;
 
   const runSearch = useCallback(
     async (signal?: AbortSignal) => {
@@ -114,15 +147,13 @@ function MapSearchInner({
         }
         setResults(rows);
       } catch {
-        if (signal?.aborted) {
-          return;
+        if (!signal?.aborted) {
+          setResults([]);
         }
-        setResults([]);
       } finally {
-        if (signal?.aborted) {
-          return;
+        if (!signal?.aborted) {
+          setLoading(false);
         }
-        setLoading(false);
       }
     },
     [center.lat, center.lng, form, radiusKm],
@@ -140,239 +171,178 @@ function MapSearchInner({
     };
   }, [runSearch]);
 
-  useEffect(() => {
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-    if (!apiKey) {
-      return;
-    }
-    const el = document.getElementById("map-place-input") as HTMLInputElement | null;
-    if (!el || !window.google?.maps?.places) {
-      return;
-    }
-    const ac = new google.maps.places.Autocomplete(el, {
-      componentRestrictions: { country: "vn" },
-      fields: ["geometry"],
-    });
-    const listener = ac.addListener("place_changed", () => {
-      const loc = ac.getPlace().geometry?.location;
-      if (loc) {
-        const next = { lat: loc.lat(), lng: loc.lng() };
-        setCenter(next);
-        map?.panTo(next);
-      }
-    });
-    return () => listener.remove();
-  }, [map, setCenter]);
-
-  return (
-    <div className="flex flex-col gap-4">
-      <Card className="p-4">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
-          <div className="flex-1">
-            <label className="mb-1 block text-sm font-medium text-label">
-              {copy.placePlaceholder}
-            </label>
-            <input
-              id="map-place-input"
-              className="h-[50px] w-full rounded-lg border border-border-input px-3"
-              placeholder={copy.placePlaceholder}
-            />
-          </div>
-          <div>
-            <label className="mb-1 block text-sm font-medium text-label">
-              {copy.radius}
-            </label>
-            <select
-              value={radiusKm}
-              onChange={(ev) => setRadiusKm(ev.target.value)}
-              className="h-[50px] rounded-lg border border-border-input px-3"
-            >
-              {RADIUS_OPTIONS.map((r) => (
-                <option key={r} value={r}>
-                  {r} {copy.km}
-                </option>
-              ))}
-            </select>
-          </div>
-          <button
-            type="button"
-            onClick={() => setShowFilters((v) => !v)}
-            className="inline-flex h-[50px] items-center gap-2 rounded-lg border border-border-input px-4"
-          >
-            <Filter className="size-4" aria-hidden />
-            {copy.filters}
-          </button>
-          <button
-            type="button"
-            onClick={() => void runSearch()}
-            className="inline-flex h-[50px] items-center gap-2 rounded-lg bg-primary px-5 text-white"
-          >
-            <Search className="size-4" aria-hidden />
-            {copy.search}
-          </button>
-        </div>
-        {showFilters ? (
-          <div className="mt-4 grid gap-3 sm:grid-cols-2">
-            <input
-              className="h-11 rounded-lg border border-border-input px-3"
-              placeholder="Keyword"
-              value={form.keyword}
-              onChange={(ev) => setForm({ ...form, keyword: ev.target.value })}
-            />
-            <label className="flex items-center gap-2 text-sm">
-              <input
-                type="checkbox"
-                checked={form.isJapaneseFriendly}
-                onChange={(ev) =>
-                  setForm({ ...form, isJapaneseFriendly: ev.target.checked })
-                }
-              />
-              日本人向け / Phù hợp khách Nhật
-            </label>
-          </div>
-        ) : null}
-      </Card>
-
-      <div className="sticky top-0 z-10 h-[320px] overflow-hidden rounded-[10px] border border-border-input">
-        <Map
-          defaultCenter={center}
-          defaultZoom={14}
-          mapId={mapId}
-          gestureHandling="greedy"
-          disableDefaultUI
-        >
-          {results.map((r) =>
-            r.lat !== null && r.long !== null ? (
-              <AdvancedMarker
-                key={r.id}
-                position={{ lat: r.lat, lng: r.long }}
-                onClick={() => setSelectedId(r.id)}
-              />
-            ) : null,
-          )}
-          {selectedRestaurant &&
-          selectedRestaurant.lat !== null &&
-          selectedRestaurant.long !== null ? (
-            <InfoWindow
-              position={{
-                lat: selectedRestaurant.lat,
-                lng: selectedRestaurant.long,
-              }}
-              onCloseClick={() => setSelectedId(null)}
-            >
-              <div className="max-w-52">
-                <p className="font-semibold text-title">
-                  {selectedRestaurant.name}
-                </p>
-                <p className="mt-1 text-xs text-subtitle">
-                  {selectedRestaurant.address}
-                </p>
-                {selectedRestaurant.distanceKm != null ? (
-                  <p className="mt-1 text-xs text-caption">
-                    {selectedRestaurant.distanceKm.toFixed(1)} {copy.km}
-                  </p>
-                ) : null}
-                <Link
-                  href={`/restaurants/${selectedRestaurant.id}`}
-                  className="mt-2 inline-flex rounded bg-primary px-3 py-1.5 text-xs font-medium text-white"
-                >
-                  {copy.viewDetail}
-                </Link>
-              </div>
-            </InfoWindow>
-          ) : null}
-        </Map>
-      </div>
-
-      {loading ? <p className="text-subtitle">…</p> : null}
-      {!loading && results.length === 0 ? (
-        <p className="text-subtitle">{copy.empty}</p>
-      ) : null}
-      <ul className="grid gap-4 sm:grid-cols-2">
-        {results.map((r) => (
-          <li key={r.id}>
-            <Card
-              className={[
-                "p-4 transition-shadow",
-                selectedId === r.id ? "ring-2 ring-primary" : "",
-              ].join(" ")}
-            >
-              <p className="font-bold text-title">{r.name}</p>
-              <p className="mt-1 flex items-start gap-1 text-sm text-subtitle">
-                <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden />
-                {r.address}
-              </p>
-              {r.distanceKm != null ? (
-                <p className="mt-1 text-xs text-caption">
-                  {r.distanceKm.toFixed(1)} {copy.km}
-                </p>
-              ) : null}
-              <Link
-                href={`/restaurants/${r.id}`}
-                className="mt-3 inline-flex rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white"
-              >
-                {copy.viewDetail}
-              </Link>
-            </Card>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-export function MapSearchPage() {
-  const searchParams = useSearchParams();
-  const language = useSyncExternalStore(
-    subscribeLanguage,
-    getLanguageSnapshot,
-    getServerLanguageSnapshot,
-  );
-  const copy = COPY[language];
-
-  const [form, setForm] = useState<SearchFormState>(() =>
-    searchParams
-      ? searchFormFromQuery(new URLSearchParams(searchParams.toString()))
-      : INITIAL_SEARCH_FORM,
-  );
-  const [center, setCenter] = useState(DEFAULT_CENTER);
-  const [radiusKm, setRadiusKm] = useState("2");
-
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? "";
-  const mapId = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID ?? "";
-  const missingConfig = !apiKey || !mapId;
+  function handleLogout() {
+    clearStoredSession();
+    router.push("/login");
+  }
 
   return (
     <div className="min-h-dvh bg-background text-foreground">
       <Navbar
-        start={<SiteLogoLanguageCluster logoHref="/" />}
+        start={
+          <SiteLogoLanguageCluster
+            logoHref={currentUser ? "/home" : "/"}
+          />
+        }
         end={
-          <Link href="/" className="text-sm font-semibold text-primary">
-            {copy.home}
-          </Link>
+          currentUser ? (
+            <div className="flex flex-wrap items-center gap-2 text-sm">
+              <UserNavLinks />
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="inline-flex items-center gap-2 rounded-full px-3 py-2 font-semibold text-primary transition-colors hover:bg-rose-50 hover:text-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2"
+              >
+                <LogOut aria-hidden className="size-4" />
+                {copy.logout}
+              </button>
+            </div>
+          ) : (
+            <nav className="flex flex-wrap items-center gap-3 text-sm font-semibold sm:gap-4">
+              <Link
+                href="/login"
+                className="inline-flex h-10 items-center gap-2 rounded-[10px] px-4 text-base font-normal text-label transition-colors hover:bg-muted-surface hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2"
+              >
+                <LogIn aria-hidden className="size-4" />
+                {copy.login}
+              </Link>
+              <Link
+                href="/signup"
+                className="inline-flex h-10 items-center justify-center rounded-[10px] bg-primary px-5 text-base font-normal text-white transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 focus-visible:ring-offset-2"
+              >
+                {copy.signup}
+              </Link>
+            </nav>
+          )
         }
       />
       <main className="mx-auto max-w-5xl px-5 py-8">
         <h1 className="mb-6 text-2xl font-bold text-title">{copy.title}</h1>
-        {!missingConfig ? (
-          <APIProvider apiKey={apiKey} libraries={["places"]}>
-            <MapSearchInner
-              language={language}
-              form={form}
-              setForm={setForm}
+
+        <div className="flex flex-col gap-4">
+          <Card className="p-4">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+              <div className="flex-1">
+                <label className="mb-1 block text-sm font-medium text-label">
+                  {copy.placePlaceholder}
+                </label>
+                <PlaceAutocompleteInput
+                  id="map-place-input"
+                  value={placeQuery}
+                  placeholder={copy.placePlaceholder}
+                  className="h-[50px] w-full rounded-lg border border-border-input px-3"
+                  onChange={(address, coords) => {
+                    setPlaceQuery(address);
+                    if (coords.lat !== null && coords.lng !== null) {
+                      setCenter({ lat: coords.lat, lng: coords.lng });
+                    }
+                  }}
+                  onSelect={(sel) => {
+                    setPlaceQuery(sel.address);
+                    setCenter({ lat: sel.lat, lng: sel.lng });
+                  }}
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-sm font-medium text-label">
+                  {copy.radius}
+                </label>
+                <select
+                  value={radiusKm}
+                  onChange={(ev) => setRadiusKm(ev.target.value)}
+                  className="h-[50px] rounded-lg border border-border-input px-3"
+                >
+                  {RADIUS_OPTIONS.map((r) => (
+                    <option key={r} value={r}>
+                      {r} {copy.km}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowFilters((v) => !v)}
+                className="inline-flex h-[50px] items-center gap-2 rounded-lg border border-border-input px-4"
+              >
+                <Filter className="size-4" aria-hidden />
+                {copy.filters}
+              </button>
+              <button
+                type="button"
+                onClick={() => void runSearch()}
+                className="inline-flex h-[50px] items-center gap-2 rounded-lg bg-primary px-5 text-white"
+              >
+                <Search className="size-4" aria-hidden />
+                {copy.search}
+              </button>
+            </div>
+            {showFilters ? (
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <input
+                  className="h-11 rounded-lg border border-border-input px-3"
+                  placeholder="Keyword"
+                  value={form.keyword}
+                  onChange={(ev) => setForm({ ...form, keyword: ev.target.value })}
+                />
+                <label className="flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    checked={form.isJapaneseFriendly}
+                    onChange={(ev) =>
+                      setForm({ ...form, isJapaneseFriendly: ev.target.checked })
+                    }
+                  />
+                  日本人向け / Phù hợp khách Nhật
+                </label>
+              </div>
+            ) : null}
+          </Card>
+
+          <div className="sticky top-0 z-10 h-[320px] overflow-hidden rounded-[10px] border border-border-input">
+            <MapSearchMap
               center={center}
-              setCenter={setCenter}
-              radiusKm={radiusKm}
-              setRadiusKm={setRadiusKm}
-              mapId={mapId}
+              results={results}
+              selectedId={selectedId}
+              onSelectId={setSelectedId}
+              viewDetailLabel={copy.viewDetail}
+              kmLabel={copy.km}
             />
-          </APIProvider>
-        ) : (
-          <p className="text-rose-700">
-            Missing NEXT_PUBLIC_GOOGLE_MAPS_API_KEY or
-            NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID
-          </p>
-        )}
+          </div>
+
+          {loading ? <p className="text-subtitle">…</p> : null}
+          {!loading && results.length === 0 ? (
+            <p className="text-subtitle">{copy.empty}</p>
+          ) : null}
+          <ul className="grid gap-4 sm:grid-cols-2">
+            {results.map((r) => (
+              <li key={r.id}>
+                <Card
+                  className={[
+                    "p-4 transition-shadow",
+                    selectedId === r.id ? "ring-2 ring-primary" : "",
+                  ].join(" ")}
+                >
+                  <p className="font-bold text-title">{r.name}</p>
+                  <p className="mt-1 flex items-start gap-1 text-sm text-subtitle">
+                    <MapPin className="mt-0.5 size-4 shrink-0" aria-hidden />
+                    {r.address}
+                  </p>
+                  {r.distanceKm != null ? (
+                    <p className="mt-1 text-xs text-caption">
+                      {r.distanceKm.toFixed(1)} {copy.km}
+                    </p>
+                  ) : null}
+                  <Link
+                    href={`/restaurants/${r.id}`}
+                    className="mt-3 inline-flex rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white"
+                  >
+                    {copy.viewDetail}
+                  </Link>
+                </Card>
+              </li>
+            ))}
+          </ul>
+        </div>
       </main>
     </div>
   );

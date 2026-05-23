@@ -10,7 +10,7 @@ import type { UserModel } from '../users/models/user.model';
 import { UsersService } from '../users/users.service';
 import type { LoginDto } from './dtos/login.dto';
 import type { RefreshTokenDto } from './dtos/refresh-token.dto';
-import type { SignupDto } from './dtos/signup.dto';
+import { SignupDto } from './dtos/signup.dto';
 import type { AuthResponseModel } from './models/auth-response.model';
 import { hashPassword, verifyPassword } from './utils/password-hash';
 

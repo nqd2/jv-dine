@@ -37,11 +37,41 @@ export class NotificationsRepository {
       data: {
         user_id: data.userId,
         content: data.content,
-        is_read: data.isRead,
+        is_read: data.isRead ?? false,
       },
     });
 
     return this.toModel(notification);
+  }
+
+  async createMany(
+    items: Array<{ userId: number; content: string }>,
+  ): Promise<number> {
+    if (items.length === 0) {
+      return 0;
+    }
+    const result = await this.prisma.notification.createMany({
+      data: items.map((item) => ({
+        user_id: item.userId,
+        content: item.content,
+        is_read: false,
+      })),
+    });
+    return result.count;
+  }
+
+  async countUnreadByUserId(userId: number): Promise<number> {
+    return this.prisma.notification.count({
+      where: { user_id: userId, is_read: false },
+    });
+  }
+
+  async markAllReadByUserId(userId: number): Promise<number> {
+    const result = await this.prisma.notification.updateMany({
+      where: { user_id: userId, is_read: false },
+      data: { is_read: true },
+    });
+    return result.count;
   }
 
   async update(

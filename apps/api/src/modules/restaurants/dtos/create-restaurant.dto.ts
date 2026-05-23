@@ -8,8 +8,10 @@ import {
 } from 'class-validator';
 
 export class CreateRestaurantDto {
+  /** Set from JWT in controller; clients must not send this. */
+  @IsOptional()
   @IsInt()
-  ownerId!: number;
+  ownerId?: number;
 
   @IsString()
   @MinLength(1)
@@ -105,3 +107,8 @@ export class CreateRestaurantDto {
   @IsString()
   imageUrl?: string | null;
 }
+
+/** After controller injects ownerId from JWT. */
+export type CreateRestaurantInput = Omit<CreateRestaurantDto, 'ownerId'> & {
+  ownerId: number;
+};

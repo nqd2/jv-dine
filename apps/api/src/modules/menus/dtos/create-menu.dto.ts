@@ -1,6 +1,7 @@
 import {
   IsBoolean,
   IsInt,
+  IsNumber,
   IsOptional,
   IsString,
   MinLength,
@@ -22,7 +23,8 @@ export class CreateMenuDto {
   @IsString()
   description?: string | null;
 
-  price!: string | number;
+  @IsNumber()
+  price!: number;
 
   @IsOptional()
   @IsBoolean()

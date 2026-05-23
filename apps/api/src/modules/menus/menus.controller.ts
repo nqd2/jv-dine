@@ -12,8 +12,8 @@ import {
 } from '@nestjs/common';
 import { Public } from '../../common/auth/decorators/public.decorator';
 import { Roles } from '../../common/auth/decorators/roles.decorator';
-import type { CreateMenuDto } from './dtos/create-menu.dto';
-import type { UpdateMenuDto } from './dtos/update-menu.dto';
+import { CreateMenuDto } from './dtos/create-menu.dto';
+import { UpdateMenuDto } from './dtos/update-menu.dto';
 import { MenuOwnerGuard } from './guards/menu-owner.guard';
 import { MenusService } from './menus.service';
 

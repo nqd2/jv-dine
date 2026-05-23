@@ -31,11 +31,11 @@ Use `apps/web/.env.local` (from `apps/web/.env.example`):
 
 ```env
 NEXT_PUBLIC_API_BASE_URL=http://localhost:5000
-NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=
-NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID=
+# Optional: override Photon geocoding (default https://photon.komoot.io/api)
+# NEXT_PUBLIC_PHOTON_API_URL=https://photon.komoot.io/api
 ```
 
-`/map` requires both Google Maps variables. If either is missing, the page renders a configuration error instead of mounting the map.
+`/map` uses OpenStreetMap tiles (Leaflet) and Photon for place search — no API key required.
 
 ## Commands
 

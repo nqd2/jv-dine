@@ -5,4 +5,8 @@ export type UpdateUserDto = {
   roleId?: number;
   allergyInfo?: string | null;
   isVerified?: boolean;
+  phone?: string | null;
+  location?: string | null;
+  bio?: string | null;
+  avatarUrl?: string | null;
 };

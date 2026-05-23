@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, type Restaurant } from '@prisma/client';
 import { PrismaService } from '../../common/prisma/prisma.service';
-import { CreateRestaurantDto } from './dtos/create-restaurant.dto';
+import { CreateRestaurantInput } from './dtos/create-restaurant.dto';
 import type { SearchRestaurantsParams } from './restaurants.service';
 import { UpdateRestaurantDto } from './dtos/update-restaurant.dto';
 import {
@@ -110,7 +110,7 @@ export class RestaurantsRepository {
     };
   }
 
-  async create(data: CreateRestaurantDto): Promise<RestaurantModel> {
+  async create(data: CreateRestaurantInput): Promise<RestaurantModel> {
     const restaurant = await this.prisma.restaurant.create({
       data: {
         owner_id: data.ownerId,
@@ -195,6 +195,253 @@ export class RestaurantsRepository {
 
     const restaurant = await this.prisma.restaurant.delete({ where: { id } });
     return this.toModel(restaurant);
+  }
+
+  mapRestaurant(
+    restaurant: RestaurantWithRatings,
+    distanceKm: number | null = null,
+  ): RestaurantModel {
+    return this.toModel(restaurant, distanceKm);
+  }
+
+  async incrementViewsCount(id: number): Promise<void> {
+    await this.prisma.restaurant.update({
+      where: { id },
+      data: { views_count: { increment: 1 } },
+    });
+  }
+
+  async getAnalytics(
+    restaurantId: number,
+    period: 'week' | 'month' | 'year',
+  ): Promise<{
+    viewsCount: number;
+    reviewsCount: number;
+    averageRating: number | null;
+    favoritesCount: number;
+    chartPoints: Array<{
+      date: string;
+      reviewCount: number;
+      avgTaste: number | null;
+      avgCleanliness: number | null;
+      avgService: number | null;
+    }>;
+    recentReviews: Array<{
+      id: number;
+      userName: string;
+      rating: number;
+      comment: string | null;
+      createdAt: string;
+    }>;
+    viewsDeltaPercent: number;
+    reviewsDeltaPercent: number;
+    ratingDeltaPercent: number;
+    favoritesDeltaPercent: number;
+  } | null> {
+    const restaurant = await this.prisma.restaurant.findUnique({
+      where: { id: restaurantId },
+      select: { id: true, views_count: true },
+    });
+    if (!restaurant) {
+      return null;
+    }
+
+    const periodStart = this.periodStartDate(period);
+    const prevPeriodStart = this.previousPeriodStart(period, periodStart);
+
+    const [reviews, favoritesCount, prevReviews, prevFavorites] =
+      await Promise.all([
+        this.prisma.review.findMany({
+          where: {
+            restaurant_id: restaurantId,
+            created_at: { gte: periodStart },
+          },
+          include: { user: { select: { username: true } } },
+          orderBy: { created_at: 'asc' },
+        }),
+        this.prisma.userFavorite.count({
+          where: { restaurant_id: restaurantId },
+        }),
+        this.prisma.review.findMany({
+          where: {
+            restaurant_id: restaurantId,
+            created_at: { gte: prevPeriodStart, lt: periodStart },
+          },
+        }),
+        this.prisma.userFavorite.count({
+          where: {
+            restaurant_id: restaurantId,
+            created_at: { gte: prevPeriodStart, lt: periodStart },
+          },
+        }),
+      ]);
+
+    const allReviews = await this.prisma.review.findMany({
+      where: { restaurant_id: restaurantId },
+      include: { user: { select: { username: true } } },
+      orderBy: { created_at: 'desc' },
+      take: 3,
+    });
+
+    const totalReviews = await this.prisma.review.count({
+      where: { restaurant_id: restaurantId },
+    });
+    const allRatingRows = await this.prisma.review.findMany({
+      where: { restaurant_id: restaurantId },
+      select: { rating: true },
+    });
+    const averageRating = this.averageRating(allRatingRows);
+
+    const chartPoints = this.buildChartPoints(reviews, periodStart, period);
+
+    const prevAvg =
+      prevReviews.length > 0
+        ? prevReviews.reduce((s, r) => s + r.rating, 0) / prevReviews.length
+        : null;
+    const currAvg =
+      reviews.length > 0
+        ? reviews.reduce((s, r) => s + r.rating, 0) / reviews.length
+        : null;
+
+    return {
+      viewsCount: restaurant.views_count,
+      reviewsCount: totalReviews,
+      averageRating,
+      favoritesCount,
+      chartPoints,
+      recentReviews: allReviews.map((r) => ({
+        id: r.id,
+        userName: r.user.username,
+        rating: r.rating,
+        comment: r.comment,
+        createdAt: r.created_at.toISOString(),
+      })),
+      viewsDeltaPercent: 0,
+      reviewsDeltaPercent: this.deltaPercent(
+        prevReviews.length,
+        reviews.length,
+      ),
+      ratingDeltaPercent: this.deltaPercent(prevAvg ?? 0, currAvg ?? 0),
+      favoritesDeltaPercent: this.deltaPercent(prevFavorites, favoritesCount),
+    };
+  }
+
+  private periodStartDate(period: 'week' | 'month' | 'year'): Date {
+    const now = new Date();
+    const d = new Date(now);
+    if (period === 'week') {
+      d.setDate(d.getDate() - 7);
+    } else if (period === 'month') {
+      d.setMonth(d.getMonth() - 1);
+    } else {
+      d.setFullYear(d.getFullYear() - 1);
+    }
+    return d;
+  }
+
+  private previousPeriodStart(
+    period: 'week' | 'month' | 'year',
+    currentStart: Date,
+  ): Date {
+    const d = new Date(currentStart);
+    if (period === 'week') {
+      d.setDate(d.getDate() - 7);
+    } else if (period === 'month') {
+      d.setMonth(d.getMonth() - 1);
+    } else {
+      d.setFullYear(d.getFullYear() - 1);
+    }
+    return d;
+  }
+
+  private deltaPercent(previous: number, current: number): number {
+    if (previous === 0) {
+      return current > 0 ? 100 : 0;
+    }
+    return Number((((current - previous) / previous) * 100).toFixed(1));
+  }
+
+  private buildChartPoints(
+    reviews: Array<{
+      created_at: Date;
+      rating_taste: number | null;
+      rating_cleanliness: number | null;
+      rating_service: number | null;
+    }>,
+    periodStart: Date,
+    period: 'week' | 'month' | 'year',
+  ): Array<{
+    date: string;
+    reviewCount: number;
+    avgTaste: number | null;
+    avgCleanliness: number | null;
+    avgService: number | null;
+  }> {
+    const bucketCount = period === 'week' ? 7 : period === 'month' ? 4 : 12;
+    const buckets: Array<{
+      date: string;
+      reviewCount: number;
+      taste: number[];
+      cleanliness: number[];
+      service: number[];
+    }> = [];
+
+    for (let i = 0; i < bucketCount; i++) {
+      buckets.push({
+        date: `bucket-${i}`,
+        reviewCount: 0,
+        taste: [],
+        cleanliness: [],
+        service: [],
+      });
+    }
+
+    const msPerBucket =
+      (Date.now() - periodStart.getTime()) / Math.max(bucketCount, 1);
+
+    for (const review of reviews) {
+      const offset = review.created_at.getTime() - periodStart.getTime();
+      const idx = Math.min(
+        bucketCount - 1,
+        Math.max(0, Math.floor(offset / msPerBucket)),
+      );
+      buckets[idx].reviewCount += 1;
+      if (review.rating_taste != null) {
+        buckets[idx].taste.push(review.rating_taste);
+      }
+      if (review.rating_cleanliness != null) {
+        buckets[idx].cleanliness.push(review.rating_cleanliness);
+      }
+      if (review.rating_service != null) {
+        buckets[idx].service.push(review.rating_service);
+      }
+    }
+
+    return buckets.map((b, i) => ({
+      date: new Date(periodStart.getTime() + i * msPerBucket)
+        .toISOString()
+        .slice(0, 10),
+      reviewCount: b.reviewCount,
+      avgTaste: b.taste.length
+        ? Number(
+            (b.taste.reduce((s, v) => s + v, 0) / b.taste.length).toFixed(1),
+          )
+        : null,
+      avgCleanliness: b.cleanliness.length
+        ? Number(
+            (
+              b.cleanliness.reduce((s, v) => s + v, 0) / b.cleanliness.length
+            ).toFixed(1),
+          )
+        : null,
+      avgService: b.service.length
+        ? Number(
+            (b.service.reduce((s, v) => s + v, 0) / b.service.length).toFixed(
+              1,
+            ),
+          )
+        : null,
+    }));
   }
 
   private async exists(id: number): Promise<boolean> {

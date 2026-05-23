@@ -1,5 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateRestaurantDto } from './dtos/create-restaurant.dto';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { CreateRestaurantInput } from './dtos/create-restaurant.dto';
 import { UpdateRestaurantDto } from './dtos/update-restaurant.dto';
 import {
   RestaurantDetailModel,
@@ -63,7 +67,7 @@ export class RestaurantsService {
     return this.restaurantsRepository.findDetailById(id);
   }
 
-  create(data: CreateRestaurantDto): Promise<RestaurantModel> {
+  create(data: CreateRestaurantInput): Promise<RestaurantModel> {
     return this.restaurantsRepository.create(data);
   }
 
@@ -76,6 +80,18 @@ export class RestaurantsService {
 
   delete(id: number): Promise<RestaurantModel | null> {
     return this.restaurantsRepository.delete(id);
+  }
+
+  async incrementView(id: number): Promise<void> {
+    const restaurant = await this.restaurantsRepository.findById(id);
+    if (!restaurant) {
+      throw new NotFoundException(`Restaurant ${id} was not found`);
+    }
+    await this.restaurantsRepository.incrementViewsCount(id);
+  }
+
+  getAnalytics(id: number, period: 'week' | 'month' | 'year') {
+    return this.restaurantsRepository.getAnalytics(id, period);
   }
 
   private assertValidSearchParams(params: SearchRestaurantsParams): void {

@@ -55,7 +55,7 @@
 | 14 | 4 | [FE] ゲスト用ホーム画面のレイアウト実装 — Code layout home dành cho khách | Hải | 2 | あり | ✅ |
 | 15 | 4 | [FE] 一般ユーザー用ホーム画面のレイアウト実装 — Code layout home cho user thường | Đức | 2 | あり | ✅ |
 | 16 | 4 | [BE] ホーム画面のレストラン検索APIの実装 — API search nhà hàng ở home | Đức | 3 | あり | ✅ |
-| 17 | 4 | [FE/BE] ホーム画面の検索UIとレストラン検索APIの連携 — Kết nối UI ↔ API search | Đức | 2 | あり | ✅ |
+| 17 | 4 | [FE/BE] ホーム画面 of search UI và API 連携 — Kết nối UI ↔ API search | Đức | 2 | あり | ✅ |
 | 18 | 4 | [QA] 詳細検索・予算検索機能の受け入れテスト — UAT search chi tiết & ngân sách | Quý | 2 | あり | ✅ |
 
 ### Phân bổ thời gian Sprint 1
@@ -133,7 +133,6 @@
 | Quý (QA) | 4 |
 | **Tổng cộng** | **38 h** |
 
-
 ### Trạng thái Sprint 2 (cập nhật theo repo hiện tại)
 
 - Task 1–3 — ✅ Owner edit/register + PATCH/POST wire (`restaurant-edit-page.tsx`, `/dashboard/restaurants/new`)
@@ -145,13 +144,71 @@
 - **POT approve**: ❌ (chưa xác nhận)
 - **Sprint Review**: chưa điền template
 
-## Sprint 3 (Template – chưa lên kế hoạch)
+---
 
-- **Kỳ (placeholder)**: `5/5 ~ 5/10`
-- **Sprint Goal**: chưa điền.
-- **Sprint Backlog**: chưa lập task.
-- **POT đã approve**: ❌
-- **Sprint Review**: chưa thực hiện.
+## Sprint 3 (Đã có kế hoạch chi tiết)
+
+- **Kỳ**: `2026/05/19 (火) ~ 2026/05/24 (日)`
+- **Sprint Goal**:
+  > ユーザーは、お気に入りのレストランを保存・管理し、新メニューや割引情報の通知を受け取ることができます。店舗管理者は、顧客のレビューをグラフ化して分析したり、割引クーポンを作成・管理したりすることができます。また、ユーザーと店舗管理者の双方が、自身の基本情報を閲覧・更新することができます。
+  >
+  > *Người dùng có thể lưu và quản lý các nhà hàng yêu thích, nhận thông báo khi có món mới hoặc chương trình giảm giá. Quản lý cửa hàng có thể vẽ biểu đồ và phân tích đánh giá của khách hàng, tạo và quản lý mã giảm giá. Cả người dùng và quản lý cửa hàng có thể xem và cập nhật thông tin cơ bản của bản thân.*
+- **POT đã approve sprint goal + sprint backlog**: ✅
+- **Sprint Review**: chưa thực hiện *(phần ◆ スプリントレビュー chỉ điền sau khi kết thúc sprint)*.
+
+### Sprint Backlog – Sprint 3 (18 tasks)
+
+| ID | P_ID | Task | PIC | Est. (h) | Gắn goal? | Done? |
+|---:|:---:|---|---|:---:|:---:|:---:|
+| 1 | 9 | [FE] お気に入り一覧画面のレイアウトコーディング — Code layout màn hình danh sách yêu thích | Tiến Đạt | 2 | あり | ✅ |
+| 2 | 9 | [BE] お気に入り一覧画面のAPI — API màn hình danh sách yêu thích | Tiến Đạt | 2 | あり | ✅ |
+| 3 | 9 | [BE] お気に入り一覧画面のUIとAPIの連携 — Kết nối UI danh sách yêu thích với API | Tiến Đạt | 2 | あり | ✅ |
+| 4 | 10 | [FE] 管理者ダッシュボード（Web）画面のレイアウトコーディング — Code layout màn hình Dashboard Admin (Web) | Hải | 2 | あり | ✅ |
+| 5 | 10 | [BE] 管理者ダッシュボード（Web）画面 of API — API màn hình Dashboard Admin (Web) | Hải | 2 | あり | ✅ |
+| 6 | 10 | [BE] 管理者ダッシュボード（Web）画面のUIとAPIの連携 — Kết nối UI Dashboard Admin (Web) với API | Hải | 2 | あり | ✅ |
+| 7 | 11 | [FE] クーポン／割引コード作成画面のレイアウトコーディング — Code layout màn hình tạo khuyến mãi / mã giảm giá | Huy | 2 | あり | ✅ |
+| 8 | 11 | [BE] クーポン／割引コード作成画面のAPI — API màn hình tạo khuyến mãi / mã giảm giá | Huy | 2 | あり | ✅ |
+| 9 | 11 | [BE] クーポン／割引コード作成画面のUIとAPIの連携 — Kết nối UI tạo khuyến mãi / mã giảm giá với API | Huy | 2 | あり | ✅ |
+| 10 | 11 | [FE] 割引コード管理画面のレイアウトコーディング — Code layout màn hình quản lý mã giảm giá | Tuấn | 2 | あり | ✅ |
+| 11 | 11 | [BE] 割引コード管理画面のAPI — API màn hình quản lý mã giảm giá | Tuấn | 2 | あり | ✅ |
+| 12 | 11 | [BE] 割引コード管理画面のUIとAPIの連携 — Kết nối UI quản lý mã giảm giá với API | Tuấn | 2 | あり | ✅ |
+| 13 | 12 | [BE] 通知用API — API thông báo | Thế Đạt | 2 | あり | ✅ |
+| 14 | 12 | [BE] すべてのユーザー画面のUIとバックエンドの連携 — Kết nối UI các màn người dùng với API thông báo | Thế Đạt | 2 | あり | ✅ |
+| 15 | 13 | [FE] 個人情報画面のレイアウトコーディング — Code layout màn hình thông tin cá nhân | Đức | 2 | あり | ✅ |
+| 16 | 13 | [BE] 個人情報画面のAPI — API màn hình thông tin cá nhân | Đức | 2 | あり | ✅ |
+| 17 | 13 | [BE] 個人情報画面のUIをAPIと連携する — Kết nối UI thông tin cá nhân với API | Đức | 2 | あり | ✅ |
+| 18 | 9–13 | [QA] スプリント3の全機能をテストする — Kiểm thử toàn bộ chức năng Sprint 3 | Quý | 6 | あり | ✅ |
+
+### Phân bổ thời gian Sprint 3
+
+| Vai trò | Tổng giờ ước lượng |
+|---|:---:|
+| Tiến Đạt (FE/BE — favorites) | 6 |
+| Hải (FE/BE — owner dashboard) | 6 |
+| Huy (FE/BE — coupon create) | 6 |
+| Tuấn (FE/BE — coupon manage) | 6 |
+| Thế Đạt (BE — notifications) | 4 |
+| Đức (FE/BE — profile) | 6 |
+| Quý (QA) | 6 |
+| **Tổng cộng** | **40 h** |
+
+### Liên kết Product Backlog (P_ID)
+
+| P_ID | Phạm vi Sprint 3 |
+|:---:|---|
+| 9 | Favorites — lưu / quản lý nhà hàng yêu thích |
+| 10 | Owner dashboard — biểu đồ & phân tích review |
+| 11 | Coupons — tạo & quản lý mã giảm giá |
+| 12 | Notifications — API + tích hợp UI |
+| 13 | Profile — xem / cập nhật thông tin cá nhân |
+
+### Trạng thái Sprint 3 (cập nhật theo repo hiện tại)
+
+- **Planning**: ✅ POT đã approve sprint goal + backlog.
+- **Implementation**: ✅ Hoàn thành toàn bộ 18 tasks, build thành công và vượt qua kiểm thử chất lượng.
+- **Sprint Review**: chưa điền (template ◆ スプリントレビュー — FB POT, độ đạt goal, cải thiện sprint sau).
+
+---
 
 ## Sprint 4 (Template – chưa lên kế hoạch)
 
@@ -170,9 +227,9 @@ Mỗi sprint sheet có chung phần Sprint Review để điền sau khi kết th
 | Mục | Ý nghĩa |
 |---|---|
 | **スプリントレビュー準備** | Người phụ trách giải thích, demo, ghi chép |
-| **スプリントゴール達成度** | Mức đạt sprint goal (vd: 100% / 80% / …) |
-| **スプリントゴール達成度の理由** | Lý do mức đạt |
-| **スプリントレビュー** | Bảng FB từ POT (5 dòng): No, FB箇所, Checklist No, FB内容, FBへの対応方針, 対応する内容／対応しない理由, 対応方針承認 |
+| **スプリントゴール達成 độ** | Mức đạt sprint goal (vd: 100% / 80% / …) |
+| **スプリントゴール達成 độ の lý do** | Lý do mức đạt |
+| **スプリントレビュー** | Bảng FB từ POT (5 dòng): No, FB箇所, Checklist No, FB内容, FBへの対応方針, 対応する内容／対応しない lý do, 対応方針承認 |
 | **次のスプリントで改善すること** | Cải thiện cho sprint kế |
 | **POT承認** | POT đã approve / chưa |
 

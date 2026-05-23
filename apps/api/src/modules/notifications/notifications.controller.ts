@@ -20,6 +20,18 @@ import { NotificationsService } from './notifications.service';
 export class NotificationsController {
   constructor(private readonly notificationsService: NotificationsService) {}
 
+  @Get('me/unread-count')
+  async countUnread(@CurrentUser() user: AuthenticatedUser) {
+    const count = await this.notificationsService.countUnread(user.id);
+    return { count };
+  }
+
+  @Patch('me/read-all')
+  async markAllRead(@CurrentUser() user: AuthenticatedUser) {
+    const updated = await this.notificationsService.markAllRead(user.id);
+    return { updated };
+  }
+
   @Get('me')
   async findMine(@CurrentUser() user: AuthenticatedUser) {
     return await this.notificationsService.findByUserId(user.id);
@@ -64,7 +76,9 @@ export class NotificationsController {
       throw new NotFoundException(`Notification ${id} was not found`);
     }
     if (existing.userId !== user.id) {
-      throw new ForbiddenException('You can only update your own notifications');
+      throw new ForbiddenException(
+        'You can only update your own notifications',
+      );
     }
     const { userId: _clientUserId, ...safeBody } = body;
     void _clientUserId;
@@ -85,7 +99,9 @@ export class NotificationsController {
       throw new NotFoundException(`Notification ${id} was not found`);
     }
     if (existing.userId !== user.id) {
-      throw new ForbiddenException('You can only delete your own notifications');
+      throw new ForbiddenException(
+        'You can only delete your own notifications',
+      );
     }
     const notification = await this.notificationsService.delete(id);
     if (!notification) {

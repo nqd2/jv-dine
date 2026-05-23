@@ -14,8 +14,8 @@ import { CurrentUser } from '../../common/auth/decorators/current-user.decorator
 import { Public } from '../../common/auth/decorators/public.decorator';
 import { Roles } from '../../common/auth/decorators/roles.decorator';
 import type { AuthenticatedUser } from '../../common/auth/auth.types';
-import type { CreateReviewDto } from './dtos/create-review.dto';
-import type { UpdateReviewDto } from './dtos/update-review.dto';
+import { CreateReviewDto } from './dtos/create-review.dto';
+import { UpdateReviewDto } from './dtos/update-review.dto';
 import { ReviewOwnerGuard } from './guards/review-owner.guard';
 import { ReviewsService } from './reviews.service';
 

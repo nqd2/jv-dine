@@ -2,7 +2,6 @@
 
 import {
   Filter,
-  Heart,
   Languages,
   LogIn,
   LogOut,
@@ -42,8 +41,11 @@ import {
   type SearchFormState,
 } from "@lib/search-params";
 import { Card } from "./ui/card";
+import { FavoriteButton } from "./favorite-button";
 import { Navbar } from "./ui/navbar";
 import { SiteLogoLanguageCluster } from "./ui/nav-brand";
+import { UserNavLinks } from "./user-nav-links";
+import { fetchMyFavoriteIds } from "@lib/favorites-api";
 
 type ViewerMode = "guest" | "user";
 
@@ -333,17 +335,40 @@ export function HomeSearchPage({ mode }: { mode: ViewerMode }) {
   }
 
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [favoriteIds, setFavoriteIds] = useState<Set<number>>(new Set());
+
+  useEffect(() => {
+    if (!currentUser) {
+      return;
+    }
+    let cancelled = false;
+    void (async () => {
+      try {
+        const ids = await fetchMyFavoriteIds();
+        if (!cancelled) {
+          setFavoriteIds(new Set(ids));
+        }
+      } catch {
+        // ignore
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [currentUser]);
+
+  const isAuthenticated = currentUser !== null;
 
   return (
     <div className="min-h-dvh bg-muted-surface text-foreground">
       <Navbar
         start={
           <SiteLogoLanguageCluster
-            logoHref={mode === "guest" ? "/" : "/home"}
+            logoHref={isAuthenticated ? "/home" : "/"}
           />
         }
         end={
-          mode === "guest" ? (
+          !isAuthenticated ? (
             <nav className="flex flex-wrap items-center gap-3 text-sm font-semibold sm:gap-4">
               <Link
                 href="/login"
@@ -360,10 +385,8 @@ export function HomeSearchPage({ mode }: { mode: ViewerMode }) {
               </Link>
             </nav>
           ) : (
-            <div className="flex items-center gap-2 text-sm">
-              <span className="inline-flex items-center rounded-full bg-muted-surface px-3 py-2 font-semibold text-label">
-                {copy.profile}: {currentUser?.username ?? currentUser?.email ?? "User"}
-              </span>
+            <div className="flex flex-wrap items-center gap-2 text-sm">
+              <UserNavLinks />
               <button
                 type="button"
                 onClick={handleLogout}
@@ -644,17 +667,21 @@ export function HomeSearchPage({ mode }: { mode: ViewerMode }) {
                         {copy.nameFallback}
                       </div>
                     )}
-                    <button
-                      type="button"
-                      aria-label="Save"
-                      className="absolute right-3 top-3 rounded-full bg-white p-2 shadow-[0px_4px_3px_rgba(0,0,0,0.1),0px_2px_2px_rgba(0,0,0,0.1)] transition-colors hover:bg-muted-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35"
-                    >
-                      <Heart
-                        aria-hidden
-                        strokeWidth={1.75}
-                        className="size-5 text-title"
-                      />
-                    </button>
+                    <FavoriteButton
+                      restaurantId={restaurant.id}
+                      initialFavorited={favoriteIds.has(restaurant.id)}
+                      onToggle={(favorited) => {
+                        setFavoriteIds((prev) => {
+                          const next = new Set(prev);
+                          if (favorited) {
+                            next.add(restaurant.id);
+                          } else {
+                            next.delete(restaurant.id);
+                          }
+                          return next;
+                        });
+                      }}
+                    />
                   </div>
 
                   <div className="space-y-3 p-4">

@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { CouponsModule } from './modules/coupons/coupons.module';
+import { FavoritesModule } from './modules/favorites/favorites.module';
 import { HealthModule } from './modules/health/health.module';
 import { MenusModule } from './modules/menus/menus.module';
 import { NotificationsModule } from './modules/notifications/notifications.module';
@@ -25,6 +26,7 @@ import { UsersModule } from './modules/users/users.module';
     RolesModule,
     UsersModule,
     RestaurantsModule,
+    FavoritesModule,
     MenusModule,
     CouponsModule,
     ReviewsModule,

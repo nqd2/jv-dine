@@ -21,6 +21,14 @@ import { CouponsService } from './coupons.service';
 export class CouponsController {
   constructor(private readonly couponsService: CouponsService) {}
 
+  @Roles('OWNER')
+  @Get('restaurant/:restaurantId/stats')
+  async getStatsByRestaurantId(
+    @Param('restaurantId', ParseIntPipe) restaurantId: number,
+  ) {
+    return await this.couponsService.getStatsByRestaurantId(restaurantId);
+  }
+
   @Public()
   @Get('restaurant/:restaurantId')
   async findByRestaurantId(

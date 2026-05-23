@@ -26,6 +26,14 @@ export class NotificationsService {
     return this.notificationsRepository.create(data);
   }
 
+  countUnread(userId: number): Promise<number> {
+    return this.notificationsRepository.countUnreadByUserId(userId);
+  }
+
+  markAllRead(userId: number): Promise<number> {
+    return this.notificationsRepository.markAllReadByUserId(userId);
+  }
+
   update(
     id: number,
     data: UpdateNotificationDto,

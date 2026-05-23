@@ -44,9 +44,7 @@ export class RolesGuard implements CanActivate {
     const canonicalRole = resolveCanonicalRole(user);
     const allowed =
       canonicalRole !== null &&
-      requiredRoles.some(
-        (role) => role.toUpperCase() === canonicalRole,
-      );
+      requiredRoles.some((role) => role.toUpperCase() === canonicalRole);
     if (!allowed) {
       throw new ForbiddenException('Insufficient permissions');
     }

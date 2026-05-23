@@ -50,9 +50,7 @@ export class ReviewsService {
       data.restaurantId,
     );
     if (existing) {
-      throw new ConflictException(
-        'You have already reviewed this restaurant',
-      );
+      throw new ConflictException('You have already reviewed this restaurant');
     }
 
     return this.reviewsRepository.create({ ...data, userId: data.userId });
