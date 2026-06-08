@@ -14,6 +14,7 @@ import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import { Card } from "../../../components/ui/card";
 import { Navbar } from "../../../components/ui/navbar";
 import { SiteLogoLanguageCluster } from "../../../components/ui/nav-brand";
+import { Skeleton } from "../../../components/ui/skeleton";
 import {
   deleteCoupon,
   fetchCouponsByRestaurant,
@@ -209,7 +210,41 @@ export default function CouponManagePage() {
           </div>
         ) : null}
 
-        {loadState === "loading" ? <p className="mt-8 text-subtitle">…</p> : null}
+        {loadState === "loading" ? (
+          <>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Card key={i} className="px-4 py-4">
+                  <Skeleton className="h-3 w-16" />
+                  <Skeleton className="mt-3 h-7 w-20" />
+                </Card>
+              ))}
+            </div>
+            <ul className="mt-8 grid gap-4 md:grid-cols-2">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <li key={i}>
+                  <Card className="p-5">
+                    <div className="flex items-start gap-2">
+                      <Skeleton className="mt-1 size-5 rounded-full" />
+                      <div className="flex-1 space-y-2">
+                        <Skeleton className="h-5 w-3/4" />
+                        <Skeleton className="h-4 w-1/2" />
+                      </div>
+                    </div>
+                    <Skeleton className="mt-3 h-6 w-20" />
+                    <Skeleton className="mt-2 h-4 w-24" />
+                    <Skeleton className="mt-2 h-3 w-40" />
+                    <Skeleton className="mt-3 h-2 w-full" />
+                    <div className="mt-4 flex gap-2">
+                      <Skeleton className="h-9 w-24 rounded-lg" />
+                      <Skeleton className="h-9 w-20 rounded-lg" />
+                    </div>
+                  </Card>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
         {loadState === "error" ? (
           <p className="mt-8 font-semibold text-rose-700">{copy.loadError}</p>
         ) : null}

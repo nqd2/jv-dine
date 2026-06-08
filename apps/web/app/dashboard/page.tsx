@@ -15,6 +15,7 @@ import { Eye, Heart, Star, Tag, UtensilsCrossed } from "lucide-react";
 import { Card } from "../components/ui/card";
 import { Navbar } from "../components/ui/navbar";
 import { SiteLogoLanguageCluster } from "../components/ui/nav-brand";
+import { Skeleton } from "../components/ui/skeleton";
 import {
   clearStoredSession,
   getServerStoredUserRawSnapshot,
@@ -382,6 +383,52 @@ function DashboardPageContent() {
             </p>
           ) : null}
 
+          {activeRestaurantId && analyticsLoad === "loading" && !analytics ? (
+            <>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <Card key={i} className="px-5 py-5">
+                    <div className="flex items-center justify-between">
+                      <Skeleton className="h-4 w-20" />
+                      <Skeleton className="size-4 rounded-full" />
+                    </div>
+                    <Skeleton className="mt-3 h-8 w-16" />
+                    <Skeleton className="mt-2 h-3 w-10" />
+                  </Card>
+                ))}
+              </div>
+              <div className="mt-8 grid gap-6 lg:grid-cols-2">
+                <Card className="p-5">
+                  <Skeleton className="h-5 w-36" />
+                  <div className="mt-4 space-y-3">
+                    {Array.from({ length: 3 }).map((_, i) => (
+                      <Skeleton key={i} className="h-16 w-full rounded-lg" />
+                    ))}
+                  </div>
+                </Card>
+                <Card className="p-5">
+                  <Skeleton className="h-5 w-32" />
+                  <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                    {Array.from({ length: 3 }).map((_, i) => (
+                      <Skeleton key={i} className="h-11 w-full" />
+                    ))}
+                  </div>
+                </Card>
+              </div>
+              <Card className="mt-8 p-5">
+                <div className="flex items-center justify-between">
+                  <Skeleton className="h-5 w-28" />
+                  <div className="flex gap-2">
+                    {Array.from({ length: 3 }).map((_, i) => (
+                      <Skeleton key={i} className="h-8 w-14 rounded-lg" />
+                    ))}
+                  </div>
+                </div>
+                <Skeleton className="mt-4 h-32 w-full" />
+              </Card>
+            </>
+          ) : null}
+
           {activeRestaurantId && analytics ? (
             <>
               <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -526,7 +573,20 @@ function DashboardPageContent() {
             <div className="mt-12">
               <h2 className="text-lg font-bold text-title">{copy.myStores}</h2>
               {storesLoad === "loading" ? (
-                <p className="mt-3 text-sm text-subtitle">…</p>
+                <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+                  {Array.from({ length: 2 }).map((_, i) => (
+                    <li key={i}>
+                      <Card className="px-5 py-5">
+                        <Skeleton className="h-5 w-48" />
+                        <Skeleton className="mt-2 h-4 w-64" />
+                        <div className="mt-4 flex gap-2">
+                          <Skeleton className="h-9 w-32 rounded-[10px]" />
+                          <Skeleton className="h-9 w-28 rounded-[10px]" />
+                        </div>
+                      </Card>
+                    </li>
+                  ))}
+                </ul>
               ) : null}
               {storesLoad === "error" ? (
                 <p className="mt-3 text-sm font-semibold text-rose-700">

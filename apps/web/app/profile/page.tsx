@@ -22,6 +22,7 @@ import { ImageUploadField } from "../components/ui/image-upload-field";
 import { Navbar } from "../components/ui/navbar";
 import { SiteLogoLanguageCluster } from "../components/ui/nav-brand";
 import { Card } from "../components/ui/card";
+import { Skeleton } from "../components/ui/skeleton";
 import { clearStoredSession, getStoredUser } from "@lib/auth-session";
 import {
   fetchMyProfile,
@@ -303,7 +304,32 @@ export default function ProfilePage() {
 
       <main className="mx-auto w-full max-w-3xl px-5 py-8 sm:px-8 sm:py-10">
         {loadState === "loading" ? (
-          <p className="text-center text-subtitle">…</p>
+          <Card className="overflow-hidden">
+            <div className="h-28 animate-pulse bg-gradient-to-r from-neutral-200 to-neutral-300" />
+            <div className="px-6 pb-6">
+              <div className="-mt-14 flex items-start gap-5">
+                <Skeleton className="size-[7.5rem] shrink-0 rounded-full border-4 border-white" />
+                <div className="w-full space-y-3 pt-16">
+                  <Skeleton className="h-6 w-48" />
+                  <Skeleton className="h-4 w-72" />
+                  <Skeleton className="h-4 w-36" />
+                </div>
+              </div>
+              <div className="mt-6 space-y-3">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <Skeleton key={i} className="h-14 w-full" />
+                ))}
+              </div>
+              <div className="mt-8 grid grid-cols-3 gap-4 border-t border-border-input pt-8">
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className="flex flex-col items-center gap-2">
+                    <Skeleton className="h-8 w-12" />
+                    <Skeleton className="h-4 w-16" />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Card>
         ) : null}
         {loadState === "error" ? (
           <p className="text-center font-semibold text-rose-700">

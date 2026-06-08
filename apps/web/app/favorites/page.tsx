@@ -9,6 +9,7 @@ import { FavoriteButton } from "../components/favorite-button";
 import { Card } from "../components/ui/card";
 import { Navbar } from "../components/ui/navbar";
 import { SiteLogoLanguageCluster } from "../components/ui/nav-brand";
+import { Skeleton } from "../components/ui/skeleton";
 import { UserNavLinks } from "../components/user-nav-links";
 import { fetchMyFavorites, type FavoriteRecord } from "@lib/favorites-api";
 import {
@@ -105,7 +106,21 @@ export default function FavoritesPage() {
         </div>
 
         {loadState === "loading" ? (
-          <p className="mt-8 text-subtitle">…</p>
+          <ul className="mt-8 grid gap-6 sm:grid-cols-2">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <li key={i}>
+                <Card className="overflow-hidden p-0">
+                  <Skeleton className="h-44 w-full rounded-none" />
+                  <div className="space-y-3 p-4">
+                    <Skeleton className="h-5 w-3/4" />
+                    <Skeleton className="h-4 w-1/2" />
+                    <Skeleton className="h-4 w-5/6" />
+                    <Skeleton className="h-4 w-2/5" />
+                  </div>
+                </Card>
+              </li>
+            ))}
+          </ul>
         ) : null}
         {loadState === "error" ? (
           <p className="mt-8 font-semibold text-rose-700">{copy.loadError}</p>

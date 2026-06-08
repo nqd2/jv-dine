@@ -79,6 +79,24 @@ function MapFlyTo({ center }: { center: MapCenter }) {
   return null;
 }
 
+const redIcon = L.icon({
+  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
+const blueIcon = L.icon({
+  iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41],
+});
+
 export type MapSearchMapProps = {
   center: MapCenter;
   results: RestaurantSearchResult[];
@@ -86,25 +104,30 @@ export type MapSearchMapProps = {
   onSelectId: (id: number | null) => void;
   viewDetailLabel: string;
   kmLabel: string;
+  height?: string | number;
 };
 
 export function MapSearchMap({
   center,
   results,
+  selectedId,
   onSelectId,
   viewDetailLabel,
   kmLabel,
+  height = "100%",
 }: MapSearchMapProps) {
+  const heightStyle = typeof height === "number" ? `${height}px` : height;
+
   return (
     <div
-      className="relative z-0 w-full overflow-hidden rounded-[10px]"
-      style={{ height: MAP_HEIGHT_PX }}
+      className="relative z-0 w-full overflow-hidden"
+      style={{ height: heightStyle }}
     >
       <MapContainer
         center={[center.lat, center.lng]}
         zoom={14}
         scrollWheelZoom
-        style={{ height: MAP_HEIGHT_PX, width: "100%" }}
+        style={{ height: heightStyle, width: "100%" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -117,6 +140,7 @@ export function MapSearchMap({
             <Marker
               key={r.id}
               position={[r.lat, r.long]}
+              icon={selectedId === r.id ? redIcon : blueIcon}
               eventHandlers={{
                 click: () => onSelectId(r.id),
               }}
@@ -145,3 +169,4 @@ export function MapSearchMap({
     </div>
   );
 }
+
