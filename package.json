@@ -6,6 +6,7 @@
     "node": "22.x"
   },
   "scripts": {
+    "postinstall": "pnpm --filter api prisma:generate",
     "setup": "pnpm install",
     "dev": "turbo run dev --parallel",
     "dev:api": "pnpm --filter api dev",
