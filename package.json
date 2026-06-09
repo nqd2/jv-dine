@@ -2,6 +2,9 @@
   "name": "jv-dine",
   "private": true,
   "packageManager": "pnpm@9.15.4",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "setup": "pnpm install",
     "dev": "turbo run dev --parallel",
