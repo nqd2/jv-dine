@@ -1,7 +1,7 @@
 {
   "name": "jv-dine",
   "private": true,
-  "packageManager": "pnpm@10.11.0",
+  "packageManager": "pnpm@9.15.4",
   "scripts": {
     "setup": "pnpm install",
     "dev": "turbo run dev --parallel",
